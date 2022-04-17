@@ -11,7 +11,24 @@ const STYLES = [
 ];
 const SIZES = ["btn--medium", "btn--small"];
 
-const Button = ({ children, type, onClick, buttonStyle, buttonSize, disabled }) => {
+// TODO: ser up typescript
+// interface ButtonProps {
+//   children?: React.ReactNode;
+//   type: string;
+//   onClick: () => void;
+//   buttonStyle?: string;
+//   buttonSize?: string;
+//   disabled?: boolean;
+// }
+
+const Button = ({
+  children,
+  type,
+  onClick,
+  buttonStyle,
+  buttonSize,
+  disabled,
+}/* : ButtonProps */) => {
   const setButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
   const setButtonSize = STYLES.includes(buttonSize) ? buttonSize : SIZES[0];
 
