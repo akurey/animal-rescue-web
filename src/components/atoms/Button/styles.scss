@@ -1,85 +1,93 @@
-.btn{
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    border: transparent 2px solid;
+.btn {
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: transparent 2px solid;
 }
 
-.btn:hover, .btn:active{
-    transform: translateY(-1px);
+.btn:hover,
+.btn:active {
+  transform: translateY(-1px);
 }
 
-.btn:disabled{
-    opacity: 0.3;
-    cursor: default;
+.btn:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 /* Button Colors and Styles */
 .btn--primary {
-    background-color: #007bff;
-    color: #f2fcff;
-    &:hover,&:focus {
-        border: #007bff 2px solid;
-        background-color: #f2fcff;
-        color: #007bff;
-    }
+  background-color: #007bff;
+  color: #f2fcff;
+  &:hover,
+  &:focus {
+    border: #007bff 2px solid;
+    background-color: #f2fcff;
+    color: #007bff;
+  }
 }
 
 .btn--secondary {
-    background-color: #6c757d;
-    color: #000D10;
-    &:hover,&:focus {
-        border: #000D10 2px solid;
-        background-color: #f2fcff;
-    }
+  background-color: #6c757d;
+  color: #000d10;
+  &:hover,
+  &:focus {
+    border: #000d10 2px solid;
+    background-color: #f2fcff;
+  }
 }
 
 .btn--success {
-    background-color: #28a745;
-    color: #000D10;
-    &:hover,&:focus {
-        border: #28a745 2px solid;
-        background-color: #f2fcff;
-    }
+  background-color: #28a745;
+  color: #000d10;
+  &:hover,
+  &:focus {
+    border: #28a745 2px solid;
+    background-color: #f2fcff;
+  }
 }
 
 .btn--danger {
-    background-color: #dc3545;
-    color: #000D10;
-    &:hover,&:focus {
-        border: #dc3545 2px solid;
-        background-color: #f2fcff;
-    }
+  background-color: #dc3545;
+  color: #000d10;
+  &:hover,
+  &:focus {
+    border: #dc3545 2px solid;
+    background-color: #f2fcff;
+  }
 }
 
 .btn--warning {
-    background-color: #ffc107;
-    color: #000D10;
-    &:hover,&:focus {
-        border: #ffc107 2px solid;
-        background-color: #f2fcff;
-    }
+  background-color: #ffc107;
+  color: #000d10;
+  &:hover,
+  &:focus {
+    border: #ffc107 2px solid;
+    background-color: #f2fcff;
+  }
 }
+
 .btn--link {
-    background-color: transparent;
+  background-color: transparent;
+  color: #007bff;
+  text-decoration: underline;
+  &:hover,
+  &:focus {
+    border: #007bff 2px solid;
+    background-color: #f2fcff;
     color: #007bff;
-    text-decoration: underline;
-    &:hover,&:focus {
-        border: #007bff 2px solid;
-        background-color: #f2fcff;
-        color: #007bff;
-    }
+  }
 }
 
 /* Sizes */
 
 .btn--medium {
-    padding: 5px 40px;
-    font-size: 18px;
+  padding: 5px 40px;
+  font-size: 18px;
 }
 
 .btn--small {
-    padding: 5px 10px;
-    font-size: 12px;
+  padding: 5px 10px;
+  font-size: 12px;
 }
