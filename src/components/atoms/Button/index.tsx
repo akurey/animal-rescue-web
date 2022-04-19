@@ -11,33 +11,29 @@ const STYLES = [
 ];
 const SIZES = ["btn--medium", "btn--small"];
 
-// TODO: set up typescript
-// interface ButtonProps {
-//   children?: React.ReactNode;
-//   type: string;
-//   onClick: () => void;
-//   buttonStyle?: string;
-//   buttonSize?: string;
-//   disabled?: boolean;
-// }
+interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement>{
+  children?: React.ReactNode;
+  onClick: () => void;
+  buttonStyle?: string;
+  buttonSize?: string;
+  disabled?: boolean;
+}
 
 const Button = (
   {
     children,
-    type,
     onClick,
     buttonStyle,
     buttonSize,
     disabled,
-  } /* : ButtonProps */
+  } : ButtonProps
 ) => {
-  const setButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
-  const setButtonSize = STYLES.includes(buttonSize) ? buttonSize : SIZES[0];
+  const setButtonStyle = STYLES.includes(buttonStyle!) ? buttonStyle : STYLES[0];
+  const setButtonSize = STYLES.includes(buttonSize!) ? buttonSize : SIZES[0];
 
   return (
     <button
       onClick={onClick}
-      type={type}
       className={`btn ${setButtonStyle} ${setButtonSize}`}
       disabled={disabled}
     >
