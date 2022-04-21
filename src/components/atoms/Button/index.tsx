@@ -1,6 +1,6 @@
 import React from "react";
-
 import "./styles.scss";
+
 const STYLES = [
   "btn--primary",
   "btn--secondary",
@@ -11,28 +11,29 @@ const STYLES = [
 ];
 const SIZES = ["btn--medium", "btn--small"];
 
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement>{
-  children?: React.ReactNode;
+interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
   onClick: () => void;
   buttonStyle?: string;
   buttonSize?: string;
   disabled?: boolean;
 }
 
-const Button = (
-  {
-    children,
-    onClick,
-    buttonStyle,
-    buttonSize,
-    disabled,
-  } : ButtonProps
-) => {
-  const setButtonStyle = STYLES.includes(buttonStyle!) ? buttonStyle : STYLES[0];
+function Button({
+  children,
+  onClick,
+  buttonStyle,
+  buttonSize,
+  disabled,
+}: ButtonProps) {
+  const setButtonStyle = STYLES.includes(buttonStyle!)
+    ? buttonStyle
+    : STYLES[0];
   const setButtonSize = STYLES.includes(buttonSize!) ? buttonSize : SIZES[0];
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`btn ${setButtonStyle} ${setButtonSize}`}
       disabled={disabled}
@@ -40,6 +41,6 @@ const Button = (
       {children}
     </button>
   );
-};
+}
 
 export default Button;
