@@ -1,0 +1,8 @@
+{
+    "prettier": {
+      "printWidth": 120,
+      "bracketSpacing": false,
+      "trailingComma": "es5",
+      "no-semi":false
+    }
+  }
