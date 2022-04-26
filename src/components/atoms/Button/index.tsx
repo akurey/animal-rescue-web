@@ -9,7 +9,7 @@ const STYLES = [
   "btn--warning",
   "btn--link",
 ];
-const SIZES = ["btn--medium", "btn--small"];
+const SIZES = ["btn--summid", "btn--medium", "btn--small"];
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
