@@ -46,7 +46,6 @@ function Error() {
 function Disabled() {
   return (
     <TextAreaComponent
-      onClick={() => {}}
       textAreaStyle="input--primary"
       placeholder="Disable"
       value=""
