@@ -1,0 +1,45 @@
+.login {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  &--image {
+    width: 50%;
+    background: #d9d9d9;
+  }
+  &--inputs {
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &--title {
+    text-align: center;
+    font-family: "Avenir";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 93.4%;
+  }
+  &--input {
+    margin-right: auto;
+    margin-left: 230px;
+    padding: 10px;
+  }
+  &--link {
+    margin-left: auto;
+    margin-right: 230px;
+    color: #000000;
+    &:hover {
+      border: transparent 2px solid;
+      background: none;
+      transform: none;
+      color: #5d5c5c;
+    }
+  }
+  &--button {
+    padding: 19px 48px;
+    margin-top: 250px;
+  }
+}
