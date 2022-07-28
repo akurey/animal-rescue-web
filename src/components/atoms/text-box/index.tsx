@@ -45,9 +45,10 @@ function TextBox({
   };
 
   return (
-    <div>
-      <p>{description}</p>
+    <>
+      <label htmlFor="input">{description}</label>
       <input
+        id="input"
         type={type}
         onClick={onClick}
         className={`input ${textBoxStyle} ${error?.message && "input--error"}`}
@@ -57,7 +58,7 @@ function TextBox({
         value={valueInput}
       />
       {error?.message && <p className="message--error">{error?.message}</p>}
-    </div>
+    </>
   );
 }
 
