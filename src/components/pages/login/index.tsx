@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import validator from "validator";
 import Button from "../../atoms/button";
-// import DoggieIcon from "../../../assets/icons/doggie.svg";
+import TextBox from "../../atoms/text-box";
+import DoggieIcon from "../../../assets/images/Doggie.png";
 import "./login.scss";
 
 function Login() {
@@ -19,23 +21,45 @@ function Login() {
   return (
     <div className="login">
       <div className="login--image">
-        {/* <img className="login--picture"></img> */}
+        <img className="login--picture" alt="doggie" src={DoggieIcon} />
       </div>
-      <div className="login--inputs">
+      <div className="login--info">
         <p className="login--title">Refugio de animales Costa Rica</p>
-        <p className="login--input">Correo electrónico</p>
-        <input
-          className="login--input"
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="usuario@email.com"
-        />
-        <p className="login--input">Contraseña</p>
-        <input
-          type="password"
-          className="login--input"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="**********"
-        />
+        <div className="login--inputs">
+          <TextBox
+            description="Correo electrónico"
+            placeholder="usuario@email.com"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            className="login--input"
+            validators={[
+              {
+                validator: (val: string) => !validator.isEmpty(val),
+                message: "El correo electrónico es requerido",
+              },
+              {
+                validator: (value: string) => validator.isEmail(value),
+                message: "Correo electrónico no valido",
+              },
+            ]}
+          />
+          <TextBox
+            description="Contraseña"
+            placeholder="**********"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            className="login--input"
+            validators={[
+              {
+                validator: (val: string) => !validator.isEmpty(val),
+                message: "La contraseña es requerida",
+              },
+            ]}
+          />
+        </div>
         <Button
           classname="login--link"
           onClick={onRedirect}
