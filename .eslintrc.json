@@ -20,7 +20,15 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off"
   },
-  "ignorePatterns": ["!.storybook"]
+  "ignorePatterns": ["!.storybook"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }
