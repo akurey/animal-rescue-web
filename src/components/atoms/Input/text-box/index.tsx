@@ -10,6 +10,7 @@ interface TextBoxProps extends React.HTMLAttributes<HTMLInputElement> {
   type?: string;
   description?: string;
   value?: string;
+  className?: string;
   placeholder: string;
 }
 
@@ -23,6 +24,7 @@ function TextBox({
   validators,
   type,
   description,
+  className,
 }: TextBoxProps) {
   const [valueInput, setValueInput] = useState(value);
   const [error, setError] = useState({ message: null, validator: () => {} });
@@ -46,12 +48,19 @@ function TextBox({
 
   return (
     <>
-      <label htmlFor="input">{description}</label>
+      <label htmlFor="input" className="input--label">
+        {description}
+      </label>
       <input
         id="input"
         type={type}
         onClick={onClick}
-        className={`input ${textBoxStyle} ${error?.message && "input--error"}`}
+        className={`
+          input
+          ${textBoxStyle}
+          ${error?.message && "input--error"}
+          ${className}
+        `}
         disabled={disabled}
         placeholder={placeholder}
         onChange={onChangeInput}
