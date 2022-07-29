@@ -20,7 +20,13 @@ export default {
 };
 
 function Default() {
-  return <TextAreaComponent placeholder="Primary" value="" />;
+  return (
+    <TextAreaComponent
+      placeholder="Primary"
+      value=""
+      description="Text Area Input"
+    />
+  );
 }
 
 function Secundary() {

@@ -6,6 +6,7 @@ interface TextAreaProps extends React.HTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
   onChange?: (e: any) => void;
   onClick?: () => void;
+  description?: string;
   value: string;
   placeholder: string;
 }
@@ -15,6 +16,7 @@ function TextArea({
   textAreaStyle,
   disabled,
   placeholder,
+  description,
   value,
   onChange,
 }: TextAreaProps) {
@@ -28,14 +30,18 @@ function TextArea({
   };
 
   return (
-    <textarea
-      onClick={onClick}
-      className={`input ${textAreaStyle}`}
-      disabled={disabled}
-      placeholder={placeholder}
-      onChange={onChangeInput}
-      value={valueInput}
-    />
+    <div className="textarea">
+      <label htmlFor="textarea">{description}</label>
+      <textarea
+        id="textarea"
+        onClick={onClick}
+        className={`input ${textAreaStyle}`}
+        disabled={disabled}
+        placeholder={placeholder}
+        onChange={onChangeInput}
+        value={valueInput}
+      />
+    </div>
   );
 }
 
