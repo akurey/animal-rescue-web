@@ -17,6 +17,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   buttonStyle?: string;
   buttonSize?: string;
   disabled?: boolean;
+  classname?: string;
 }
 
 function Button({
@@ -25,6 +26,7 @@ function Button({
   buttonStyle,
   buttonSize,
   disabled,
+  classname,
 }: ButtonProps) {
   const setButtonStyle = STYLES.includes(buttonStyle!)
     ? buttonStyle
@@ -35,7 +37,7 @@ function Button({
     <button
       type="button"
       onClick={onClick}
-      className={`btn ${setButtonStyle} ${setButtonSize}`}
+      className={`btn ${setButtonStyle} ${setButtonSize} ${classname}`}
       disabled={disabled}
     >
       {children}
