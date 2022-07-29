@@ -6,3 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.message--error {
+  font-weight: 400;
+  font-size: 16px;
+  color: #f01818;
+}
