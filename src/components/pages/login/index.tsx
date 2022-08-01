@@ -1,21 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import validator from "validator";
 import Button from "../../atoms/button";
 import TextBox from "../../atoms/text-box";
 import DoggieIcon from "../../../assets/images/Doggie.png";
+import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
+import LocalStorage from "../../../observables/localStorage.observable";
+import { UserObservable } from "../../../observables/user.observable";
+import { useObservable } from "../../../hooks/use-observable.hook";
 import "./login.scss";
 
 function Login() {
+  const [user] = useObservable(UserObservable.user$);
+  const [data, setData] = useState({
+    login: {
+      user: {
+        username: "",
+        mail: "",
+        avatar: null,
+        password: "",
+      },
+    },
+  });
   const [mail, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = () => {
-    // TODO
-    console.log(mail, password);
-  };
+  useEffect(() => {
+    if (data?.login) {
+      LocalStorage?.setItem(
+        LocalStorageKeys.AUTH_INFO,
+        JSON.stringify(data.login)
+      );
+    }
+    UserObservable.setUser(data?.login);
+  }, [data]);
 
   const onRedirect = () => {
     // TODO
+  };
+
+  const onLogin = () => {
+    // TODO
+    setData({
+      login: {
+        user: {
+          password,
+          mail,
+          username: "User Test",
+          avatar: null,
+        },
+      },
+    });
+    if (user) {
+      onRedirect();
+    }
   };
 
   return (
