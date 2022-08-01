@@ -16,12 +16,24 @@ function TableComponent({ items }: TableProps) {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell align="left">Nombre</TableCell>
-          <TableCell align="left">Nombre Común</TableCell>
-          <TableCell align="left">Fecha de Ingreso</TableCell>
-          <TableCell align="left">Lugar de Rescate</TableCell>
-          <TableCell align="left">Distribución</TableCell>
-          <TableCell align="left">Acciones</TableCell>
+          <TableCell className="table--header" align="left">
+            Nombre
+          </TableCell>
+          <TableCell className="table--header" align="left">
+            Nombre Común
+          </TableCell>
+          <TableCell className="table--header" align="left">
+            Fecha de Ingreso
+          </TableCell>
+          <TableCell className="table--header" align="left">
+            Lugar de Rescate
+          </TableCell>
+          <TableCell className="table--header" align="left">
+            Distribución
+          </TableCell>
+          <TableCell className="table--header" align="left">
+            Acciones
+          </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -35,10 +47,18 @@ function TableComponent({ items }: TableProps) {
             <TableCell align="left">{row.place}</TableCell>
             <TableCell align="left">{row.distribution}</TableCell>
             <TableCell align="left">
-              <Button onClick={() => {}} className="btn--link">
+              <Button
+                onClick={() => {}}
+                buttonStyle="btn--link"
+                className="table--link"
+              >
                 Ver
               </Button>
-              <Button onClick={() => {}} className="btn--link">
+              <Button
+                onClick={() => {}}
+                buttonStyle="btn--link"
+                className="table--link"
+              >
                 Editar
               </Button>
             </TableCell>
