@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import validator from "validator";
-import Button from "../../atoms/button";
-import TextBox from "../../atoms/text-box";
+import { Button, TextBox } from "../../atoms";
 import DoggieIcon from "../../../assets/images/Doggie.png";
 import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
 import LocalStorage from "../../../observables/localStorage.observable";
