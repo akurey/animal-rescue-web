@@ -97,14 +97,14 @@ function Login() {
           />
         </div>
         <Button
-          classname="login--link"
+          className="login--link"
           onClick={onRedirect}
           buttonStyle="btn--link"
         >
           Olvidé mi contraseña
         </Button>
         <Button
-          classname="login--button"
+          className="login--button"
           buttonStyle="btn--secondary"
           onClick={onLogin}
         >

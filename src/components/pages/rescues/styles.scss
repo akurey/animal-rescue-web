@@ -1,0 +1,44 @@
+.rescues {
+  &--filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 80px 0;
+  }
+  &--filter,
+  &--filter:active,
+  &--filter:hover,
+  &--filter:focus {
+    border-radius: 0;
+    background-color: #ffffff;
+    border: 1px solid #575757;
+    font-weight: 700;
+    font-size: 18px;
+    color: #575757;
+    padding: 13px 52px;
+  }
+  &--filter-active,
+  &--filter-active:active,
+  &--filter-active:hover,
+  &--filter-active:focus {
+    background-color: #575757;
+    color: #ffffff;
+  }
+  &--button {
+    display: flex;
+    margin-left: auto;
+    margin-top: 200px;
+    background: #c4c4c4;
+    border-radius: 11px;
+    padding: 18px 30px 18px 10px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+  }
+  &--icon {
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 14px;
+    margin-top: -3px;
+  }
+}
