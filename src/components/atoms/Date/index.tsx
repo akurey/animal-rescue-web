@@ -4,26 +4,21 @@ import "./styles.scss";
 interface DateProps extends React.HTMLAttributes<HTMLInputElement> {
   dateStyle?: string;
   disabled?: boolean;
-  onChange?: (e: any) => void;
-  onClick?: () => void;
-  validators?: any[];
   description?: string;
   dateValue?: string;
   className?: string;
-	min?: string;
-	max?: string;
+  min?: string;
+  max?: string;
 }
 
 function Date({
-  onClick,
   dateStyle,
   disabled,
   dateValue,
-  onChange,
   description,
   className,
-	min,
-	max
+  min,
+  max,
 }: DateProps) {
   const [currentDate, setCurrentDate] = useState(dateValue);
 
@@ -33,13 +28,12 @@ function Date({
 
   return (
     <>
-      <label htmlFor="dateInput" className="input--label">
+      <label htmlFor="dateInput" className="date--label">
         {description}
       </label>
       <input
         id="dateInput"
         type="date"
-        onClick={onClick}
         className={`
           input
           ${dateStyle}
@@ -48,8 +42,8 @@ function Date({
         disabled={disabled}
         onChange={onChangeInput}
         value={currentDate}
-				min={min}
-				max={max}
+        min={min}
+        max={max}
       />
     </>
   );
