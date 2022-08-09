@@ -12,7 +12,7 @@ export default {
       </MemoryRouter>
     ),
   ],
-	argTypes: {
+  argTypes: {
     onClick: () => {},
     buttonStyle: "input--primary",
     disabled: false,
@@ -25,11 +25,7 @@ function Default() {
 
 function FloatingPoint() {
   return (
-    <NumericComponent
-      placeholder="Floating point step"
-      value={0}
-			step={0.1}
-    />
+    <NumericComponent placeholder="Floating point step" value={0} step={0.1} />
   );
 }
 

@@ -28,7 +28,7 @@ function Numeric({
   className,
   max,
   min,
-  step
+  step,
 }: NumericProps) {
   const [valueInput, setValueInput] = useState(value);
   const [error, setError] = useState({ message: null, validator: () => {} });
@@ -54,23 +54,23 @@ function Numeric({
       <label htmlFor="input" className="input--label">
         {description}
       </label>
-      <input 
-      id="numeric"
-      type="number"
-      onClick={onClick}
-      className={`
+      <input
+        id="numeric"
+        type="number"
+        onClick={onClick}
+        className={`
       input
       ${numericStyle}
       ${error?.message && "input--error"}
       ${className}
       `}
-      disabled={disabled}
-      placeholder={placeholder}
-      onChange={onChangeInput}
-      value={valueInput}
-      max={max}
-      min={min}
-      step={step}
+        disabled={disabled}
+        placeholder={placeholder}
+        onChange={onChangeInput}
+        value={valueInput}
+        max={max}
+        min={min}
+        step={step}
       />
       {error?.message && <p className="message--error">{error?.message}</p>}
     </>

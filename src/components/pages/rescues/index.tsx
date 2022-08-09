@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import Button from "../../atoms/button";
+import Button from "../../atoms/Button";
 import Table from "../../molecules/table";
 import "./styles.scss";
 

@@ -5,7 +5,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import "./styles.scss";
-import Button from "../../atoms/button";
+import Button from "../../atoms/Button";
 
 interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
   items?: any[];
