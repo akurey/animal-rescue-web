@@ -24,7 +24,12 @@ function Secondary() {
 
 function DateRange() {
   return (
-    <DateComponent placeholder="Primary" dateStyle="date--primary" min="2022-08-08" max="2022-08-09" />
+    <DateComponent
+      placeholder="Primary"
+      dateStyle="date--primary"
+      min="2022-08-08"
+      max="2022-08-09"
+    />
   );
 }
 
