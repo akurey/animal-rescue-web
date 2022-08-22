@@ -1,0 +1,53 @@
+h1 {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.form-textbox {
+  box-sizing: border-box;
+  width: 320px;
+  height: 37px;
+  padding: 0 14px;
+  margin: 0;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.page-margin {
+  margin: 45px 60px
+}
+
+.button-layout {
+  align-self: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+  width: 332px;
+  height: 55px; 
+}
+
+.form-numeric {
+  box-sizing: border-box;
+  width: 90px;
+  height: 37px;
+  padding: 0 14px;
+  margin: 0;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
