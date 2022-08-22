@@ -1,0 +1,46 @@
+.user-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  text-align: right;
+  cursor: pointer;
+  background-color: rgba($color: #ffffff00, $alpha: 1.0);
+  border: none;
+}
+
+h1 {
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+h2 {
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 61px;
+  height: 61px;
+  background-color: #C4C4C4;
+  display: flex;
+  align-items: center;
+}
+
+img {
+  border-radius: 50%;
+  width: 61px;
+  height: 61px;
+}
+
+.initials {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+}
