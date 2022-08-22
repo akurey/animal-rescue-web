@@ -4,7 +4,7 @@ import NumericComponent from "./Numeric";
 import TextBoxComponent from "./TextBox";
 import TextAreaComponent from "./TextArea";
 import DateComponent from "./Date";
-import UserLoggedComponent from "./UserLogged"
+import UserLoggedComponent from "./UserLogged";
 
 export const Button = ButtonComponent;
 export const Dropdown = DropdownComponent;

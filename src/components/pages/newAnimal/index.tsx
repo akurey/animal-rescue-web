@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../atoms/Button";
-import AnimalForm1, { AnimalForm2 } from "../../molecules/AnimalForm";
+import AnimalForm1, { AnimalForm2 } from "../../molecules/animalForm";
 import "./styles.scss";
 
 function NewAnimal() {
