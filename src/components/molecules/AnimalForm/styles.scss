@@ -1,53 +1,69 @@
-h1 {
-  font-size: 40px;
-  font-weight: 400;
-}
-
 h2 {
   font-size: 25px;
   font-weight: 700;
+  margin-bottom: 27px;
 }
 
 label {
-  font-size: 18px;
+  font-size: 1.8rem;
+  line-height: 1.6rem;
   font-weight: 400;
+  margin: 0;
 }
 
-.form-textbox {
+%border {
+  border-radius: 4px;
+  border-width: thin;
+  background-color: white;
+}
+
+%form-field {
   box-sizing: border-box;
+  height: 37px;
+  padding: 0 14px;
+  margin: 0;
+  @extend %border;
+}
+
+.form-field--textbox {
+  @extend %form-field;
   width: 320px;
-  height: 37px;
-  padding: 0 14px;
-  margin: 0;
-  border-radius: 1px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
 }
 
-.page-margin {
-  margin: 45px 60px
-}
-
-.button-layout {
-  align-self: flex-end;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 10px;
-  width: 332px;
-  height: 55px; 
-}
-
-.form-numeric {
-  box-sizing: border-box;
+.form-field--numeric {
+  @extend %form-field;
   width: 90px;
-  height: 37px;
-  padding: 0 14px;
-  margin: 0;
-  border-radius: 1px;
+}
+
+.form-field--date {
+  @extend %form-field;
+  width: 251px;
+}
+
+.form-field--dropdown {
+  @extend %form-field;
+  width: 267px;
+}
+
+.form-field--textarea {
+  width: 548px;
+  height: 164px;
+  resize: none;
+  @extend %border;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+  align-items: flex-start;
+}
+
+.form-column {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 35px;
+  align-items: flex-start;
 }
+
 
