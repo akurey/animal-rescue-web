@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Button from "../../atoms/Button";
+import PageNumber from "../../atoms/PageNumber";
 import AnimalForm1, { AnimalForm2 } from "../../molecules/animalForm";
+import Header from "../../molecules/header";
 import "./styles.scss";
 
 function NewAnimal() {
@@ -10,19 +12,23 @@ function NewAnimal() {
     if (currentPage === 1) {
       // TODO: return to rescues page
     } else {
-      setCurrentPage(1);
+      setCurrentPage(currentPage - 1);
     }
   };
 
   const next = () => {
-    setCurrentPage(2);
+    if (currentPage + 1 <= 2) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
-    <div className="page-margin">
-      <h1>Nuevo animal rescatado</h1>
-      {/* Add page number component */}
-      {currentPage === 1 ? <AnimalForm1 /> : <AnimalForm2 />}
+    <div className="page-layout">
+      <Header />
+      <PageNumber pages={2} current={currentPage} />
+      <div className="form">
+        {currentPage === 1 ? <AnimalForm1 /> : <AnimalForm2 />}
+      </div>
       <div className="button-layout">
         <Button
           buttonStyle="btn--secondary"
@@ -32,7 +38,7 @@ function NewAnimal() {
           {currentPage === 1 ? "Cancelar" : "Anterior"}
         </Button>
         <Button buttonSize="btn--medium" onClick={next}>
-          Siguiente
+          {currentPage === 1 ? "Siguiente" : "Guardar"}
         </Button>
       </div>
     </div>
