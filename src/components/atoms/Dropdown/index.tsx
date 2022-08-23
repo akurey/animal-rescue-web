@@ -13,10 +13,18 @@ interface IDropdown extends React.HTMLProps<HTMLSelectElement> {
   options: IOption[];
   placeholder?: string;
   setValue: (v: string) => void;
+  dropdownStyle?: string;
 }
 
 const Dropdown = (props: IDropdown) => {
-  const { label, name, options = [], placeholder, setValue = () => {} } = props;
+  const {
+    label,
+    name,
+    options = [],
+    placeholder,
+    setValue = () => {},
+    dropdownStyle = "",
+  } = props;
   const [currentOption, setCurrentOption] = useState("");
 
   const selectProps: React.HTMLProps<HTMLSelectElement> = Object.fromEntries(
@@ -50,6 +58,7 @@ const Dropdown = (props: IDropdown) => {
       <label htmlFor={name}>{label}</label>
       <select
         {...selectProps}
+        className={dropdownStyle}
         id={name}
         onChange={handleOnChange}
         value={currentOption}
