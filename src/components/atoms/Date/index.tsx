@@ -27,7 +27,7 @@ function Date({
   };
 
   return (
-    <>
+    <div className="form-date">
       <label htmlFor="dateInput" className="date--label">
         {description}
       </label>
@@ -45,7 +45,7 @@ function Date({
         min={min}
         max={max}
       />
-    </>
+    </div>
   );
 }
 

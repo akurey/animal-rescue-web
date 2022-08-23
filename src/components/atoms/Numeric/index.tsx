@@ -50,7 +50,7 @@ function Numeric({
     }
   };
   return (
-    <>
+    <div className="form-numerics">
       <label htmlFor="input" className="input--label">
         {description}
       </label>
@@ -73,7 +73,7 @@ function Numeric({
         step={step}
       />
       {error?.message && <p className="message--error">{error?.message}</p>}
-    </>
+    </div>
   );
 }
 
