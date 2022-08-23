@@ -13,8 +13,8 @@ function UserLogged({ name, lastname, photo }: UserLoggedProps) {
   return (
     <button type="button" className="user-profile" onClick={goToProfile}>
       <div>
-        <h1>Mi perfil</h1>
-        <h2>{`${name} ${lastname}`}</h2>
+        <h4>Mi perfil</h4>
+        <h5>{`${name} ${lastname}`}</h5>
       </div>
       {photo ? (
         <img src={photo} alt="" />

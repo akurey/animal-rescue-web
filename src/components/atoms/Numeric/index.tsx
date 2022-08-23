@@ -50,7 +50,7 @@ function Numeric({
     }
   };
   return (
-    <div className="form-numerics">
+    <div className="form-numeric">
       <label htmlFor="input" className="input--label">
         {description}
       </label>
