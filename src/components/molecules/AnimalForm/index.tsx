@@ -60,6 +60,7 @@ export default function AnimalForm1() {
             value={0.0}
             placeholder="0.00"
             step={0.5}
+            units="g"
           />
           <Numeric
             numericStyle="form-field--numeric"
@@ -67,6 +68,7 @@ export default function AnimalForm1() {
             value={0.0}
             placeholder="0.00"
             step={0.5}
+            units="cm"
           />
           <Numeric
             numericStyle="form-field--numeric"
@@ -74,6 +76,7 @@ export default function AnimalForm1() {
             value={0.0}
             placeholder="0.00"
             step={0.5}
+            units="meses"
           />
         </div>
         <div className="form-row">
