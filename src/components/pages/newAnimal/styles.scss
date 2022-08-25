@@ -24,3 +24,9 @@ h1 {
 .form {
   min-height: max-content;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

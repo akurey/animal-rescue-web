@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
+import UserLogged from "../../atoms/UserLogged";
 import AnimalForm1, { AnimalForm2 } from "../../molecules/animalForm";
-import Header from "../../molecules/header";
 import "./styles.scss";
 
 function NewAnimal() {
   const [currentPage, setCurrentPage] = useState(1);
+  const userInfo = {
+    name: "John",
+    lastname: "Smith",
+    photo: "",
+  };
 
   const goBack = () => {
     if (currentPage === 1) {
@@ -24,7 +29,14 @@ function NewAnimal() {
 
   return (
     <div className="page-layout">
-      <Header />
+      <div className="header">
+        <h1>Nuevo animal rescatado</h1>
+        <UserLogged
+          name={userInfo.name}
+          lastname={userInfo.lastname}
+          photo={userInfo.photo}
+        />
+      </div>
       <PageNumber pages={2} current={currentPage} />
       <div className="form">
         {currentPage === 1 ? <AnimalForm1 /> : <AnimalForm2 />}
