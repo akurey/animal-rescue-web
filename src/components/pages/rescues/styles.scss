@@ -42,3 +42,20 @@
     margin-top: -3px;
   }
 }
+
+h1 {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.page-layout {
+  position: relative;
+  margin: 45px 60px;
+}

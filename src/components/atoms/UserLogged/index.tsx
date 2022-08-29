@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
+import LocalStorage from "../../../observables/localStorage.observable";
 import "./styles.scss";
 
-interface UserLoggedProps {
-  name: string;
-  lastname: string;
-  photo?: string;
-}
+function UserLogged() {
+  const [name, setName] = useState("Name");
+  const [lastname, setLastname] = useState("Lastname");
+  const [photo, setPhoto] = useState(null);
 
-function UserLogged({ name, lastname, photo }: UserLoggedProps) {
+  useEffect(() => {
+    const userData = JSON.parse(
+      LocalStorage.getItem(LocalStorageKeys.AUTH_INFO)
+    ).user.user;
+    if (userData) {
+      const username = userData.username.split(" ");
+      setName(username[0]);
+      setLastname(username[1]);
+      setPhoto(userData.avatar);
+    }
+  });
+
   const goToProfile = () => {};
 
   return (
