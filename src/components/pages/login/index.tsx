@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import validator from "validator";
+import { useNavigate } from "react-router-dom";
 import { Button, TextBox } from "../../atoms";
 import DoggieIcon from "../../../assets/images/Doggie.png";
 import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
@@ -22,6 +23,13 @@ function Login() {
   });
   const [mail, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const onRedirect = () => {
+    setTimeout(() => {
+      navigate("/rescues");
+    }, 500);
+  };
 
   useEffect(() => {
     if (data?.login) {
@@ -33,12 +41,7 @@ function Login() {
     UserObservable.setUser(data?.login);
   }, [data]);
 
-  const onRedirect = () => {
-    // TODO
-  };
-
   const onLogin = () => {
-    // TODO
     setData({
       login: {
         user: {

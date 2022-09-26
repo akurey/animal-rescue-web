@@ -15,13 +15,7 @@ export default {
 };
 
 function Default() {
-  return <UserLoggedComponent name="Name" lastname="Lastname" />;
+  return <UserLoggedComponent />;
 }
 
-function Photo() {
-  return (
-    <UserLoggedComponent name="Name" lastname="Lastname" photo="/user.png" />
-  );
-}
-
-export { Default, Photo };
+export { Default };
