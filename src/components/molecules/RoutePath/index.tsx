@@ -1,48 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import useBreadcrumbs from "use-react-router-breadcrumbs";
 import "./styles.scss";
 
-// interface IRoutePath {
-//   route: string;
-//   displayName: string;
-// }
-
 function RoutePath() {
-  const [paths, setPaths] = useState([
-    { id: 0, route: "/menu", displayName: "menú principal" },
-    {
-      id: 1,
-      route: "/menu/newAnimal",
-      displayName: "administrar animales recatados",
-    },
-  ]);
+  const breadcrumbs = useBreadcrumbs();
 
-  // const addPath = (path: IRoutePath) => {
-  //   const newPath = { id: paths.length, ...path };
-  //   setPaths((oldPaths) => {
-  //     return [...oldPaths, newPath];
-  //   });
-  // };
+  const getDisplayName = (name: string) => {
+    const names = name.split("/");
+    return name === "/"
+      ? "Home"
+      : names[names.length - 1].charAt(0).toUpperCase() +
+          names[names.length - 1].substring(1);
+  };
 
   return (
-    <>
-      {false && setPaths([]) /*  Delete  */}
-      <div className="route-path">
-        {paths.map((path) => {
-          return (
-            <>
-              <Link key={path.id} to={path.route} className="link">
-                {path.displayName}
-              </Link>
-              {path !== paths[paths.length - 1] && (
-                <div className="separator">/</div>
-              )}
-            </>
-          );
-        })}
-      </div>
-      {/* <Outlet /> */}
-    </>
+    <div className="route-path">
+      {breadcrumbs.map((breadcrumb) => {
+        return (
+          <>
+            <Link key={breadcrumb.key} to={breadcrumb.key} className="link">
+              {getDisplayName(breadcrumb.key)}
+            </Link>
+            {breadcrumb !== breadcrumbs[breadcrumbs.length - 1] && (
+              <div className="separator">/</div>
+            )}
+          </>
+        );
+      })}
+    </div>
   );
 }
 
