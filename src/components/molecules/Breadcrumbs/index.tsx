@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import "./styles.scss";
 
-function RoutePath() {
+function Breadcrumbs() {
   const breadcrumbs = useBreadcrumbs();
 
   const getDisplayName = (name: string) => {
@@ -15,7 +15,7 @@ function RoutePath() {
   };
 
   return (
-    <div className="route-path">
+    <div className="breadcrumbs">
       {breadcrumbs.map((breadcrumb) => {
         return (
           <>
@@ -32,4 +32,4 @@ function RoutePath() {
   );
 }
 
-export default RoutePath;
+export default Breadcrumbs;
