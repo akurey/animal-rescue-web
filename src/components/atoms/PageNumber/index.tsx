@@ -1,34 +1,24 @@
-import React, { useState } from "react";
+import { Pagination } from "@mui/material";
+import React from "react";
 import "./styles.scss";
 
 interface PageNumberProps {
   pages?: number;
-  current?: number;
+  currentPage?: number;
 }
 
-function PageNumber({ pages = 2, current = 1 }: PageNumberProps) {
-  const [currentPage, setCurrentPage] = useState(current);
-
-  const pagesArr = Array.from(Array(pages).keys());
-
+function PageNumber({ pages = 2, currentPage = 1 }: PageNumberProps) {
   return (
     <div className="page-numbers">
-      {false && setCurrentPage(1) /*  Delete  */}
-      {pagesArr.map((page) => {
-        return (
-          <>
-            <div
-              className={page + 1 !== currentPage ? "page" : "current"}
-              key={page + 1}
-            >
-              {page + 1}
-            </div>
-            {page !== pagesArr[pagesArr.length - 1] && (
-              <hr className="separator" />
-            )}
-          </>
-        );
-      })}
+      <Pagination
+        disabled
+        count={pages}
+        page={currentPage}
+        variant="outlined"
+        color="primary"
+        hidePrevButton
+        hideNextButton
+      />
     </div>
   );
 }
