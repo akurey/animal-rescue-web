@@ -1,10 +1,10 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import UserLoggedComponent from ".";
+import BreadcrumbsComponent from ".";
 
 export default {
-  title: "V1/Atoms/UserLoggedComponent",
-  component: UserLoggedComponent,
+  title: "V1/Atoms/BreadcrumbsComponent",
+  component: BreadcrumbsComponent,
   decorators: [
     (Story: any) => (
       <MemoryRouter>
@@ -15,7 +15,7 @@ export default {
 };
 
 function Default() {
-  return <UserLoggedComponent />;
+  return <BreadcrumbsComponent />;
 }
 
 export { Default };
