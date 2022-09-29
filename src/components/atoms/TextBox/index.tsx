@@ -47,7 +47,7 @@ function TextBox({
   };
 
   return (
-    <>
+    <div className="form-textbox">
       <label htmlFor="input" className="input--label">
         {description}
       </label>
@@ -67,7 +67,7 @@ function TextBox({
         value={valueInput}
       />
       {error?.message && <p className="message--error">{error?.message}</p>}
-    </>
+    </div>
   );
 }
 

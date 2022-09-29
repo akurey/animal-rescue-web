@@ -1,0 +1,32 @@
+h1 {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.page-layout {
+  position: relative;
+  margin: 45px 60px;
+}
+
+.button-layout {
+  position: fixed;
+  bottom: 45px;
+  right: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+  width: 332px;
+  height: 55px; 
+}
+
+.form {
+  min-height: max-content;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

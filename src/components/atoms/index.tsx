@@ -5,6 +5,7 @@ import TextBoxComponent from "./TextBox";
 import TextAreaComponent from "./TextArea";
 import DateComponent from "./Date";
 import UserLoggedComponent from "./UserLogged";
+import PageNumberComponent from "./PageNumber";
 
 export const Button = ButtonComponent;
 export const Dropdown = DropdownComponent;
@@ -13,5 +14,6 @@ export const TextBox = TextBoxComponent;
 export const TextArea = TextAreaComponent;
 export const Date = DateComponent;
 export const UserLogged = UserLoggedComponent;
+export const PageNumber = PageNumberComponent;
 
 export default {};
