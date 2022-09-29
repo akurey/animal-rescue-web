@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
 import UserLogged from "../../atoms/UserLogged";
-import AnimalForm1, { AnimalForm2 } from "../../molecules/animalForm";
+import AnimalForm1 from "../../molecules/animalForm/page1";
+import AnimalForm2 from "../../molecules/animalForm/page2";
 import "./styles.scss";
 
 function NewAnimal() {
@@ -37,7 +38,7 @@ function NewAnimal() {
           photo={userInfo.photo}
         />
       </div>
-      <PageNumber pages={2} current={currentPage} />
+      <PageNumber pages={2} currentPage={currentPage} />
       <div className="form">
         {currentPage === 1 ? <AnimalForm1 /> : <AnimalForm2 />}
       </div>
