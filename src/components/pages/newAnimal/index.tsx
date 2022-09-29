@@ -8,11 +8,6 @@ import "./styles.scss";
 
 function NewAnimal() {
   const [currentPage, setCurrentPage] = useState(1);
-  const userInfo = {
-    name: "John",
-    lastname: "Smith",
-    photo: "",
-  };
 
   const goBack = () => {
     if (currentPage === 1) {
@@ -32,11 +27,7 @@ function NewAnimal() {
     <div className="page-layout">
       <div className="header">
         <h1>Nuevo animal rescatado</h1>
-        <UserLogged
-          name={userInfo.name}
-          lastname={userInfo.lastname}
-          photo={userInfo.photo}
-        />
+        <UserLogged />
       </div>
       <PageNumber pages={2} currentPage={currentPage} />
       <div className="form">
