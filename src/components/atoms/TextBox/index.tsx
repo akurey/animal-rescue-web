@@ -48,12 +48,14 @@ function TextBox({
 
   return (
     <div className="form-textbox">
-      <label htmlFor="input" className="input--label">
-        {description}
-      </label>
+      {description && (
+        <label htmlFor="input" className="input--label">
+          {description}
+        </label>
+      )}
       <input
         id="input"
-        type={type}
+        type={type || "text"}
         onClick={onClick}
         className={`
           input
