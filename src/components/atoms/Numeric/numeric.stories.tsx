@@ -14,38 +14,28 @@ export default {
   ],
   argTypes: {
     onClick: () => {},
-    buttonStyle: "input--primary",
     disabled: false,
   },
 };
 
 function Default() {
-  return <NumericComponent placeholder="Primary" value={0} />;
+  return <NumericComponent placeholder="Primary" />;
 }
 
 function FloatingPoint() {
-  return (
-    <NumericComponent placeholder="Floating point step" value={0} step={0.1} />
-  );
+  return <NumericComponent placeholder="Floating point step" step={0.1} />;
 }
 
 function Error() {
-  return (
-    <NumericComponent
-      numericStyle="input--error"
-      placeholder="Error"
-      value={0}
-    />
-  );
+  return <NumericComponent numericStyle="numeric--error" placeholder="Error" />;
 }
 
 function Disabled() {
   return (
     <NumericComponent
       onClick={() => {}}
-      numericStyle="input--primary"
+      numericStyle="numeric--primary"
       placeholder="Disable"
-      value={0}
       disabled
     />
   );
