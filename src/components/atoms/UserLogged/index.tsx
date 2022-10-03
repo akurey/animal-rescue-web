@@ -24,10 +24,7 @@ function UserLogged() {
 
   return (
     <button type="button" className="user-profile" onClick={goToProfile}>
-      <div>
-        <h4>Mi perfil</h4>
-        <h5>{`${name} ${lastname}`}</h5>
-      </div>
+      <span className="material-icons">notifications</span>
       {photo ? (
         <img src={photo} alt="" />
       ) : (
@@ -35,6 +32,7 @@ function UserLogged() {
           <div className="initials">{name[0] + lastname[0]}</div>
         </div>
       )}
+      <h5>{`${name || "Name"} ${lastname || "Lastname"}`}</h5>
     </button>
   );
 }
