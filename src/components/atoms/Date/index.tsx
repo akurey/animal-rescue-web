@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles.scss";
 
 interface DateProps extends React.HTMLAttributes<HTMLInputElement> {
   dateStyle?: string;
   disabled?: boolean;
-  description?: string;
-  dateValue?: string;
+  placeholder?: string;
   className?: string;
+  onChange?: () => void;
   min?: string;
   max?: string;
 }
@@ -14,38 +14,33 @@ interface DateProps extends React.HTMLAttributes<HTMLInputElement> {
 function Date({
   dateStyle,
   disabled,
-  dateValue,
-  description,
+  placeholder,
   className,
+  onChange,
   min,
   max,
 }: DateProps) {
-  const [currentDate, setCurrentDate] = useState(dateValue);
+  const onFocus = (e: any) => {
+    e.target.type = "date";
+  };
 
-  const onChangeInput = (e: any) => {
-    setCurrentDate(e.target.value);
+  const onBlur = (e: any) => {
+    e.target.type = e.target.value === "" ? "text" : "date";
   };
 
   return (
-    <div className="form-date">
-      <label htmlFor="dateInput" className="date--label">
-        {description}
-      </label>
-      <input
-        id="dateInput"
-        type="date"
-        className={`
-          input
-          ${dateStyle}
-          ${className}
-        `}
-        disabled={disabled}
-        onChange={onChangeInput}
-        value={currentDate}
-        min={min}
-        max={max}
-      />
-    </div>
+    <input
+      id="dateInput"
+      type="text"
+      onFocus={onFocus}
+      onChange={onChange}
+      onBlur={onBlur}
+      className={`date ${dateStyle} ${className}`}
+      placeholder={placeholder}
+      disabled={disabled}
+      min={min}
+      max={max}
+    />
   );
 }
 
