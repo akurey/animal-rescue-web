@@ -29,20 +29,10 @@ function Default() {
   );
 }
 
-function Secundary() {
-  return (
-    <TextAreaComponent
-      textAreaStyle="input--secundary"
-      placeholder="Secundary"
-      value=""
-    />
-  );
-}
-
 function Error() {
   return (
     <TextAreaComponent
-      textAreaStyle="input--error"
+      textAreaStyle="textarea--error"
       placeholder="Error"
       value=""
     />
@@ -52,7 +42,7 @@ function Error() {
 function Disabled() {
   return (
     <TextAreaComponent
-      textAreaStyle="input--primary"
+      textAreaStyle="textarea--primary"
       placeholder="Disable"
       value=""
       disabled
@@ -60,4 +50,4 @@ function Disabled() {
   );
 }
 
-export { Default, Secundary, Error, Disabled };
+export { Default, Error, Disabled };

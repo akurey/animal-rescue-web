@@ -15,26 +15,25 @@ export default {
 };
 
 function Default() {
-  return <DateComponent dateValue="2022-01-01" dateStyle="date--primary" />;
+  return <DateComponent placeholder="2022-01-01" dateStyle="date--primary" />;
 }
 
-function Secondary() {
-  return <DateComponent dateValue="2022-01-01" dateStyle="date--secondary" />;
-}
-
-function DateRange() {
+function Disabled() {
   return (
     <DateComponent
-      placeholder="Primary"
+      placeholder="2022-01-01"
       dateStyle="date--primary"
-      min="2022-08-08"
-      max="2022-08-09"
+      disabled
     />
   );
 }
 
 function Error() {
-  return <DateComponent dateValue="2022-01-01" dateStyle="date--error" />;
+  return <DateComponent placeholder="2022-01-01" dateStyle="date--error" />;
 }
 
-export { Default, Secondary, DateRange, Error };
+function Placeholder() {
+  return <DateComponent dateStyle="date--primary" placeholder="Fecha" />;
+}
+
+export { Default, Disabled, Error, Placeholder };

@@ -1,61 +1,22 @@
-.form-date {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
+@import "../../../styles/forms.scss";
 
 .date {
-  border-radius: 4px;
-  background-color: #f2fcff;
-  padding: 20px;
-  font-size: 16px;
+  @extend %form-field;
 }
 
-.date:disabled {
-  opacity: 0.3;
-  cursor: default;
+@include input-placeholder-style("text");
+
+/*  delete calendar icon  */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
 
-/* Colors and Styles */
+/* date styles */
 .date--primary {
-  border: solid 1px #007bff;
-  color: #007bff;
-  &:active,
-  &:focus {
-    color: #007bff;
-    box-shadow: rgba(91, 97, 154, 0.248) 0px 8px 24px;
-  }
-  &::placeholder {
-    color: #69b1ff;
-  }
-}
-
-.date--secondary {
-  border: solid 1px #6c757d;
-  color: #6c757d;
-  &:active,
-  &:focus {
-    color: #6c757d;
-    box-shadow: rgba(127, 125, 125, 0.248) 0px 8px 24px;
-  }
-  &::placeholder {
-    color: #e4e4e4;
-  }
+  @extend .date;
 }
 
 .date--error {
-  border: solid 1px #f01818;
-  color: #f01818;
-  &:active,
-  &:focus {
-    box-shadow: rgba(230, 132, 132, 0.248) 0px 8px 24px;
-  }
-  &::placeholder {
-    color: #f98484;
-  }
-}
-
-.date--label {
-  font-size: 18px;
-  font-weight: 400;
+  @extend %form-field--error;
 }

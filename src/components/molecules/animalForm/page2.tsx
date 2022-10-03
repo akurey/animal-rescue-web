@@ -20,57 +20,43 @@ export default function AnimalForm2() {
           <div className="form-row">
             <Dropdown
               name="province"
-              label="Provincia"
+              placeholder="Provincia"
               options={commonNameOptions}
               dropdownStyle="form-field--dropdown"
-              placeholder={
-                commonNameOptions.find((option) => option.selected === true)
-                  .displayName
-              }
               setValue={() => {}}
             />
             <Dropdown
               name="canton"
-              label="Cantón"
+              placeholder="Cantón"
               options={commonNameOptions}
               dropdownStyle="form-field--dropdown"
-              placeholder={
-                commonNameOptions.find((option) => option.selected === true)
-                  .displayName
-              }
               setValue={() => {}}
             />
           </div>
           <TextArea
             textAreaStyle="form-field--textarea"
-            description="Lugar exacto de rescate"
+            placeholder="Lugar exacto de rescate"
             value=""
-            placeholder="Dirección en señas, si fue en carretera, una casa, barrio...."
           />
         </div>
         <div className="form-column">
           <div className="form-row">
             <Dropdown
               name="district"
-              label="Distrito"
               options={commonNameOptions}
               dropdownStyle="form-field--dropdown"
-              placeholder={
-                commonNameOptions.find((option) => option.selected === true)
-                  .displayName
-              }
+              placeholder="Distrito"
               setValue={() => {}}
             />
             <DateComponent
-              dateStyle="form-field--date"
-              description="Fecha de rescate"
+              className="form-field--date"
+              placeholder="Fecha de rescate"
             />
           </div>
           <TextArea
             textAreaStyle="form-field--textarea"
-            description="Descripción del rescate"
+            placeholder="Descripción del rescate"
             value=""
-            placeholder="Descripción del rescate..."
           />
         </div>
       </div>

@@ -1,9 +1,11 @@
 .btn {
-  font-weight: bold;
+  font-family: 'Roboto';
+  font-style: normal;
   border-radius: 4px;
+  text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.3s ease;
-  border: transparent 2px solid;
+  border: none;
 }
 
 .btn:hover,
@@ -18,23 +20,22 @@
 
 /* Button Colors and Styles */
 .btn--primary {
-  background-color: #007bff;
-  color: #f2fcff;
+  font-weight: 700;
+  background-color: #FFEF0A;
+  color: #000000;
   &:hover,
   &:focus {
-    border: #007bff 2px solid;
-    background-color: #f2fcff;
-    color: #007bff;
+    border: 2px solid;
   }
 }
 
 .btn--secondary {
-  background-color: #c4c4c4;
-  color: #000d10;
+  font-weight: 500;
+  background-color: #3D3D3D;
+  color: #C4C4C4;
   &:hover,
   &:focus {
-    border: #000d10 2px solid;
-    background-color: #f2fcff;
+    border: 2px solid;
   }
 }
 
@@ -69,14 +70,15 @@
 }
 
 .btn--link {
+  font-weight: 400;
+  text-transform: none;
   background-color: transparent;
-  color: #007bff;
+  color: #FFEF0A;
   text-decoration: underline;
   &:hover,
   &:focus {
-    border: #007bff 2px solid;
-    background-color: #f2fcff;
-    color: #007bff;
+    border: sepia(#FFEF0A) 2px solid;
+    
   }
 }
 

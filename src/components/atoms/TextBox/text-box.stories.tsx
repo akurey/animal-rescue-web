@@ -23,10 +23,10 @@ function Default() {
   return <TextBoxComponent placeholder="Primary" value="" />;
 }
 
-function Secundary() {
+function Secondary() {
   return (
     <TextBoxComponent
-      textBoxStyle="input--secundary"
+      textBoxStyle="input--secondary"
       placeholder="Secundary"
       value=""
     />
@@ -55,4 +55,4 @@ function Disabled() {
   );
 }
 
-export { Default, Secundary, Error, Disabled };
+export { Default, Secondary, Error, Disabled };

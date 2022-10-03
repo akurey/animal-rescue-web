@@ -9,7 +9,6 @@ export interface IOption {
 }
 interface IDropdown extends React.HTMLProps<HTMLSelectElement> {
   name: string;
-  label: string;
   options: IOption[];
   placeholder?: string;
   setValue: (v: string) => void;
@@ -18,7 +17,6 @@ interface IDropdown extends React.HTMLProps<HTMLSelectElement> {
 
 const Dropdown = (props: IDropdown) => {
   const {
-    label,
     name,
     options = [],
     placeholder,
@@ -53,20 +51,19 @@ const Dropdown = (props: IDropdown) => {
     setValue(event.target.value);
     setCurrentOption(event.target.value);
   };
+
   return (
-    <span className="select">
-      <label htmlFor={name}>{label}</label>
-      <select
-        {...selectProps}
-        className={dropdownStyle}
-        id={name}
-        onChange={handleOnChange}
-        value={currentOption}
-      >
-        {placeholder && placeholderOption}
-        {displayOptions}
-      </select>
-    </span>
+    <select
+      {...selectProps}
+      className={dropdownStyle}
+      id={name}
+      onChange={handleOnChange}
+      value={currentOption}
+    >
+      {placeholder && placeholderOption}
+      {displayOptions}
+    </select>
   );
 };
+
 export default Dropdown;

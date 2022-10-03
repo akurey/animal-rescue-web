@@ -20,60 +20,43 @@ export default function AnimalForm1() {
         <div className="form-row">
           <TextBox
             textBoxStyle="form-field--textbox"
-            description="Nombre del animal"
-            placeholder="Pedro el perezoso"
+            placeholder="Nombre del animal"
           />
           <Dropdown
             name="common-name"
-            label="Nombre común"
+            placeholder="Nombre común"
             options={commonNameOptions}
             dropdownStyle="form-field--dropdown"
-            placeholder={
-              commonNameOptions.find((option) => option.selected === true)
-                .displayName
-            }
             setValue={() => {}}
           />
         </div>
         <div className="form-row">
           <TextBox
             textBoxStyle="form-field--textbox"
-            description="Nombre científico"
-            placeholder="Melursus ursinus"
+            placeholder="Nombre científico"
           />
           <TextBox
             textBoxStyle="form-field--textbox"
-            description="Clasificación"
-            placeholder="Mammalia"
+            placeholder="Clasificación"
           />
-          <TextBox
-            textBoxStyle="form-field--textbox"
-            description="Estatus"
-            placeholder="Sin preocupación"
-          />
+          <TextBox textBoxStyle="form-field--textbox" placeholder="Estatus" />
         </div>
         <div className="form-row">
           <Numeric
             numericStyle="form-field--numeric"
-            description="Peso"
-            value={0.0}
-            placeholder="0.00"
+            placeholder="Peso"
             step={0.5}
             units="g"
           />
           <Numeric
             numericStyle="form-field--numeric"
-            description="Altura"
-            value={0.0}
-            placeholder="0.00"
+            placeholder="Altura"
             step={0.5}
             units="cm"
           />
           <Numeric
             numericStyle="form-field--numeric"
-            description="Edad (aproximado)"
-            value={0.0}
-            placeholder="0.00"
+            placeholder="Edad (aproximado)"
             step={0.5}
             units="meses"
           />
@@ -81,9 +64,8 @@ export default function AnimalForm1() {
         <div className="form-row">
           <TextArea
             textAreaStyle="form-field--textarea"
-            description="Breve descripción de condición de ingreso"
+            placeholder="Breve descripción de condición de ingreso"
             value=""
-            placeholder="Descripción del rescate..."
           />
         </div>
       </div>

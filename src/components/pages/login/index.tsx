@@ -71,6 +71,7 @@ function Login() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            textBoxStyle="input--secondary"
             className="login--input"
             validators={[
               {
@@ -90,6 +91,7 @@ function Login() {
               setPassword(e.target.value);
             }}
             type="password"
+            textBoxStyle="input--secondary"
             className="login--input"
             validators={[
               {

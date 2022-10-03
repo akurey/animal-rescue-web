@@ -1,61 +1,37 @@
+@import "../../../styles/forms.scss";
+@import "../../../styles/layout.scss";
+
 .form-textbox {
-  display: flex;
-  flex-direction: column;
+  @extend %column;
   gap: 7px;
 }
 
-.input {
-  border-radius: 4px;
-  background-color: #f2fcff;
-  padding: 20px;
-  font-size: 16px;
+input[type="text"],
+input[type="password"] {
+  @extend %form-field;
 }
 
-.input:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
+@include input-placeholder-style("password");
 
 /* Button Colors and Styles */
 .input--primary {
-  border: solid 1px #007bff;
-  color: #007bff;
-  &:active,
-  &:focus {
-    color: #007bff;
-    box-shadow: rgba(91, 97, 154, 0.248) 0px 8px 24px;
-  }
-  &::placeholder {
-    color: #69b1ff;
-  }
+  @extend %form-field;
 }
 
 .input--secondary {
-  border: solid 1px #6c757d;
-  color: #6c757d;
-  &:active,
-  &:focus {
-    color: #6c757d;
-    box-shadow: rgba(127, 125, 125, 0.248) 0px 8px 24px;
-  }
-  &::placeholder {
-    color: #e4e4e4;
-  }
+  @extend %form-field;
+  border: solid 1px $form-field-color;
+  padding: 6px 0;
+  margin: 0;
 }
 
 .input--error {
-  border: solid 1px #f01818;
-  color: #f01818;
-  &:active,
-  &:focus {
-    box-shadow: rgba(230, 132, 132, 0.248) 0px 8px 24px;
-  }
-  &::placeholder {
-    color: #f98484;
-  }
+  @extend %form-field--error;
 }
 
 .input--label {
-  font-size: 18px;
-  font-weight: 400;
+  @extend %form-field--label;
+  color: $light-text-color;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
