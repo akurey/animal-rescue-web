@@ -23,7 +23,7 @@ function Breadcrumbs() {
               {getDisplayName(breadcrumb.key)}
             </Link>
             {breadcrumb !== breadcrumbs[breadcrumbs.length - 1] && (
-              <div className="separator">/</div>
+              <div className="slash">/</div>
             )}
           </>
         );
