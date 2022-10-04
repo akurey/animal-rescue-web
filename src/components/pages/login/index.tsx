@@ -60,7 +60,11 @@ function Login() {
   return (
     <div className="background">
       <div className="login">
-        <img className="logo" alt="Logo del refugio" src={Logo} />
+        <img
+          className="logo"
+          alt="Refugio Animal de Costa Rica Logo"
+          src={Logo}
+        />
         <div className="login--column">
           <TextBox
             description="Correo electrónico"
