@@ -49,25 +49,33 @@ function TextBox({
   return (
     <div className="form-textbox">
       {description && (
-        <label htmlFor="input" className="input--label">
+        <label htmlFor="input" className="form-field--label">
           {description}
         </label>
       )}
-      <input
-        id="input"
-        type={type || "text"}
-        onClick={onClick}
-        className={`
+      <div className="form-field--input">
+        <input
+          id="input"
+          type={type || "text"}
+          onClick={onClick}
+          className={`
           input
           ${textBoxStyle}
           ${error?.message && "input--error"}
           ${className}
         `}
-        disabled={disabled}
-        placeholder={placeholder}
-        onChange={onChangeInput}
-        value={valueInput}
-      />
+          disabled={disabled}
+          placeholder={placeholder}
+          onChange={onChangeInput}
+          value={valueInput}
+        />
+        {type === "password" && (
+          <i id="togglePassword" className="material-icons">
+            visibility
+          </i>
+          // <span className="material-icons"> visibility_off </span>
+        )}
+      </div>
       {error?.message && <p className="message--error">{error?.message}</p>}
     </div>
   );

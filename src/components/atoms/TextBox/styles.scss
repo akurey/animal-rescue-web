@@ -2,16 +2,14 @@
 @import "../../../styles/layout.scss";
 
 .form-textbox {
-  @extend %column;
-  gap: 7px;
+  @include layout-column(7px);
 }
 
 input[type="text"],
 input[type="password"] {
   @extend %form-field;
+  width: 100%;
 }
-
-@include input-placeholder-style("password");
 
 /* Button Colors and Styles */
 .input--primary {
@@ -19,19 +17,40 @@ input[type="password"] {
 }
 
 .input--secondary {
-  @extend %form-field;
-  border: solid 1px $form-field-color;
-  padding: 6px 0;
-  margin: 0;
+  border: solid 1px $form-field-color !important;
+  border-radius: 4px;
+  padding: 0 14px !important;
+  &::-webkit-input-placeholder {  /* Chrome/Opera/Safari */
+    opacity: 0.6;;
+  }
+  &::-moz-placeholder {           /* Firefox 19+ */
+    opacity: 0.6;
+  }
+  &:-ms-input-placeholder {       /* IE 10+ */
+    opacity: 0.6;
+  }
+  &:-moz-placeholder {            /* Firefox 18- */
+    opacity: 0.6;
+  }
 }
 
 .input--error {
   @extend %form-field--error;
 }
 
-.input--label {
-  @extend %form-field--label;
-  color: $light-text-color;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+@include form-field--label();
+
+.message--error {
+  margin: 0;
+}
+
+.form-field--input {
+  @extend %row-centered;
+  position: relative;
+}
+
+#togglePassword {
+  position: absolute;
+  margin: 0;
+  right: 20px;
 }

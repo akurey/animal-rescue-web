@@ -22,8 +22,7 @@ textarea {
 }
 
 .textarea {
-  @extend %column;
-  gap: 7px;
+  @include layout-column(7px);
 }
 
 .textarea--primary {
@@ -33,3 +32,5 @@ textarea {
 .textarea--error {
   @extend %form-field--error;
 }
+
+@include form-field--label();
