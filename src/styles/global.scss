@@ -1,8 +1,10 @@
 html {
   font-size: 62.5%;
+  color: white; // TODO remove this, move color to each component
 }
 body {
   margin: 0;
+  overflow: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -13,4 +15,11 @@ body {
 .message--error {
   font-weight: 400;
   color: #f01818;
+}
+
+th,
+tr,
+td,
+td button {
+  color: white !important; // TODO remove important clause (is a bad plactice) insted search about how can we overwrite the MUI styles of the table
 }
