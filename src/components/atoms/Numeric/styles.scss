@@ -2,17 +2,14 @@
 @import "../../../styles/layout.scss";
 
 .row {
-  @extend %row-centered;
+  @include layout-row(10, center);
   @extend %form-field-font;
   color: $form-field-color;
-  gap: 10px;  
 }
 
 input[type="number"] {
   @extend %form-field;
 }
-
-@include input-placeholder-style("number");
 
 /*  numeric styles  */
 .numeric--primary {

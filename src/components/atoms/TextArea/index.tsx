@@ -31,7 +31,11 @@ function TextArea({
 
   return (
     <div className="textarea">
-      {description && <label htmlFor="textarea">{description}</label>}
+      {description && (
+        <label className="form-field--label" htmlFor="textarea">
+          {description}
+        </label>
+      )}
       <textarea
         id="textarea"
         onClick={onClick}

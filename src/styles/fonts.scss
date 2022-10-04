@@ -4,12 +4,6 @@
   font-size: 16px;
 }
 
-%form-field--label {
-  @extend %font-1;
-  font-weight: 700;
-  line-height: 19px;
-}
-
 %form-field-font {
   @extend %font-1;
   font-weight: 400;

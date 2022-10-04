@@ -4,8 +4,6 @@
   @extend %form-field;
 }
 
-@include input-placeholder-style("text");
-
 /*  delete calendar icon  */
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;

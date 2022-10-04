@@ -1,3 +1,6 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/fonts.scss";
+
 .btn {
   font-family: 'Roboto';
   font-style: normal;
@@ -21,7 +24,7 @@
 /* Button Colors and Styles */
 .btn--primary {
   font-weight: 700;
-  background-color: #FFEF0A;
+  background-color: $primary-color;
   color: #000000;
   &:hover,
   &:focus {
@@ -70,15 +73,15 @@
 }
 
 .btn--link {
+  @extend %font-1;
   font-weight: 400;
   text-transform: none;
   background-color: transparent;
-  color: #FFEF0A;
+  color: $primary-color;
   text-decoration: underline;
   &:hover,
   &:focus {
-    border: sepia(#FFEF0A) 2px solid;
-    
+    border: sepia($primary-color) 2px solid;
   }
 }
 
