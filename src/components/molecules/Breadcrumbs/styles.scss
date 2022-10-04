@@ -1,25 +1,31 @@
+@import "../../../styles/layout.scss";
+@import "../../../styles/fonts.scss";
+@import "../../../styles/colors.scss";
+
+
 .breadcrumbs {
-  display: flex;
-  flex-direction: row;
+  @extend %row-centered;
   gap: 0.3em;
 }
 
 .link {
-  font-weight: 400;
   background-color: transparent;
-  color: black;
   text-decoration: none;
-  &:hover,
-  &:focus {
-    color: #007bff;
+  @extend %breadcrumb-font;
+  color: $light-text-color;
+  &:hover {
+    color: $primary-color;
   }
 
   &:last-child {
-    font-weight: 700;
+    color: $primary-color;
   }
 }
 
-.separator {
-  margin: 0;
-  padding: 0;
+.slash {
+  margin-left: 15px;
+  margin-right: 5px;
+  color: $light-text-color;
+  @extend %breadcrumb-font;
+  font-size: 16px;
 }
