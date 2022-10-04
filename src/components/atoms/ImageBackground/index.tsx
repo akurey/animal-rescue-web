@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import OceloteImg from "../../../assets/images/Ocelote.png";
+import OceloteImg from "../../../assets/backgrounds/Ocelote.png";
 
 function ImageBackground() {
   return (
