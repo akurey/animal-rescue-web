@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 function PublicLayout() {
   return (
-    <main className="layout">
+    <main className="public-layout">
       <Outlet />
     </main>
   );

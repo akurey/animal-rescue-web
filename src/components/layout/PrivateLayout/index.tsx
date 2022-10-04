@@ -9,7 +9,7 @@ function PrivateLayout() {
     <>
       <ImageBackground />
       <NavigationBar />
-      <main className="layout">
+      <main className="private-layout">
         <Outlet />
       </main>
     </>
