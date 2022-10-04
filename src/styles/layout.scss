@@ -4,7 +4,23 @@
   align-items: center;
 }
 
-%column {
+@mixin layout-row($gap, $align){
+  display: flex;
+  flex-direction: row;
+  gap: $gap;
+  align-items: $align;
+}
+
+@mixin layout-column($gap) {
   display: flex;
   flex-direction: column;
+  gap: $gap;
+}
+
+@mixin background($image-name) {
+  .background {
+    background-image: url("../assets/backgrounds/#{$image-name}");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }

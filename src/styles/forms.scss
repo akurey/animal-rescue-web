@@ -9,15 +9,15 @@
   background-color: transparent;
   padding: 0 0 6px 0;
   color: $form-field-color;
+  margin: 0;
   
   &::placeholder {
     color: $form-field-color;
   }
   
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     outline: none;
-    color: $primary-color;
   }
 
   &:disabled {
@@ -27,8 +27,16 @@
 }
 
 %form-field--error {
-  @extend %form-field;
   border: solid 1px #f01818;
+}
+
+@mixin form-field--label() {
+  .form-field--label {
+    @extend %font-1;
+    font-weight: 700;
+    color: $light-text-color;
+    text-transform: uppercase;
+  }
 }
 
 /*  change placeholder style on hover */

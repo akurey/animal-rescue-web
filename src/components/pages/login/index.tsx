@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { Button, TextBox } from "../../atoms";
-import DoggieIcon from "../../../assets/images/Doggie.png";
+import Logo from "../../../assets/images/logo.png";
 import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
 import LocalStorage from "../../../observables/localStorage.observable";
 import { UserObservable } from "../../../observables/user.observable";
@@ -58,16 +58,13 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <div className="login--image">
-        <img className="login--picture" alt="doggie" src={DoggieIcon} />
-      </div>
-      <div className="login--info">
-        <p className="login--title">Refugio de animales Costa Rica</p>
-        <div className="login--inputs">
+    <div className="background">
+      <div className="login">
+        <img className="logo" alt="Logo del refugio" src={Logo} />
+        <div className="login--column">
           <TextBox
             description="Correo electrónico"
-            placeholder="usuario@email.com"
+            placeholder="usuario@correo.com"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -86,7 +83,7 @@ function Login() {
           />
           <TextBox
             description="Contraseña"
-            placeholder="**********"
+            placeholder="Min 8 caracteres"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -101,19 +98,23 @@ function Login() {
             ]}
           />
         </div>
-        <Button
-          className="login--link"
-          onClick={onRedirect}
-          buttonStyle="btn--link"
-        >
-          Olvidé mi contraseña
-        </Button>
+        <label id="remember" htmlFor="checkbox">
+          <input type="checkbox" id="checkbox" />
+          Recordarme
+        </label>
         <Button
           className="login--button"
-          buttonStyle="btn--secondary"
+          buttonStyle="btn--primary"
           onClick={onLogin}
         >
-          Ingresar
+          Iniciar sesión
+        </Button>
+        <Button
+          onClick={onRedirect}
+          buttonStyle="btn--link"
+          className="login--link"
+        >
+          Olvidé mi contraseña
         </Button>
       </div>
     </div>
