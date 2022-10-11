@@ -2,9 +2,14 @@
 @import "../../../styles/colors.scss";
 @import "../../../styles/layout.scss";
 
+.table--container {
+  width: 100%;
+  overflow: auto;
+}
+
 .table {
   &--link {
-    color: $light-text-color ;
+    color: $light-text-color;
   }
   &--header {
     font-size: 16px;

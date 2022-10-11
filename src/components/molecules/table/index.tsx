@@ -8,6 +8,7 @@ import "./styles.scss";
 import FilterListSharpIcon from "@mui/icons-material/FilterListSharp";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Checkbox } from "@mui/material";
+// import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/Button";
 import TableRowConfig from "../TableRowConfig";
 
@@ -16,8 +17,18 @@ interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
 }
 
 function TableComponent({ items }: TableProps) {
+  // const navigate = useNavigate();
+
+  // const onView = (animalId: string) => {
+  //   navigate(`/rescues/${animalId}`);
+  // };
+
+  // const onEdit = (animalId: string) => {
+  //   navigate(`/rescues/${animalId}`); // Todo Change link path to Edit
+  // };
+
   return (
-    <>
+    <div className="table--container">
       <Table>
         <TableHead>
           <TableRow>
@@ -63,7 +74,7 @@ function TableComponent({ items }: TableProps) {
         </TableBody>
       </Table>
       <TableRowConfig />
-    </>
+    </div>
   );
 }
 

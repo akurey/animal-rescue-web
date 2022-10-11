@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
-import UserLogged from "../../atoms/UserLogged";
 import AnimalForm1 from "../../molecules/AnimalForm/page1";
 import AnimalForm2 from "../../molecules/AnimalForm/page2";
 import "./styles.scss";
@@ -24,10 +23,9 @@ function NewAnimal() {
   };
 
   return (
-    <div className="page-layout">
+    <div>
       <div className="header">
         <h1>Nuevo animal rescatado</h1>
-        <UserLogged />
       </div>
       <PageNumber pages={2} currentPage={currentPage} />
       <div className="form">
