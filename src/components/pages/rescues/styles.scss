@@ -1,58 +1,46 @@
+@import "../../../styles/headers.scss";
+@import "../../../styles/layout.scss";
+
 .rescues {
   &--filters {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin: 80px 0;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
   }
-  &--filter,
-  &--filter:active,
-  &--filter:hover,
-  &--filter:focus {
-    border-radius: 0;
-    background-color: #ffffff;
-    border: 1px solid #575757;
-    font-weight: 700;
-    font-size: 18px;
-    color: #575757;
-    padding: 13px 52px;
-  }
-  &--filter-active,
-  &--filter-active:active,
-  &--filter-active:hover,
-  &--filter-active:focus {
-    background-color: #575757;
-    color: #ffffff;
-  }
-  &--button {
-    display: flex;
-    margin-left: auto;
-    margin-top: 200px;
-    background: #c4c4c4;
-    border-radius: 11px;
-    padding: 18px 30px 18px 10px;
+  &--filter {
+    font-family: 'Roboto';
+    font-style: normal;
     font-weight: 400;
     font-size: 18px;
-    color: #000000;
+    border-radius: 0;    
+    background-color: transparent;
+    color: $light-text-color;
+    width: 10rem;
+    height: 2.5rem;
   }
-  &--icon {
-    width: 30px !important;
-    height: 30px !important;
-    margin-right: 14px;
-    margin-top: -3px;
+  &--filter:focus,
+  &--filter:hover {
+    color: $light-text-color;
+    border: 0;
+    font-weight: 800;
   }
-}
-
-h1 {
-  font-size: 40px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  &--filter-active,
+  &--filter-active:hover,
+  &--filter-active:focus {
+    color: $primary-color;
+    border: 0;
+    border-bottom: 3px solid;
+    border-top: 0;
+    font-weight: 800;
+  }
+  &--button {
+    @include layout-row(4px, center);
+    @extend %font-1;
+    font-weight: 700 !important;
+    justify-content: center;
+    padding: 11px 25px;
+  }
 }
 
 .page-layout {

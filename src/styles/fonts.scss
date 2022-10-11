@@ -4,6 +4,12 @@
   font-size: 16px;
 }
 
+%font-2 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+}
+
 %form-field-font {
   @extend %font-1;
   font-weight: 400;
