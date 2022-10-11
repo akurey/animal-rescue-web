@@ -12,7 +12,7 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 18px !important;
     border-radius: 0;    
     background-color: transparent;
     color: $light-text-color;
@@ -41,9 +41,4 @@
     justify-content: center;
     padding: 11px 25px;
   }
-}
-
-.page-layout {
-  position: relative;
-  margin: 45px 60px;
 }
