@@ -13,8 +13,6 @@ function RescuesComponente() {
 
   return (
     <>
-      {/* TODO add background component */}
-      {/* TODO add nav bar */}
       <Breadcrumbs />
       <h1>Animales Rescatados</h1>
       <Button onClick={() => {}} className="rescues--button">

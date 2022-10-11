@@ -7,7 +7,6 @@ function NavigationBar() {
   return (
     <header className="navigation-container">
       <nav className="navigation-bar">
-        {/* TODO change this symbol for the real house Icon */}
         <HomeIcon className="navigation-bar__home-icon" fontSize="medium" />
         <UserLogged />
       </nav>
