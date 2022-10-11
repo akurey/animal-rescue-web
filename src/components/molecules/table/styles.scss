@@ -1,6 +1,11 @@
+.table--container {
+  width: 100%;
+  overflow: auto;
+}
+
 .table {
   &--link {
-    color: #575757;
+    color: white;
   }
   &--header {
     font-weight: 700 !important;
