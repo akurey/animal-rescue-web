@@ -9,8 +9,7 @@ import FilterListSharpIcon from "@mui/icons-material/FilterListSharp";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Checkbox } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
-import { TablePagination } from "@material-ui/core";
-import Button from "../../atoms/Button";
+import { IconButton, Menu, MenuItem, TablePagination } from "@material-ui/core";
 
 interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
   items?: any[];
@@ -30,6 +29,8 @@ function TableComponent({ items }: TableProps) {
   const [firstRow, setFirstRow] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState(items.slice(0, rowsPerPage));
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
 
   const handleChangeRows = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(Number(e.target.value));
@@ -56,6 +57,14 @@ function TableComponent({ items }: TableProps) {
       return items.slice(firstRow, firstRow + rowsPerPage);
     });
   }, [firstRow, rows]);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className="table--container">
@@ -95,9 +104,40 @@ function TableComponent({ items }: TableProps) {
                 {row.place}
               </TableCell>
               <TableCell className="table--data" align="center">
-                <Button onClick={() => {}} buttonStyle="btn--link">
-                  <MoreVertIcon className="icon" fontSize="medium" />
-                </Button>
+                <IconButton
+                  aria-label="more"
+                  id="long-button"
+                  aria-controls={open ? "long-menu" : undefined}
+                  aria-expanded={open ? "true" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+                <Menu
+                  id="long-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  PaperProps={{
+                    style: {
+                      maxHeight: "8rem",
+                      width: "7rem",
+                      background: "#FFEF0A",
+                    },
+                  }}
+                >
+                  <MenuItem
+                    key={`see_option${row.id}`}
+                    selected
+                    onClick={handleClose}
+                  >
+                    Ver
+                  </MenuItem>
+                  <MenuItem key={`edit_option${row.id}`} onClick={handleClose}>
+                    Editar
+                  </MenuItem>
+                </Menu>
               </TableCell>
             </TableRow>
           ))}
