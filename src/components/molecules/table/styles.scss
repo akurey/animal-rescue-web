@@ -18,20 +18,20 @@
     font-weight: 900 !important;
   }
   &--row{
-    height: fit-content !important;
-    padding: 0 !important;
+    height: 3.7rem !important;
   }
   &--data {
     @extend %font-1;
     font-size: 16px !important;
     font-weight: 400 ;
     color: $light-text-color !important;
-    margin: 0 !important;
   }
 }
 
 .checkbox {
   color: $light-text-color !important;
+  margin: 0 !important;
+  background-color: aqua;
   &:checked {
     color: $light-text-color !important;
   }
@@ -41,11 +41,12 @@
   color: $light-text-color;
 }
 
-.table-row-config {
-  @include layout-row(30px, center);
-  color: $light-text-color;
-  justify-content: flex-end;
-  margin-top: 1rem;
+.table-pagination {
+  color: $light-text-color !important;
+  font-size: 12px !important;
+  p {
+    font-size: 12px !important;
+  }
 }
 
 .page-numeric {

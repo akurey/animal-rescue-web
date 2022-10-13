@@ -9,10 +9,8 @@ import FilterListSharpIcon from "@mui/icons-material/FilterListSharp";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Checkbox } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
-import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
-import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import { TablePagination } from "@material-ui/core";
 import Button from "../../atoms/Button";
-import { Numeric } from "../../atoms";
 
 interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
   items?: any[];
@@ -28,36 +26,40 @@ function TableComponent({ items }: TableProps) {
   // const onEdit = (animalId: string) => {
   //   navigate(`/rescues/${animalId}`); // Todo Change link path to Edit
   // };
+  const [page, setPage] = useState(0);
   const [firstRow, setFirstRow] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState(items.slice(0, rowsPerPage));
 
-  const changeRows = (e: any) => {
+  const handleChangeRows = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(Number(e.target.value));
     setFirstRow((prevFirstRow) => {
       return prevFirstRow - (prevFirstRow % Number(e.target.value));
     });
   };
 
-  const onPrev = () => {
-    setFirstRow((prevFirstRow) => {
-      return prevFirstRow - rowsPerPage;
-    });
-  };
-
-  const onNext = () => {
-    setFirstRow((prevFirstRow) => {
-      return prevFirstRow + rowsPerPage;
-    });
+  const handleChangePage = (event: unknown, newPage: number) => {
+    if (newPage < page) {
+      setFirstRow((prevFirstRow) => {
+        return prevFirstRow - rowsPerPage;
+      });
+    } else {
+      setFirstRow((prevFirstRow) => {
+        return prevFirstRow + rowsPerPage;
+      });
+    }
+    setPage(newPage);
   };
 
   useEffect(() => {
-    setRows(items.slice(firstRow, firstRow + rowsPerPage));
-  }, [firstRow]);
+    setRows(() => {
+      return items.slice(firstRow, firstRow + rowsPerPage);
+    });
+  }, [firstRow, rows]);
 
   return (
     <div className="table--container">
-      <Table>
+      <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell className="table--header" align="left">
@@ -101,36 +103,16 @@ function TableComponent({ items }: TableProps) {
           ))}
         </TableBody>
       </Table>
-
-      <div className="table-row-config">
-        <p>Rows per page:</p>
-        <Numeric
-          value={rowsPerPage}
-          className="page-numeric"
-          onChange={changeRows}
-        />
-        <p>
-          {firstRow + 1}-
-          {firstRow + rowsPerPage <= items.length
-            ? firstRow + rowsPerPage
-            : items.length}{" "}
-          of {items.length}
-        </p>
-        <Button
-          onClick={onPrev}
-          buttonStyle="btn--link"
-          disabled={firstRow === 0}
-        >
-          <ChevronLeftRoundedIcon className="icon" fontSize="medium" />
-        </Button>
-        <Button
-          onClick={onNext}
-          buttonStyle="btn--link"
-          disabled={firstRow + rowsPerPage >= items.length}
-        >
-          <ChevronRightRoundedIcon className="icon" fontSize="medium" />
-        </Button>
-      </div>
+      <TablePagination
+        className="table-pagination"
+        rowsPerPageOptions={[2, 3, 4, 5, 10, 25]}
+        component="div"
+        count={items.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRows}
+      />
     </div>
   );
 }
