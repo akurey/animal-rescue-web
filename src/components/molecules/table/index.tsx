@@ -8,7 +8,6 @@ import "./styles.scss";
 import FilterListSharpIcon from "@mui/icons-material/FilterListSharp";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Checkbox } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
 import { IconButton, Menu, MenuItem, TablePagination } from "@material-ui/core";
 
 interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
@@ -16,15 +15,6 @@ interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
 }
 
 function TableComponent({ items }: TableProps) {
-  // const navigate = useNavigate();
-
-  // const onView = (animalId: string) => {
-  //   navigate(`/rescues/${animalId}`);
-  // };
-
-  // const onEdit = (animalId: string) => {
-  //   navigate(`/rescues/${animalId}`); // Todo Change link path to Edit
-  // };
   const [page, setPage] = useState(0);
   const [firstRow, setFirstRow] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
