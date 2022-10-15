@@ -1,3 +1,7 @@
+@import "../../../styles/fonts.scss";
+@import "../../../styles/colors.scss";
+@import "../../../styles/layout.scss";
+
 .table--container {
   width: 100%;
   overflow: auto;
@@ -5,10 +9,48 @@
 
 .table {
   &--link {
-    color: white;
+    color: $light-text-color;
   }
   &--header {
-    font-weight: 700 !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
+    color: $light-text-color !important;
+    text-transform: uppercase;
+    font-weight: 900 !important;
   }
+  &--row{
+    height: 3.7rem !important;
+  }
+  &--data {
+    @extend %font-1;
+    font-size: 16px !important;
+    font-weight: 400 ;
+    color: $light-text-color !important;
+  }
+}
+
+.checkbox {
+  color: $light-text-color !important;
+  margin: 0 !important;
+  background-color: aqua;
+  &:checked {
+    color: $light-text-color !important;
+  }
+}
+
+.icon {
+  color: $light-text-color;
+}
+
+.table-pagination {
+  color: $light-text-color !important;
+  font-size: 12px !important;
+  p {
+    font-size: 12px !important;
+  }
+}
+
+.page-numeric {
+  border-bottom: 0 !important;
+  padding: 0 !important;
+  width: 2rem;
 }

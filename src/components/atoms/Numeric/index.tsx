@@ -7,6 +7,7 @@ interface NumericProps extends React.HTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
   onChange?: (e: any) => void;
   onClick?: () => void;
+  value?: number;
   placeholder?: string;
   max?: number;
   min?: number;
@@ -16,6 +17,7 @@ interface NumericProps extends React.HTMLAttributes<HTMLInputElement> {
 
 function Numeric({
   onClick,
+  value,
   numericStyle,
   className,
   disabled,
@@ -36,6 +38,7 @@ function Numeric({
         disabled={disabled}
         placeholder={placeholder}
         onChange={onChange}
+        value={value}
         max={max}
         min={min || 0}
         step={step}

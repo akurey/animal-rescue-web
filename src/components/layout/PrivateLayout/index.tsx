@@ -7,7 +7,7 @@ import ImageBackground from "../../atoms/ImageBackground";
 function PrivateLayout() {
   return (
     <>
-      <ImageBackground />
+      <ImageBackground imageName="Ocelote.png" />
       <NavigationBar />
       <main className="private-layout">
         <Outlet />
