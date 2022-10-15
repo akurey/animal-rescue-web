@@ -1,14 +1,13 @@
 import React from "react";
+import HomeIcon from "@mui/icons-material/Home";
 import UserLogged from "../../atoms/UserLogged";
 import "./styles.scss";
-import homeIcon from "../../../assets/images/logo.png";
 
 function NavigationBar() {
   return (
     <header className="navigation-container">
       <nav className="navigation-bar">
-        {/* TODO change this symbol for the real house Icon */}
-        <img className="navigation-bar__home-icon" src={homeIcon} alt="" />
+        <HomeIcon className="navigation-bar__home-icon" fontSize="medium" />
         <UserLogged />
       </nav>
     </header>

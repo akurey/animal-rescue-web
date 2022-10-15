@@ -2,7 +2,7 @@
 @import "../../../styles/fonts.scss";
 
 .btn {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   border-radius: 4px;
   text-transform: uppercase;
@@ -26,20 +26,12 @@
   font-weight: 700;
   background-color: $primary-color;
   color: #000000;
-  &:hover,
-  &:focus {
-    border: 2px solid;
-  }
 }
 
 .btn--secondary {
   font-weight: 500;
-  background-color: #3D3D3D;
-  color: #C4C4C4;
-  &:hover,
-  &:focus {
-    border: 2px solid;
-  }
+  background-color: #3d3d3d;
+  color: #c4c4c4;
 }
 
 .btn--success {

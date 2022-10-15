@@ -1,20 +1,30 @@
 import React, { useState } from "react";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/Button";
 import Table from "../../molecules/table";
 import "./styles.scss";
+import Breadcrumbs from "../../molecules/Breadcrumbs";
 
 const REVIEW = "review";
 const PUBLIC = "public";
 
 function RescuesComponente() {
   const [filter, setFilter] = useState(REVIEW);
+  const navigate = useNavigate();
+
+  const goToNewAnimal = () => {
+    navigate("new");
+  };
 
   return (
-    <div>
-      <div className="header">
-        <h1>Animales Rescatados</h1>
-      </div>
+    <>
+      <Breadcrumbs />
+      <h1>Animales Rescatados</h1>
+      <Button onClick={goToNewAnimal} className="rescues--button">
+        <AddIcon fontSize="medium" /> nuevo animal
+      </Button>
+
       <div className="rescues--filters">
         <Button
           onClick={() => setFilter(REVIEW)}
@@ -39,17 +49,62 @@ function RescuesComponente() {
           {
             id: "1",
             name: "Perro",
-            comunName: "Firulais",
+            comunName: "Firulais1",
+            date: "29/07/2022",
+            place: "Málaga",
+            distribution: "-",
+          },
+          {
+            id: "2",
+            name: "Perro",
+            comunName: "Firulais2",
+            date: "29/07/2022",
+            place: "Málaga",
+            distribution: "-",
+          },
+          {
+            id: "3",
+            name: "Perro",
+            comunName: "Firulais3",
+            date: "29/07/2022",
+            place: "Málaga",
+            distribution: "-",
+          },
+          {
+            id: "4",
+            name: "Perro",
+            comunName: "Firulais4",
+            date: "29/07/2022",
+            place: "Málaga",
+            distribution: "-",
+          },
+          {
+            id: "5",
+            name: "Perro",
+            comunName: "Firulais5",
+            date: "29/07/2022",
+            place: "Málaga",
+            distribution: "-",
+          },
+          {
+            id: "6",
+            name: "Perro",
+            comunName: "Firulais6",
+            date: "29/07/2022",
+            place: "Málaga",
+            distribution: "-",
+          },
+          {
+            id: "7",
+            name: "Perro",
+            comunName: "Firulais7",
             date: "29/07/2022",
             place: "Málaga",
             distribution: "-",
           },
         ]}
       />
-      <Button onClick={() => {}} className="rescues--button">
-        <AddCircleIcon className="rescues--icon" /> nuevo animal
-      </Button>
-    </div>
+    </>
   );
 }
 

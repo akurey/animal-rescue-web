@@ -1,6 +1,9 @@
+@import "colors.scss";
+
 html {
-  font-size: 62.5%;
-  color: white; // TODO remove this, move color to each component
+  font-family: "Roboto";
+  font-style: normal;
+  background-color: $dark-background-color;
 }
 body {
   margin: 0;
