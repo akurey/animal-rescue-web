@@ -24,9 +24,6 @@ function TableComponent({ items }: TableProps) {
 
   const handleChangeRows = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(Number(e.target.value));
-    setFirstRow((prevFirstRow) => {
-      return prevFirstRow - (prevFirstRow % Number(e.target.value));
-    });
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -43,10 +40,16 @@ function TableComponent({ items }: TableProps) {
   };
 
   useEffect(() => {
-    setRows(() => {
-      return items.slice(firstRow, firstRow + rowsPerPage);
+    setRows(items.slice(firstRow, firstRow + rowsPerPage));
+  }, [firstRow]);
+
+  useEffect(() => {
+    setFirstRow((prevFirstRow) => {
+      const newFirstRow = prevFirstRow - (prevFirstRow % rowsPerPage);
+      setRows(items.slice(newFirstRow, newFirstRow + rowsPerPage));
+      return newFirstRow;
     });
-  }, [firstRow, rows]);
+  }, [rowsPerPage]);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -116,12 +119,16 @@ function TableComponent({ items }: TableProps) {
                       background: "#FFEF0A",
                     },
                   }}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
                 >
-                  <MenuItem
-                    key={`see_option${row.id}`}
-                    selected
-                    onClick={handleClose}
-                  >
+                  <MenuItem key={`see_option${row.id}`} onClick={handleClose}>
                     Ver
                   </MenuItem>
                   <MenuItem key={`edit_option${row.id}`} onClick={handleClose}>
@@ -135,7 +142,7 @@ function TableComponent({ items }: TableProps) {
       </Table>
       <TablePagination
         className="table-pagination"
-        rowsPerPageOptions={[2, 3, 4, 5, 10, 25]}
+        rowsPerPageOptions={[5, 10, 25]}
         component="div"
         count={items.length}
         rowsPerPage={rowsPerPage}
