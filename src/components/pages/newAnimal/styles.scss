@@ -1,26 +1,27 @@
-.page-layout {
-  position: relative;
-  margin: 45px 60px;
-}
+@import "../../../styles/layout.scss"; 
 
 .button-layout {
-  position: fixed;
-  bottom: 45px;
-  right: 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 10px;
-  width: 332px;
-  height: 55px;
+  @extend %row-centered;
+  justify-content: space-between;
+  margin-top: 4rem;
+  button {
+    padding: .6rem;
+  }
+  div {
+    @include layout-row(.75rem, center);
+    button {
+      padding: .6rem 2.2rem;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .form {
-  min-height: max-content;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  width: 50%;
+  margin-right: 5rem;
 }

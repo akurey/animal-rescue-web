@@ -12,5 +12,12 @@ h1 {
 }
 
 h2 {
-
+  @extend %font-1;
+  font-weight: 700;
+  font-size: 4.4rem;
+  line-height: 5rem;
+  text-transform: uppercase;
+  display: table-caption;
+  color: $light-text-color;
+  margin-top: 2rem;
 }
