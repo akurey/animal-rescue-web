@@ -46,7 +46,7 @@ function TableComponent({ items }: TableProps) {
     setRows(() => {
       return items.slice(firstRow, firstRow + rowsPerPage);
     });
-  }, [firstRow, rows]);
+  }, [firstRow]);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
