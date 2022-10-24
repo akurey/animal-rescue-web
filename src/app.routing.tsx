@@ -7,6 +7,7 @@ import NewAnimal from "./components/pages/newAnimal";
 import Animal from "./components/pages/animal";
 import PublicLayout from "./components/layout/PublicLayout";
 import PrivateLayout from "./components/layout/PrivateLayout";
+import NotFound from "./components/pages/404";
 
 const routes = () => (
   <BrowserRouter>
@@ -20,6 +21,13 @@ const routes = () => (
         <Route path="/rescues" element={<Rescues />} />
         <Route path="/rescues/new" element={<NewAnimal />} />
         <Route path="/rescues/:animalId" element={<Animal />} />
+      </Route>
+
+      {/* 404 Page, is always at the end */}
+      <Route element={<PublicLayout />}>
+        <Route path="/404" element={<NotFound />} />{" "}
+        {/* Solo para fines de Testing */}
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   </BrowserRouter>

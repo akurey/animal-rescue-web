@@ -17,13 +17,13 @@
     text-transform: uppercase;
     font-weight: 900 !important;
   }
-  &--row{
+  &--row {
     height: 3.7rem !important;
   }
   &--data {
     @extend %font-1;
     font-size: 16px !important;
-    font-weight: 400 ;
+    font-weight: 400;
     color: $light-text-color !important;
   }
 }

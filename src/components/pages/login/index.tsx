@@ -7,6 +7,7 @@ import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant
 import LocalStorage from "../../../observables/localStorage.observable";
 import { UserObservable } from "../../../observables/user.observable";
 import { useObservable } from "../../../hooks/use-observable.hook";
+import useAuth from "../../../hooks/auth/useAuth";
 import "./login.scss";
 
 function Login() {
@@ -24,6 +25,7 @@ function Login() {
   const [mail, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   const onRedirect = () => {
     setTimeout(() => {
@@ -52,6 +54,7 @@ function Login() {
         },
       },
     });
+    setAuth(data);
     if (user) {
       onRedirect();
     }

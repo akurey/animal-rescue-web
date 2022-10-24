@@ -1,12 +1,21 @@
+@import "../../../styles/base/index.scss";
+
 .navigation-container {
   position: relative;
   top: 0;
   left: 0;
-  padding: 0px 60px;
-  height: 81px;
+  padding: 0px 30px;
+  height: 60px;
   display: flex;
   background: rgba(0, 0, 0, 0.6);
   box-shadow: 0px 4px 28px rgba(79, 79, 79, 0.25);
+
+  // Smooth resize and responsive transitions
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .navigation-bar {
@@ -22,4 +31,27 @@
 
 .navigation-bar__home-icon {
   color: white;
+}
+
+@media (min-width: $sml-phone-upper) {
+  .navigation-container {
+    height: 60px;
+    padding: 0px 60px;
+  }
+}
+
+@media (min-width: $mid-phone-upper) {
+  .navigation-container {
+    height: 81px;
+    padding: 0px 60px;
+  }
+}
+
+@media (min-width: $big-phone-upper) {
+}
+
+@media (min-width: $tablet-upper) {
+}
+
+@media (min-width: $desktop-upper) {
 }
