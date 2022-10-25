@@ -53,7 +53,7 @@ function TextBox({
           {description}
         </label>
       )}
-      <div className="form-field--input">
+      <div>
         <input
           id="input"
           type={type || "text"}

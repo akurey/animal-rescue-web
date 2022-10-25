@@ -3,6 +3,7 @@
 
 .form-textbox {
   @include layout-column(7px);
+  flex-grow: 1;
 }
 
 input[type="text"],
@@ -42,11 +43,6 @@ input[type="password"] {
 
 .message--error {
   margin: 0;
-}
-
-.form-field--input {
-  @extend %row-centered;
-  position: relative;
 }
 
 #togglePassword {
