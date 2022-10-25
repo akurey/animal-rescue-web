@@ -3,25 +3,30 @@
 .button-layout {
   @extend %row-centered;
   justify-content: space-between;
-  margin-top: 4rem;
+  margin-top: auto;
+
   button {
     padding: .6rem;
   }
   div {
     @include layout-row(.75rem, center);
     button {
-      padding: .6rem 2.2rem;
+      padding: .6rem 2rem;
     }
   }
 }
 
 .row {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 }
 
 .form {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 48rem;
   margin-right: 5rem;
 }

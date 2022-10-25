@@ -4,24 +4,46 @@ import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
 import AnimalForm1 from "../../molecules/AnimalForm/page1";
 import AnimalForm2 from "../../molecules/AnimalForm/page2";
+import AnimalForm3 from "../../molecules/AnimalForm/page3";
 import Breadcrumbs from "../../molecules/Breadcrumbs";
 import "./styles.scss";
 
 function NewAnimal() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const navigate = useNavigate();
+  const pages = [
+    {
+      id: 1,
+      title: "Datos del animal",
+      formPage: <AnimalForm1 />,
+    },
+    {
+      id: 2,
+      title: "Datos del rescate",
+      formPage: <AnimalForm2 />,
+    },
+    {
+      id: 3,
+      title: "Datos del rescatista",
+      formPage: <AnimalForm3 />,
+    },
+  ];
 
   const goBack = () => {
-    if (currentPage === 1) {
+    if (currentPage === 0) {
       navigate(-1);
     } else {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage((prevCurrentPage) => {
+        return prevCurrentPage - 1;
+      });
     }
   };
 
   const next = () => {
-    if (currentPage + 1 <= 2) {
-      setCurrentPage(currentPage + 1);
+    if (currentPage + 1 < pages.length) {
+      setCurrentPage((prevCurrentPage) => {
+        return prevCurrentPage + 1;
+      });
     }
   };
 
@@ -33,9 +55,13 @@ function NewAnimal() {
           <h2>Nuevo rescate</h2>
         </div>
         <div className="form">
-          <PageNumber pages={2} currentPage={currentPage} />
-          {currentPage === 1 ? <AnimalForm1 /> : <AnimalForm2 />}
-
+          <PageNumber
+            pages={pages.map((page) => {
+              return page.title;
+            })}
+            currentPage={currentPage + 1}
+          />
+          {pages[currentPage].formPage}
           <div className="button-layout">
             <div>
               <Button buttonSize="btn--small" onClick={goBack}>
