@@ -1,52 +1,9 @@
-h2 {
-  font-size: 25px;
-  font-weight: 700;
-  margin-bottom: 27px;
-}
+@import "../../../styles/layout.scss";
 
-%form-field {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.form-field--textbox {
-  @extend %form-field;
-  width: 320px;
-}
-
-.form-field--numeric {
-  @extend %form-field;
-  width: 90px;
-}
-
-.form-field--date {
-  @extend %form-field;
-  width: 251px;
-}
-
-.form-field--dropdown {
-  @extend %form-field;
-  width: 267px;
-}
-
-.form-field--textarea {
-  width: 548px;
-  height: 164px;
-  resize: none;
+.form-column {
+  @include layout-column(4.2rem);
 }
 
 .form-row {
-  display: flex;
-  flex-direction: row;
-  gap: 35px;
-  align-items: flex-end;
+  @include layout-row(1.5rem, center);
 }
-
-.form-column {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-  align-items: flex-start;
-}
-
-
