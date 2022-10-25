@@ -1,14 +1,15 @@
 @import "../../../styles/layout.scss";
 @import "../../../styles/colors.scss";
 @import "../../../styles/fonts.scss";
+@import "../../../styles/base/index.scss";
 
 .login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  margin-left: 168px;
-  width: 30%;
+  margin: 0 auto;
+  width: 90%;
   &--column {
     @include layout-column(38px);
     height: fit-content;
@@ -39,4 +40,31 @@
   @include layout-row(7px, center);
   color: $light-text-color;
   margin-bottom: 45px;
+}
+
+@media (min-width: $sml-phone-upper) {
+  .login {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: $mid-phone-upper) {
+  .login {
+    width: 50%;
+    margin-left: 168px;
+  }
+}
+
+@media (min-width: $big-phone-upper) {
+  .login {
+    width: 30%;
+    margin-left: 168px;
+  }
+}
+
+@media (min-width: $tablet-upper) {
+}
+
+@media (min-width: $desktop-upper) {
 }

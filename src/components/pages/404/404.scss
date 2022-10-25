@@ -1,0 +1,42 @@
+@import "../../../styles/fonts.scss";
+@import "../../../styles/colors.scss";
+
+.e404--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: 100vh;
+  width: 100vw;
+
+  h1,
+  span {
+    color: white;
+  }
+
+  &__CTA {
+    display: flex;
+    gap: 1em;
+  }
+  &__CTA-link {
+    color: white;
+
+    background-color: transparent;
+    text-decoration: none;
+    @extend %font-1;
+    color: $light-text-color;
+    &:hover {
+      color: $primary-color;
+    }
+
+    &:last-child {
+      color: $primary-color;
+    }
+  }
+
+  &__image {
+    height: 200px;
+    width: auto;
+  }
+}
