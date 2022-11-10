@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useObservable } from "../../../hooks/use-observable.hook";
+import { RescueObservable } from "../../../observables/rescue.observable";
 import FormService from "../../../services/form.services";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
@@ -11,6 +13,7 @@ function NewAnimal() {
   const [isLoading, setLoading] = useState(true);
   const [fields, setFields] = useState([]);
   const [types, setTypes] = useState([]);
+  const [rescue] = useObservable(RescueObservable.rescue$);
 
   const getTypes = (data) => {
     const dataTypes = [];
@@ -48,6 +51,8 @@ function NewAnimal() {
     if (currentPage + 1 <= 2) {
       setCurrentPage(currentPage + 1);
     }
+    //TODO: when click on "Guardar", convert rescue to string and use that as the field_values in RescueService.addRescue()
+    // RescueService.addRescue() -> axios post method
   };
 
   return (
