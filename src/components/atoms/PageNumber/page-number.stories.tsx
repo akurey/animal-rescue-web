@@ -24,7 +24,7 @@ function Default() {
 }
 
 function Pages() {
-  return <PageNumberComponent pages={5} currentPage={1} />;
+  return <PageNumberComponent currentPage={1} />;
 }
 
 export { Default, Pages };

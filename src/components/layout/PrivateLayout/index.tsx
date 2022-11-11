@@ -12,7 +12,7 @@ function PrivateLayout() {
 
   return auth?.login ? (
     <>
-      <ImageBackground imageName="Ocelote.png" />
+      <ImageBackground />
       <NavigationBar />
       <main className="private-layout">
         <Outlet />

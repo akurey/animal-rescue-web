@@ -1,65 +1,66 @@
 import React from "react";
-import DateComponent from "../../atoms/Date";
 import Dropdown from "../../atoms/Dropdown";
-import TextArea from "../../atoms/TextArea";
+import TextBox from "../../atoms/TextBox";
 import "./styles.scss";
 
 export default function AnimalForm2() {
   //  TODO: update real data
-  const commonNameOptions = [
-    { value: "Perezoso-1", displayName: "Perezoso de 3 dedos", selected: true },
-    { value: "Perezoso-2", displayName: "Perezoso 2", selected: false },
-    { value: "Perezoso-3", displayName: "Perezoso 3", selected: false },
+  const reasonOptions = [
+    { value: "reason-1", displayName: "Razón 1", selected: true },
+    { value: "reason-2", displayName: "Razón 2", selected: false },
+    { value: "reason-3", displayName: "Razón 3", selected: false },
   ];
 
   return (
-    <div>
-      <h2>Información de rescate</h2>
+    <div className="form-column">
+      <Dropdown
+        name="reason"
+        placeholder="Razón de recepción"
+        options={reasonOptions}
+        dropdownStyle="form-field--dropdown"
+        setValue={() => {}}
+      />
       <div className="form-row">
-        <div className="form-column">
-          <div className="form-row">
-            <Dropdown
-              name="province"
-              placeholder="Provincia"
-              options={commonNameOptions}
-              dropdownStyle="form-field--dropdown"
-              setValue={() => {}}
-            />
-            <Dropdown
-              name="canton"
-              placeholder="Cantón"
-              options={commonNameOptions}
-              dropdownStyle="form-field--dropdown"
-              setValue={() => {}}
-            />
-          </div>
-          <TextArea
-            textAreaStyle="form-field--textarea"
-            placeholder="Lugar exacto de rescate"
-            value=""
-          />
-        </div>
-        <div className="form-column">
-          <div className="form-row">
-            <Dropdown
-              name="district"
-              options={commonNameOptions}
-              dropdownStyle="form-field--dropdown"
-              placeholder="Distrito"
-              setValue={() => {}}
-            />
-            <DateComponent
-              className="form-field--date"
-              placeholder="Fecha de rescate"
-            />
-          </div>
-          <TextArea
-            textAreaStyle="form-field--textarea"
-            placeholder="Descripción del rescate"
-            value=""
-          />
-        </div>
+        <Dropdown
+          name="case_type"
+          placeholder="Tipo de caso"
+          options={reasonOptions}
+          dropdownStyle="form-field--dropdown"
+          setValue={() => {}}
+        />
+        <Dropdown
+          name="UICN_category"
+          placeholder="Categoría UICN"
+          options={reasonOptions}
+          dropdownStyle="form-field--dropdown"
+          setValue={() => {}}
+        />
       </div>
+      <div className="form-row">
+        <Dropdown
+          name="province"
+          placeholder="Provincia"
+          options={reasonOptions}
+          dropdownStyle="form-field--dropdown"
+          setValue={() => {}}
+        />
+        <Dropdown
+          name="canton"
+          placeholder="Cantón"
+          options={reasonOptions}
+          dropdownStyle="form-field--dropdown"
+          setValue={() => {}}
+        />
+        <Dropdown
+          name="district"
+          placeholder="Distrito"
+          options={reasonOptions}
+          dropdownStyle="form-field--dropdown"
+          setValue={() => {}}
+        />
+      </div>
+      <TextBox placeholder="Dirección exacta" />
+      <TextBox placeholder="Observaciones" />
     </div>
   );
 }

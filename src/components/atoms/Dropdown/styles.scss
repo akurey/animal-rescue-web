@@ -2,6 +2,7 @@
 
 select {
   @extend %form-field;
+  flex-grow: 1;
 }
 
 option {

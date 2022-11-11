@@ -1,74 +1,53 @@
 import React from "react";
 import Dropdown from "../../atoms/Dropdown";
-import Numeric from "../../atoms/Numeric";
-import TextArea from "../../atoms/TextArea";
 import TextBox from "../../atoms/TextBox";
 import "./styles.scss";
 
 export default function AnimalForm1() {
   //  TODO: update real data
-  const commonNameOptions = [
-    { value: "Perezoso-1", displayName: "Perezoso de 3 dedos", selected: true },
-    { value: "Perezoso-2", displayName: "Perezoso 2", selected: false },
-    { value: "Perezoso-3", displayName: "Perezoso 3", selected: false },
+  const sexOptions = [
+    { id: 0, displayName: "Macho", value: "Macho", selected: true },
+    { id: 1, displayName: "Hembra", value: "Hembra", selected: false },
+  ];
+
+  //  TODO: update real data
+  const colorOptions = [
+    { id: 0, displayName: "Café", value: "Café", selected: true },
+    { id: 1, displayName: "Negro", value: "Negro", selected: false },
+    { id: 2, displayName: "Rojo", value: "Rojo", selected: false },
+    { id: 3, displayName: "Amarillo", value: "Amarillo", selected: false },
+    { id: 4, displayName: "Blanco", value: "Blanco", selected: false },
   ];
 
   return (
-    <div>
-      <h2>Información básica</h2>
-      <div className="form-column">
-        <div className="form-row">
-          <TextBox
-            textBoxStyle="form-field--textbox"
-            placeholder="Nombre del animal"
-          />
-          <Dropdown
-            name="common-name"
-            placeholder="Nombre común"
-            options={commonNameOptions}
-            dropdownStyle="form-field--dropdown"
-            setValue={() => {}}
-          />
-        </div>
-        <div className="form-row">
-          <TextBox
-            textBoxStyle="form-field--textbox"
-            placeholder="Nombre científico"
-          />
-          <TextBox
-            textBoxStyle="form-field--textbox"
-            placeholder="Clasificación"
-          />
-          <TextBox textBoxStyle="form-field--textbox" placeholder="Estatus" />
-        </div>
-        <div className="form-row">
-          <Numeric
-            numericStyle="form-field--numeric"
-            placeholder="Peso"
-            step={0.5}
-            units="g"
-          />
-          <Numeric
-            numericStyle="form-field--numeric"
-            placeholder="Altura"
-            step={0.5}
-            units="cm"
-          />
-          <Numeric
-            numericStyle="form-field--numeric"
-            placeholder="Edad (aproximado)"
-            step={0.5}
-            units="meses"
-          />
-        </div>
-        <div className="form-row">
-          <TextArea
-            textAreaStyle="form-field--textarea"
-            placeholder="Breve descripción de condición de ingreso"
-            value=""
-          />
-        </div>
+    <div className="form-column">
+      <div className="form-row">
+        <TextBox placeholder="Nombre común" />
+        {/* TODO: make italic when selected */}
+        <TextBox placeholder="Especie" />
       </div>
+      <div className="form-row">
+        <Dropdown
+          name="sex"
+          placeholder="Sexo"
+          options={sexOptions}
+          dropdownStyle="form-field--dropdown"
+          setValue={() => {}}
+        />
+        <Dropdown
+          name="color"
+          placeholder="Color"
+          options={colorOptions}
+          dropdownStyle="form-field--dropdown"
+          setValue={() => {}}
+        />
+      </div>
+      <div className="form-row">
+        <TextBox placeholder="Número de identificación (CHIP)" />
+        <TextBox placeholder="Procedencia" />
+      </div>
+      <TextBox placeholder="Datos del padre" />
+      <TextBox placeholder="Datos de la madre" />
     </div>
   );
 }

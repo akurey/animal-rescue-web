@@ -61,69 +61,67 @@ function Login() {
   };
 
   return (
-    <div className="background">
-      <div className="login">
-        <img
-          className="logo"
-          alt="Refugio Animal de Costa Rica Logo"
-          src={Logo}
+    <div className="login">
+      <img
+        className="logo"
+        alt="Refugio Animal de Costa Rica Logo"
+        src={Logo}
+      />
+      <div className="login--column">
+        <TextBox
+          description="Correo electrónico"
+          placeholder="usuario@correo.com"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          textBoxStyle="input--secondary"
+          className="login--input"
+          validators={[
+            {
+              validator: (val: string) => !validator.isEmpty(val),
+              message: "El correo electrónico es requerido",
+            },
+            {
+              validator: (value: string) => validator.isEmail(value),
+              message: "Correo electrónico no valido",
+            },
+          ]}
         />
-        <div className="login--column">
-          <TextBox
-            description="Correo electrónico"
-            placeholder="usuario@correo.com"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            textBoxStyle="input--secondary"
-            className="login--input"
-            validators={[
-              {
-                validator: (val: string) => !validator.isEmpty(val),
-                message: "El correo electrónico es requerido",
-              },
-              {
-                validator: (value: string) => validator.isEmail(value),
-                message: "Correo electrónico no valido",
-              },
-            ]}
-          />
-          <TextBox
-            description="Contraseña"
-            placeholder="Min 8 caracteres"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            textBoxStyle="input--secondary"
-            className="login--input"
-            validators={[
-              {
-                validator: (val: string) => !validator.isEmpty(val),
-                message: "La contraseña es requerida",
-              },
-            ]}
-          />
-        </div>
-        <label id="remember" htmlFor="checkbox">
-          <input type="checkbox" id="checkbox" />
-          Recordarme
-        </label>
-        <Button
-          className="login--button"
-          buttonStyle="btn--primary"
-          onClick={onLogin}
-        >
-          Iniciar sesión
-        </Button>
-        <Button
-          onClick={onRedirect}
-          buttonStyle="btn--link"
-          className="login--link"
-        >
-          Olvidé mi contraseña
-        </Button>
+        <TextBox
+          description="Contraseña"
+          placeholder="Min 8 caracteres"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          type="password"
+          textBoxStyle="input--secondary"
+          className="login--input"
+          validators={[
+            {
+              validator: (val: string) => !validator.isEmpty(val),
+              message: "La contraseña es requerida",
+            },
+          ]}
+        />
       </div>
+      <label id="remember" htmlFor="checkbox">
+        <input type="checkbox" id="checkbox" />
+        Recordarme
+      </label>
+      <Button
+        className="login--button"
+        buttonStyle="btn--primary"
+        onClick={onLogin}
+      >
+        Iniciar sesión
+      </Button>
+      <Button
+        onClick={onRedirect}
+        buttonStyle="btn--link"
+        className="login--link"
+      >
+        Olvidé mi contraseña
+      </Button>
     </div>
   );
 }
