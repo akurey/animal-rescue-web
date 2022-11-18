@@ -1,16 +1,51 @@
+@import "../../../styles/colors.scss";
+
 .separator {
-  background-color: black;
+  background-color: rgba(255, 255, 255, 0.6);
   border: none;
   height: 1px;
-  width: 70px;
-  margin: 0;
+  flex-grow: 1;
+  align-self: center;
 }
 
-.page-numbers {
+.pages {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 70px 0 40px 0;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 2rem 0 6rem 0;
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
+.page-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: $dark-text-color;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 12px;
+}
+
+.page-title {
+  white-space: nowrap;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.current-circle {
+  background-color: $primary-color;
+}
+.current-title {
+  font-weight: 900;
+  color: $light-text-color;
+}

@@ -1,23 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
+import { useLocation } from "react-router-dom";
 import OceloteImg from "../../../assets/backgrounds/Ocelote.png";
 import TucanImg from "../../../assets/backgrounds/Tucan.png";
+import RanaImg from "../../../assets/backgrounds/Rana.png";
+import IguanaImg from "../../../assets/backgrounds/Iguana.png";
 
-interface ImageBackgroundProps extends React.HTMLAttributes<HTMLImageElement> {
-  imageName: String;
-  alt?: String;
-}
+function ImageBackground() {
+  const [backgroundImage, setBackgroundImage] = useState(OceloteImg);
+  const [imagePosition, setImagePosition] = useState("top-right");
+  const location = useLocation();
 
-function ImageBackground({ imageName, alt }: ImageBackgroundProps) {
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/login":
+        setBackgroundImage(RanaImg);
+        setImagePosition("top-right");
+        break;
+      case "/rescues":
+        setBackgroundImage(OceloteImg);
+        setImagePosition("top-right");
+        break;
+      case "/rescues/public":
+        setBackgroundImage(TucanImg);
+        setImagePosition("top-right");
+        break;
+      case "/rescues/new":
+        setBackgroundImage(IguanaImg);
+        setImagePosition("bottom-left");
+        break;
+      default:
+        setBackgroundImage(OceloteImg);
+        setImagePosition("top-right");
+    }
+  }, [location]);
+
   return (
-    <div className="background-container">
+    <div className={`background-container ${imagePosition}`}>
       <img
         className="background-image"
-        src={imageName === "Ocelote.png" ? OceloteImg : TucanImg}
-        alt={alt && ""}
+        src={backgroundImage}
+        alt=""
         role="presentation"
       />
-      <div className="background-blur" />
+      {location.pathname !== "/rescues/new" && (
+        <div className="background-blur" />
+      )}
     </div>
   );
 }

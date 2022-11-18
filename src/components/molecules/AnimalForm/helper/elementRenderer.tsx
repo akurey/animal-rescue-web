@@ -11,7 +11,7 @@ const KeysToComponentMap = {
 // converts an array into an object with the attributes needed for the options prop
 function createObjectArray(array) {
   const objectArray = [];
-  for (let index = 0; index < array.length; index++) {
+  for (let index = 0; index < array.length; index += 1) {
     objectArray[index] = {
       value: array[index],
       displayName: array[index],
@@ -22,20 +22,7 @@ function createObjectArray(array) {
   return objectArray;
 }
 
-// creates a group of elements with the same type to create the components
-function renderType(data, page, type) {
-  const values = [];
-
-  data.forEach((element) => {
-    if (element.FormSection === page && element.FieldType === type) {
-      values.push(element);
-    }
-  });
-
-  return values.map((element) => rendererComponent(element));
-}
-
-// create the component of an element
+// TODO Implement all types of fields
 function rendererComponent(config) {
   if (typeof KeysToComponentMap[config.FieldType] !== "undefined") {
     if (config.FieldType === "Dropdown") {
@@ -65,6 +52,20 @@ function rendererComponent(config) {
       textAreaStyle: "form-field--textarea",
     });
   }
+  return null;
+}
+
+// creates a group of elements with the same type to create the components
+function renderType(data, page, type) {
+  const values = [];
+
+  data.forEach((element) => {
+    if (element.FormSection === page && element.FieldType === type) {
+      values.push(element);
+    }
+  });
+
+  return values.map((element) => rendererComponent(element));
 }
 
 export default renderType;

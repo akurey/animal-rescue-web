@@ -1,12 +1,16 @@
 import React from "react";
 import "./styles.scss";
 import { Outlet } from "react-router-dom";
+import ImageBackground from "../../atoms/ImageBackground";
 
 function PublicLayout() {
   return (
-    <main className="public-layout">
-      <Outlet />
-    </main>
+    <>
+      <ImageBackground />
+      <main className="public-layout">
+        <Outlet />
+      </main>
+    </>
   );
 }
 

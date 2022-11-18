@@ -94,7 +94,10 @@ function TableComponent({ items }: TableProps) {
                 {row.Created_at}
               </TableCell>
               <TableCell className="table--data" align="left">
-                {JSON.parse(row.Fields).hasOwnProperty("Dirección")
+                {Object.prototype.hasOwnProperty.call(
+                  JSON.parse(row.Fields),
+                  "Dirección"
+                )
                   ? `${JSON.parse(JSON.parse(row.Fields).Dirección).Canton}, ${
                       JSON.parse(JSON.parse(row.Fields).Dirección).Provincia
                     }`
