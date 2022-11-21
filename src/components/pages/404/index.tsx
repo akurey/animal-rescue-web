@@ -1,9 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./404.scss";
+import { useTranslation } from "react-i18next";
 import Error404Image from "../../../assets/images/404.png";
+import {
+  NOT_FOUND_DESCRIPTION_LINK,
+  NOT_FOUND_DESCRIPTION_TEXT,
+  NOT_FOUND_PAGE,
+  NOT_FOUND_TITLE,
+} from "../../../constants/translations";
 
 function NotFound() {
+  const { t } = useTranslation(NOT_FOUND_PAGE);
+
   return (
     <div className="e404--container">
       {/* TODO: Saque la imagen de Freepik - se debe de cambiar por la adecuada segun el team de diseño
@@ -13,11 +22,11 @@ function NotFound() {
         alt="Refugio Animal de Costa Rica Logo"
         src={Error404Image}
       />
-      <h1>Error 404</h1>
+      <h1>{t(NOT_FOUND_TITLE)}</h1>
       <div className="e404--container__CTA">
-        <span>La página que buscas no existe, prueba</span>
+        <span>{t(NOT_FOUND_DESCRIPTION_TEXT)}</span>
         <Link className="e404--container__CTA-link" to="/rescues">
-          Ir a la página de Inicio
+          {t(NOT_FOUND_DESCRIPTION_LINK)}
         </Link>
       </div>
     </div>
