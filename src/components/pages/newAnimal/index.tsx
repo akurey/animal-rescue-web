@@ -1,6 +1,17 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import FormService from "../../../services/form.services";
+import {
+  NEW_ANIMAL_BACK,
+  NEW_ANIMAL_FORM_FIRST,
+  NEW_ANIMAL_FORM_SECOND,
+  NEW_ANIMAL_FORM_THIRD,
+  NEW_ANIMAL_NEW,
+  NEW_ANIMAL_NEXT,
+  NEW_ANIMAL_PAGE,
+  NEW_ANIMAL_TITLE,
+} from "../../../constants/translations";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
 import FormPage from "../../molecules/AnimalForm";
@@ -12,41 +23,42 @@ function NewAnimal() {
   const [isLoading, setLoading] = useState(true);
   const [fields, setFields] = useState([]);
   const [types, setTypes] = useState([]);
+  const { t } = useTranslation(NEW_ANIMAL_PAGE);
   const navigate = useNavigate();
 
   const pages = [
     {
       id: 1,
-      title: "Datos del animal",
+      title: t(NEW_ANIMAL_FORM_FIRST),
       formPage: (
         <FormPage
           fields={fields}
           types={types}
-          section="Datos del animal"
+          section=t(NEW_ANIMAL_FORM_FIRST)
           key={0}
         />
       ),
     },
     {
       id: 2,
-      title: "Datos del rescate",
+      title: t(NEW_ANIMAL_FORM_SECOND),
       formPage: (
         <FormPage
           fields={fields}
           types={types}
-          section="Datos del rescate"
+          section=t(NEW_ANIMAL_FORM_SECOND)
           key={1}
         />
       ),
     },
     {
       id: 3,
-      title: "Datos del rescatista",
+      title: t(NEW_ANIMAL_FORM_THIRD),
       formPage: (
         <FormPage
           fields={fields}
           types={types}
-          section="Datos del rescatista"
+          section=t(NEW_ANIMAL_FORM_THIRD)
           key={2}
         />
       ),
@@ -100,7 +112,7 @@ function NewAnimal() {
       <Breadcrumbs />
       <div className="row">
         <div>
-          <h2>Nuevo rescate</h2>
+          <h2>{t(NEW_ANIMAL_TITLE)}</h2>
         </div>
         <div className="form">
           <PageNumber
@@ -116,11 +128,11 @@ function NewAnimal() {
                 buttonStyle="btn--secondary"
                 buttonSize="btn--small"
                 onClick={goBack}
-              >
-                {currentPage === 0 ? "Cancelar" : "Anterior"}
+               >
+                {currentPage === 0 ? "Cancelar" : t(NEW_ANIMAL_BACK)}
               </Button>
               <Button buttonSize="btn--medium" onClick={next}>
-                {currentPage !== 2 ? "Siguiente" : "Guardar"}
+                {currentPage !== 2 ? t(NEW_ANIMAL_NEXT) : "Guardar"}
               </Button>
             </div>
             <Button
@@ -128,7 +140,7 @@ function NewAnimal() {
               buttonSize="btn--medium"
               onClick={next}
             >
-              Ingresar animal
+              {t(NEW_ANIMAL_NEW)}
             </Button>
           </div>
         </div>

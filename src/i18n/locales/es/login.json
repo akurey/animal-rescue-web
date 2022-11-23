@@ -1,0 +1,16 @@
+{
+  "sub-title": "Edit your profile information",
+  "mail": {
+    "description": "Correo electrónico",
+    "required": "El correo electrónico es requerido",
+    "notValid": "Correo electrónico no valido"
+  },
+  "password": {
+    "description": "Contraseña",
+    "placeholder": "Min 8 caracteres",
+    "required": "La contraseña es requerida"
+  },
+  "rememberMe": "Recordarme",
+  "logIn": "Iniciar Sesión",
+  "forgotPassword": "Olvidé mi contraseña"
+}

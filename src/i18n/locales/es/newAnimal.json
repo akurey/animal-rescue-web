@@ -1,0 +1,11 @@
+{
+  "title": "Nuevo rescate",
+  "pageTitle": {
+    "first": "Datos del animal",
+    "second": "Datos del rescate",
+    "third": "Datos del rescatista"
+  },
+  "back": "Anterior",
+  "next": "Siguiente",
+  "introduceAnimal": "Ingresar animal"
+}
