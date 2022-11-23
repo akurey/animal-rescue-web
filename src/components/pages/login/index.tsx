@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button, TextBox } from "../../atoms";
 import Logo from "../../../assets/images/logo.png";
 import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
@@ -9,8 +10,23 @@ import { UserObservable } from "../../../observables/user.observable";
 import { useObservable } from "../../../hooks/use-observable.hook";
 import useAuth from "../../../hooks/auth/useAuth";
 import "./login.scss";
+import {
+  COMMON,
+  COMMON_LOGO_ALT,
+  LOGIN_PAGE,
+  LOGIN_MAIL_DESCRIPTION,
+  LOGIN_MAIL_NOT_VALID,
+  LOGIN_MAIL_REQUIRED,
+  LOGIN_PASSWORD_REQUIRED,
+  LOGIN_PASSWORD_DESCRIPTION,
+  LOGIN_PASSWORD_PLACEHOLDER,
+  LOGIN_REMEMBER_ME,
+  LOGIN_LOG_IN,
+  LOGIN_FORGOT_PASSWORD,
+} from "../../../constants/translations";
 
 function Login() {
+  const { t } = useTranslation([COMMON, LOGIN_PAGE]);
   const [user] = useObservable(UserObservable.user$);
   const [data, setData] = useState({
     login: {
@@ -62,14 +78,10 @@ function Login() {
 
   return (
     <div className="login">
-      <img
-        className="logo"
-        alt="Refugio Animal de Costa Rica Logo"
-        src={Logo}
-      />
+      <img className="logo" alt={t(COMMON_LOGO_ALT)} src={Logo} />
       <div className="login--column">
         <TextBox
-          description="Correo electrónico"
+          description={t(LOGIN_MAIL_DESCRIPTION)}
           placeholder="usuario@correo.com"
           onChange={(e) => {
             setEmail(e.target.value);
@@ -79,17 +91,17 @@ function Login() {
           validators={[
             {
               validator: (val: string) => !validator.isEmpty(val),
-              message: "El correo electrónico es requerido",
+              message: t(LOGIN_MAIL_REQUIRED),
             },
             {
               validator: (value: string) => validator.isEmail(value),
-              message: "Correo electrónico no valido",
+              message: t(LOGIN_MAIL_NOT_VALID),
             },
           ]}
         />
         <TextBox
-          description="Contraseña"
-          placeholder="Min 8 caracteres"
+          description={t(LOGIN_PASSWORD_DESCRIPTION)}
+          placeholder={t(LOGIN_PASSWORD_PLACEHOLDER)}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
@@ -99,28 +111,28 @@ function Login() {
           validators={[
             {
               validator: (val: string) => !validator.isEmpty(val),
-              message: "La contraseña es requerida",
+              message: t(LOGIN_PASSWORD_REQUIRED),
             },
           ]}
         />
       </div>
       <label id="remember" htmlFor="checkbox">
         <input type="checkbox" id="checkbox" />
-        Recordarme
+        {t(LOGIN_REMEMBER_ME)}
       </label>
       <Button
         className="login--button"
         buttonStyle="btn--primary"
         onClick={onLogin}
       >
-        Iniciar sesión
+        {t(LOGIN_LOG_IN)}
       </Button>
       <Button
         onClick={onRedirect}
         buttonStyle="btn--link"
         className="login--link"
       >
-        Olvidé mi contraseña
+        {t(LOGIN_FORGOT_PASSWORD)}
       </Button>
     </div>
   );

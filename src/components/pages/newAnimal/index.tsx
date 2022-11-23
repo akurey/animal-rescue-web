@@ -1,5 +1,16 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import {
+  NEW_ANIMAL_BACK,
+  NEW_ANIMAL_FORM_FIRST,
+  NEW_ANIMAL_FORM_SECOND,
+  NEW_ANIMAL_FORM_THIRD,
+  NEW_ANIMAL_NEW,
+  NEW_ANIMAL_NEXT,
+  NEW_ANIMAL_PAGE,
+  NEW_ANIMAL_TITLE,
+} from "../../../constants/translations";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
 import AnimalForm1 from "../../molecules/AnimalForm/page1";
@@ -10,21 +21,22 @@ import "./styles.scss";
 
 function NewAnimal() {
   const [currentPage, setCurrentPage] = useState(0);
+  const { t } = useTranslation(NEW_ANIMAL_PAGE);
   const navigate = useNavigate();
   const pages = [
     {
       id: 1,
-      title: "Datos del animal",
+      title: t(NEW_ANIMAL_FORM_FIRST),
       formPage: <AnimalForm1 />,
     },
     {
       id: 2,
-      title: "Datos del rescate",
+      title: t(NEW_ANIMAL_FORM_SECOND),
       formPage: <AnimalForm2 />,
     },
     {
       id: 3,
-      title: "Datos del rescatista",
+      title: t(NEW_ANIMAL_FORM_THIRD),
       formPage: <AnimalForm3 />,
     },
   ];
@@ -52,7 +64,7 @@ function NewAnimal() {
       <Breadcrumbs />
       <div className="row">
         <div>
-          <h2>Nuevo rescate</h2>
+          <h2>{t(NEW_ANIMAL_TITLE)}</h2>
         </div>
         <div className="form">
           <PageNumber
@@ -65,10 +77,10 @@ function NewAnimal() {
           <div className="button-layout">
             <div>
               <Button buttonSize="btn--small" onClick={goBack}>
-                Back
+                {t(NEW_ANIMAL_BACK)}
               </Button>
               <Button buttonSize="btn--medium" onClick={next}>
-                Next
+                {t(NEW_ANIMAL_NEXT)}
               </Button>
             </div>
             <Button
@@ -76,7 +88,7 @@ function NewAnimal() {
               buttonSize="btn--medium"
               onClick={next}
             >
-              Ingresar animal
+              {t(NEW_ANIMAL_NEW)}
             </Button>
           </div>
         </div>
