@@ -7,5 +7,7 @@
   },
   "back": "Anterior",
   "next": "Siguiente",
+  "quit": "Cancelar",
+  "save": "Guardar",
   "introduceAnimal": "Ingresar animal"
 }

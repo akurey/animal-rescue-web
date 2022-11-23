@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import FormService from "../../../services/form.services";
 import {
   NEW_ANIMAL_BACK,
+  NEW_ANIMAL_QUIT,
   NEW_ANIMAL_FORM_FIRST,
   NEW_ANIMAL_FORM_SECOND,
   NEW_ANIMAL_FORM_THIRD,
@@ -11,6 +12,7 @@ import {
   NEW_ANIMAL_NEXT,
   NEW_ANIMAL_PAGE,
   NEW_ANIMAL_TITLE,
+  NEW_ANIMAL_SAVE,
 } from "../../../constants/translations";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
@@ -34,7 +36,7 @@ function NewAnimal() {
         <FormPage
           fields={fields}
           types={types}
-          section=t(NEW_ANIMAL_FORM_FIRST)
+          section={t(NEW_ANIMAL_FORM_FIRST)}
           key={0}
         />
       ),
@@ -46,7 +48,7 @@ function NewAnimal() {
         <FormPage
           fields={fields}
           types={types}
-          section=t(NEW_ANIMAL_FORM_SECOND)
+          section={t(NEW_ANIMAL_FORM_SECOND)}
           key={1}
         />
       ),
@@ -58,7 +60,7 @@ function NewAnimal() {
         <FormPage
           fields={fields}
           types={types}
-          section=t(NEW_ANIMAL_FORM_THIRD)
+          section={t(NEW_ANIMAL_FORM_THIRD)}
           key={2}
         />
       ),
@@ -128,11 +130,11 @@ function NewAnimal() {
                 buttonStyle="btn--secondary"
                 buttonSize="btn--small"
                 onClick={goBack}
-               >
-                {currentPage === 0 ? "Cancelar" : t(NEW_ANIMAL_BACK)}
+              >
+                {currentPage === 0 ? t(NEW_ANIMAL_QUIT) : t(NEW_ANIMAL_BACK)}
               </Button>
               <Button buttonSize="btn--medium" onClick={next}>
-                {currentPage !== 2 ? t(NEW_ANIMAL_NEXT) : "Guardar"}
+                {currentPage !== 2 ? t(NEW_ANIMAL_NEXT) : t(NEW_ANIMAL_SAVE)}
               </Button>
             </div>
             <Button
