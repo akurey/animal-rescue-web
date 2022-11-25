@@ -1,4 +1,4 @@
-@import "../../../styles/layout.scss"; 
+@import "../../../styles/layout.scss";
 
 .button-layout {
   @extend %row-centered;
@@ -6,12 +6,12 @@
   margin-top: auto;
 
   button {
-    padding: .6rem;
+    padding: 0.6rem;
   }
   div {
-    @include layout-row(.75rem, center);
+    @include layout-row(0.75rem, center);
     button {
-      padding: .6rem 2rem;
+      padding: 0.6rem 2rem;
     }
   }
 }

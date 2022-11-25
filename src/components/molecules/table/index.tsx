@@ -88,13 +88,20 @@ function TableComponent({ items }: TableProps) {
                 <Checkbox className="checkbox" />
               </TableCell>
               <TableCell className="table--data" align="left">
-                {row.comunName}
+                {row.AnimalName}
               </TableCell>
               <TableCell className="table--data" align="left">
-                {row.date}
+                {row.Created_at}
               </TableCell>
               <TableCell className="table--data" align="left">
-                {row.place}
+                {Object.prototype.hasOwnProperty.call(
+                  JSON.parse(row.Fields),
+                  "Dirección"
+                )
+                  ? `${JSON.parse(JSON.parse(row.Fields).Dirección).Canton}, ${
+                      JSON.parse(JSON.parse(row.Fields).Dirección).Provincia
+                    }`
+                  : "Desconocido"}
               </TableCell>
               <TableCell className="table--data" align="center">
                 <IconButton

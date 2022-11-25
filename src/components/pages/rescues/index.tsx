@@ -6,6 +6,7 @@ import Button from "../../atoms/Button";
 import Table from "../../molecules/table";
 import "./styles.scss";
 import Breadcrumbs from "../../molecules/Breadcrumbs";
+import RescueService from "../../../services/rescue.services";
 import {
   RESCUES_IN_REVIEW,
   RESCUES_NEW,
@@ -19,12 +20,26 @@ const PUBLIC = "public";
 
 function RescuesComponent() {
   const [filter, setFilter] = useState(REVIEW);
+  const [isLoading, setLoading] = useState(true);
+  const [animals, setAnimals] = useState([]);
   const { t } = useTranslation(RESCUES_PAGE);
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    async function getFields() {
+      const animalData = await RescueService.getRescue();
+      setAnimals(animalData.data.response);
+      setLoading(false);
+    }
+    getFields();
+  }, []);
 
   const goToNewAnimal = () => {
     navigate("new");
   };
+  if (isLoading) {
+    return <div />;
+  }
 
   return (
     <>
@@ -52,67 +67,7 @@ function RescuesComponent() {
           {t(RESCUES_PUBLIC)}
         </Button>
       </div>
-      <Table
-        // TODO: update real data
-        items={[
-          {
-            id: "1",
-            name: "Perro",
-            comunName: "Firulais1",
-            date: "29/07/2022",
-            place: "Málaga",
-            distribution: "-",
-          },
-          {
-            id: "2",
-            name: "Perro",
-            comunName: "Firulais2",
-            date: "29/07/2022",
-            place: "Málaga",
-            distribution: "-",
-          },
-          {
-            id: "3",
-            name: "Perro",
-            comunName: "Firulais3",
-            date: "29/07/2022",
-            place: "Málaga",
-            distribution: "-",
-          },
-          {
-            id: "4",
-            name: "Perro",
-            comunName: "Firulais4",
-            date: "29/07/2022",
-            place: "Málaga",
-            distribution: "-",
-          },
-          {
-            id: "5",
-            name: "Perro",
-            comunName: "Firulais5",
-            date: "29/07/2022",
-            place: "Málaga",
-            distribution: "-",
-          },
-          {
-            id: "6",
-            name: "Perro",
-            comunName: "Firulais6",
-            date: "29/07/2022",
-            place: "Málaga",
-            distribution: "-",
-          },
-          {
-            id: "7",
-            name: "Perro",
-            comunName: "Firulais7",
-            date: "29/07/2022",
-            place: "Málaga",
-            distribution: "-",
-          },
-        ]}
-      />
+      <Table items={animals} />
     </>
   );
 }

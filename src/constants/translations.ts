@@ -27,6 +27,8 @@ export const NEW_ANIMAL_FORM_SECOND = "newAnimal:pageTitle.second";
 export const NEW_ANIMAL_FORM_THIRD = "newAnimal:pageTitle.third";
 export const NEW_ANIMAL_BACK = "newAnimal:back";
 export const NEW_ANIMAL_NEXT = "newAnimal:next";
+export const NEW_ANIMAL_QUIT = "newAnimal:quit";
+export const NEW_ANIMAL_SAVE = "newAnimal:save";
 export const NEW_ANIMAL_NEW = "newAnimal:introduceAnimal";
 
 export const RESCUES_PAGE = "rescues";
