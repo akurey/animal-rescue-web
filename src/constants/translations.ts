@@ -10,15 +10,17 @@ export const ANIMAL_PAGE = "animalDetail";
 export const ANIMAL_TITLE = "animalDetail:title";
 
 export const LOGIN_PAGE = "login";
-export const LOGIN_MAIL_DESCRIPTION = "login:mail.description";
-export const LOGIN_MAIL_REQUIRED = "login:mail.required";
-export const LOGIN_MAIL_NOT_VALID = "login:mail.notValid";
+export const LOGIN_MAIL_DESCRIPTION = "login:username.description";
+export const LOGIN_MAIL_REQUIRED = "login:username.required";
+export const LOGIN_MAIL_NOT_VALID = "login:username.notValid";
 export const LOGIN_PASSWORD_DESCRIPTION = "login:password.description";
 export const LOGIN_PASSWORD_REQUIRED = "login:password.required";
 export const LOGIN_PASSWORD_PLACEHOLDER = "login:password.placeholder";
 export const LOGIN_REMEMBER_ME = "login:rememberMe";
 export const LOGIN_LOG_IN = "login:logIn";
 export const LOGIN_FORGOT_PASSWORD = "login:forgotPassword";
+export const LOGIN_WRONG_PASSWORD = "login:wrongPassword";
+export const LOGIN_WRONG_USERNAME = "login:wrongUsername";
 
 export const NEW_ANIMAL_PAGE = "newAnimal";
 export const NEW_ANIMAL_TITLE = "newAnimal:title";

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import bcrypt from "bcryptjs";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -9,13 +10,14 @@ import LocalStorage from "../../../observables/localStorage.observable";
 import { UserObservable } from "../../../observables/user.observable";
 import { useObservable } from "../../../hooks/use-observable.hook";
 import useAuth from "../../../hooks/auth/useAuth";
+import UserService from "../../../services/user.services";
 import "./login.scss";
 import {
   COMMON,
   COMMON_LOGO_ALT,
   LOGIN_PAGE,
   LOGIN_MAIL_DESCRIPTION,
-  LOGIN_MAIL_NOT_VALID,
+  // LOGIN_MAIL_NOT_VALID,
   LOGIN_MAIL_REQUIRED,
   LOGIN_PASSWORD_REQUIRED,
   LOGIN_PASSWORD_DESCRIPTION,
@@ -23,6 +25,8 @@ import {
   LOGIN_REMEMBER_ME,
   LOGIN_LOG_IN,
   LOGIN_FORGOT_PASSWORD,
+  LOGIN_WRONG_PASSWORD,
+  LOGIN_WRONG_USERNAME,
 } from "../../../constants/translations";
 
 function Login() {
@@ -31,15 +35,19 @@ function Login() {
   const [data, setData] = useState({
     login: {
       user: {
+        name: "",
         username: "",
         mail: "",
         avatar: null,
         password: "",
+        accessToken: "",
       },
     },
   });
-  const [mail, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [userError, setUserError] = useState("");
+  const [pswdError, setPswdError] = useState("");
   const navigate = useNavigate();
   const { setAuth } = useAuth();
 
@@ -59,20 +67,37 @@ function Login() {
     UserObservable.setUser(data?.login);
   }, [data]);
 
-  const onLogin = () => {
-    setData({
-      login: {
-        user: {
-          password,
-          mail,
-          username: "User Test",
-          avatar: null,
+  useEffect(() => {
+    setUserError("");
+    setPswdError("");
+  }, [username, password]);
+
+  const onLogin = async () => {
+    try {
+      const hashPassword = bcrypt.hashSync(password, 10);
+      const response = await UserService.loginUser(username, password);
+      setData({
+        login: {
+          user: {
+            name: response.data.data.name,
+            password: hashPassword,
+            mail: response.data.email,
+            username,
+            avatar: null,
+            accessToken: response.data.data.token,
+          },
         },
-      },
-    });
-    setAuth(data);
-    if (user) {
-      onRedirect();
+      });
+      setAuth(data);
+      if (user) {
+        onRedirect();
+      }
+    } catch (err) {
+      if (err.response?.status === 404) {
+        setUserError(t(LOGIN_WRONG_USERNAME));
+      } else if (err.response?.status === 401) {
+        setPswdError(t(LOGIN_WRONG_PASSWORD));
+      }
     }
   };
 
@@ -82,9 +107,9 @@ function Login() {
       <div className="login--column">
         <TextBox
           description={t(LOGIN_MAIL_DESCRIPTION)}
-          placeholder="usuario@correo.com"
+          placeholder="usuario123"
           onChange={(e) => {
-            setEmail(e.target.value);
+            setUsername(e.target.value);
           }}
           textBoxStyle="input--secondary"
           className="login--input"
@@ -93,11 +118,12 @@ function Login() {
               validator: (val: string) => !validator.isEmpty(val),
               message: t(LOGIN_MAIL_REQUIRED),
             },
-            {
-              validator: (value: string) => validator.isEmail(value),
-              message: t(LOGIN_MAIL_NOT_VALID),
-            },
+            // {
+            //   validator: (value: string) => validator.isEmail(value),
+            //   message: t(LOGIN_MAIL_NOT_VALID),
+            // },
           ]}
+          loginError={userError}
         />
         <TextBox
           description={t(LOGIN_PASSWORD_DESCRIPTION)}
@@ -114,6 +140,7 @@ function Login() {
               message: t(LOGIN_PASSWORD_REQUIRED),
             },
           ]}
+          loginError={pswdError}
         />
       </div>
       <label id="remember" htmlFor="checkbox">

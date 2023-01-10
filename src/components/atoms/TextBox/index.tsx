@@ -12,6 +12,7 @@ interface TextBoxProps extends React.HTMLAttributes<HTMLInputElement> {
   value?: string;
   className?: string;
   placeholder: string;
+  loginError?: string;
 }
 
 function TextBox({
@@ -25,6 +26,7 @@ function TextBox({
   type,
   description,
   className,
+  loginError,
 }: TextBoxProps) {
   const [valueInput, setValueInput] = useState(value);
   const [error, setError] = useState({ message: null, validator: () => {} });
@@ -62,6 +64,7 @@ function TextBox({
           input
           ${textBoxStyle}
           ${error?.message && "input--error"}
+          ${loginError && "input--error"}
           ${className}
         `}
           disabled={disabled}
@@ -77,6 +80,7 @@ function TextBox({
         )}
       </div>
       {error?.message && <p className="message--error">{error?.message}</p>}
+      {loginError && <p className="message--error">{loginError}</p>}
     </div>
   );
 }

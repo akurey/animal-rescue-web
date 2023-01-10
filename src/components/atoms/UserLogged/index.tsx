@@ -32,9 +32,9 @@ function UserLogged() {
       LocalStorage.getItem(LocalStorageKeys.AUTH_INFO)
     ).user.user;
     if (userData) {
-      const username = userData.username.split(" ");
-      setName(username[0]);
-      setLastname(username[1]);
+      const completeName = userData.name.split(" ");
+      setName(completeName[0]);
+      setLastname(completeName[1]);
       setPhoto(userData.avatar);
     }
   });
