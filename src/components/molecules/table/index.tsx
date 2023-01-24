@@ -83,7 +83,7 @@ function TableComponent({ items }: TableProps) {
         </TableHead>
         <TableBody>
           {rows?.map((row: any) => (
-            <TableRow className="table--row" key={row.id}>
+            <TableRow className="table--row" key={row.AnimalId}>
               <TableCell>
                 <Checkbox className="checkbox" />
               </TableCell>

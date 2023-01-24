@@ -18,14 +18,14 @@ function Breadcrumbs() {
     <div className="breadcrumbs">
       {breadcrumbs.map((breadcrumb) => {
         return (
-          <>
-            <Link key={breadcrumb.key} to={breadcrumb.key} className="link">
+          <React.Fragment key={breadcrumb.key}>
+            <Link to={breadcrumb.key} className="link">
               {getDisplayName(breadcrumb.key)}
             </Link>
             {breadcrumb !== breadcrumbs[breadcrumbs.length - 1] && (
               <div className="slash">/</div>
             )}
-          </>
+          </React.Fragment>
         );
       })}
     </div>

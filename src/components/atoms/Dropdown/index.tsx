@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./styles.scss";
 
 export interface IOption {
+  key: number;
   value: string;
   displayName: string;
   selected: boolean;
@@ -11,6 +12,7 @@ interface IDropdown extends React.HTMLProps<HTMLSelectElement> {
   name: string;
   options: IOption[];
   placeholder?: string;
+  onChange?: (e: any) => void;
   setValue: (v: string) => void;
   dropdownStyle?: string;
 }
@@ -20,6 +22,7 @@ const Dropdown = (props: IDropdown) => {
     name,
     options = [],
     placeholder,
+    onChange,
     setValue = () => {},
     dropdownStyle = "",
   } = props;
@@ -38,7 +41,9 @@ const Dropdown = (props: IDropdown) => {
   );
 
   const displayOptions = options.map((option) => (
-    <option value={option.value}>{option.displayName}</option>
+    <option key={option.key} value={option.value}>
+      {option.displayName}
+    </option>
   ));
 
   const placeholderOption = (
@@ -50,6 +55,12 @@ const Dropdown = (props: IDropdown) => {
   const handleOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setValue(event.target.value);
     setCurrentOption(event.target.value);
+    onChange({
+      target: {
+        placeholder,
+        value: event.target.value.trim(),
+      },
+    });
   };
 
   return (
