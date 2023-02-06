@@ -34,8 +34,7 @@
     "lint-fix": "eslint --fix --ext .js,.jsx,.tsx, .",
     "format": "prettier --write \"**/*.+(js|jsx|tsx|json|yml|yaml|css|md|vue)\"",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "proxy": "http://localhost:3000"
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
