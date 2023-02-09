@@ -19,8 +19,6 @@ import PageNumber from "../../atoms/PageNumber";
 import FormPage from "../../molecules/AnimalForm";
 import Breadcrumbs from "../../molecules/Breadcrumbs";
 import { RescueObservable } from "../../../observables/rescue.observable";
-// import { useObservable } from "../../../hooks/use-observable.hook";
-// import RescueService from "../../../services/rescue.services";
 import "./styles.scss";
 
 function NewAnimal() {
@@ -29,7 +27,6 @@ function NewAnimal() {
   const [fields, setFields] = useState([]);
   const [types, setTypes] = useState([]);
   const { t } = useTranslation(NEW_ANIMAL_PAGE);
-  // const [rescue] = useObservable(RescueObservable.rescue$);
 
   const navigate = useNavigate();
 
