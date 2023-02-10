@@ -159,7 +159,7 @@ function TableComponent({ items }: TableProps) {
       </Table>
       <TablePagination
         className="table-pagination"
-        rowsPerPageOptions={[1, 10, 25]}
+        rowsPerPageOptions={[5, 10, 25]}
         component="div"
         count={items.length}
         rowsPerPage={rowsPerPage}
