@@ -5,4 +5,9 @@ export default class FormService {
     const route = `/form/${formId}/fields`;
     return axiosInstance.get(route);
   }
+
+  static getAnimalInfo() {
+    const route = `/animals`;
+    return axiosInstance.get(route);
+  }
 }

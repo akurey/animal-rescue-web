@@ -7,3 +7,7 @@
 .form-row {
   @include layout-row(1.5rem, flex-start);
 }
+
+.autoComplete {
+  padding-top: 14px !important;
+}

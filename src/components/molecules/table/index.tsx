@@ -87,8 +87,9 @@ function TableComponent({ items }: TableProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows?.map((row: any) => (
-            <TableRow className="table--row" key={row.AnimalId}>
+          {rows?.map((row: any, index: Number) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <TableRow className="table--row" key={row.AnimalId + index}>
               <TableCell>
                 <Checkbox className="checkbox" />
               </TableCell>
@@ -101,7 +102,7 @@ function TableComponent({ items }: TableProps) {
               <TableCell className="table--data" align="left">
                 {Object.prototype.hasOwnProperty.call(
                   JSON.parse(row.Fields),
-                  "Dirección"
+                  "PlaceOfRescue"
                 )
                   ? `${JSON.parse(JSON.parse(row.Fields).Dirección).Canton}, ${
                       JSON.parse(JSON.parse(row.Fields).Dirección).Provincia
