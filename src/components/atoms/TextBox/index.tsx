@@ -48,7 +48,7 @@ function TextBox({
 
   return (
     <div className="form-textbox">
-      {description && (
+      {description && valueInput !== undefined && valueInput !== "" && (
         <label htmlFor="input" className="form-field--label">
           {description}
         </label>

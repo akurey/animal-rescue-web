@@ -59,6 +59,9 @@ function TableComponent({ items }: TableProps) {
     setAnchorEl(null);
   };
 
+  // TODO EJimenez - Delete this constant and show table column //
+  const hideElement = false;
+
   return (
     <div className="table--container">
       <Table size="small">
@@ -76,14 +79,16 @@ function TableComponent({ items }: TableProps) {
             <TableCell className="table--header" align="left">
               Lugar de Rescate
             </TableCell>
-            <TableCell className="table--header" align="center">
-              <FilterListSharpIcon className="icon" fontSize="medium" />
-            </TableCell>
+            {hideElement && (
+              <TableCell className="table--header" align="center">
+                <FilterListSharpIcon className="icon" fontSize="medium" />
+              </TableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows?.map((row: any) => (
-            <TableRow className="table--row" key={row.id}>
+            <TableRow className="table--row" key={row.AnimalId}>
               <TableCell>
                 <Checkbox className="checkbox" />
               </TableCell>
@@ -103,46 +108,51 @@ function TableComponent({ items }: TableProps) {
                     }`
                   : "Desconocido"}
               </TableCell>
-              <TableCell className="table--data" align="center">
-                <IconButton
-                  aria-label="more"
-                  id="long-button"
-                  aria-controls={open ? "long-menu" : undefined}
-                  aria-expanded={open ? "true" : undefined}
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                >
-                  <MoreVertIcon />
-                </IconButton>
-                <Menu
-                  id="long-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  PaperProps={{
-                    style: {
-                      maxHeight: "8rem",
-                      width: "7rem",
-                      background: "#FFEF0A",
-                    },
-                  }}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                >
-                  <MenuItem key={`see_option${row.id}`} onClick={handleClose}>
-                    Ver
-                  </MenuItem>
-                  <MenuItem key={`edit_option${row.id}`} onClick={handleClose}>
-                    Editar
-                  </MenuItem>
-                </Menu>
-              </TableCell>
+              {hideElement && (
+                <TableCell className="table--data" align="center">
+                  <IconButton
+                    aria-label="more"
+                    id="long-button"
+                    aria-controls={open ? "long-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                  <Menu
+                    id="long-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    PaperProps={{
+                      style: {
+                        maxHeight: "8rem",
+                        width: "7rem",
+                        background: "#FFEF0A",
+                      },
+                    }}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "right",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                  >
+                    <MenuItem key={`see_option${row.id}`} onClick={handleClose}>
+                      Ver
+                    </MenuItem>
+                    <MenuItem
+                      key={`edit_option${row.id}`}
+                      onClick={handleClose}
+                    >
+                      Editar
+                    </MenuItem>
+                  </Menu>
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>

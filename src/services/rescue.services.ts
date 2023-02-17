@@ -3,7 +3,7 @@ import axiosInstance from "../utils/axios";
 export default class RescueService {
   static addRescue(
     animalId: number,
-    reporterId: string,
+    reporterId: number,
     formId: number,
     fieldValues: string
   ) {
