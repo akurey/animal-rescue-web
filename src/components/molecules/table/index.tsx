@@ -89,7 +89,7 @@ function TableComponent({ items }: TableProps) {
         <TableBody>
           {rows?.map((row: any, index: Number) => (
             // eslint-disable-next-line react/no-array-index-key
-            <TableRow className="table--row" key={row.AnimalId + index}>
+            <TableRow className="table--row" key={`${row.AnimalId}${index}`}>
               <TableCell>
                 <Checkbox className="checkbox" />
               </TableCell>
