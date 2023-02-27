@@ -18,6 +18,9 @@ import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
 import FormPage from "../../molecules/AnimalForm";
 import Breadcrumbs from "../../molecules/Breadcrumbs";
+import { RescueObservable } from "../../../observables/rescue.observable";
+import { useObservable } from "../../../hooks/use-observable.hook";
+import RescueService from "../../../services/rescue.services";
 import "./styles.scss";
 
 function NewAnimal() {
@@ -25,7 +28,11 @@ function NewAnimal() {
   const [isLoading, setLoading] = useState(true);
   const [fields, setFields] = useState([]);
   const [types, setTypes] = useState([]);
+  const [animalData, setAnimalData] = useState([]);
+  const [animalIdToSend, setAnimalIdToSend] = useState(0);
+  const [rescue] = useObservable(RescueObservable.rescue$);
   const { t } = useTranslation(NEW_ANIMAL_PAGE);
+
   const navigate = useNavigate();
 
   const pages = [
@@ -34,6 +41,8 @@ function NewAnimal() {
       title: t(NEW_ANIMAL_FORM_FIRST),
       formPage: (
         <FormPage
+          setAnimalIdToSend={setAnimalIdToSend}
+          animalData={animalData}
           fields={fields}
           types={types}
           section={t(NEW_ANIMAL_FORM_FIRST)}
@@ -77,14 +86,39 @@ function NewAnimal() {
     setTypes(dataTypes);
   };
 
-  React.useEffect(() => {
-    async function getFields() {
-      const fieldData = await FormService.getFormFields(1);
-      setFields(fieldData.data.response);
-      getTypes(fieldData.data.response);
-      setLoading(false);
+  // create a JSON object with all the fields avaiable as keys
+  const createBasicData = (data) => {
+    let inputData = "{";
+    for (let index = 0; index < data.length; index += 1) {
+      inputData += `"${data[index].FieldName}": "", `;
     }
-    getFields();
+    inputData = inputData.slice(0, -2);
+    inputData += "}";
+
+    return inputData;
+  };
+
+  async function getFields() {
+    const fieldData = await FormService.getFormFields(1);
+    setFields(fieldData.data.response);
+    getTypes(fieldData.data.response);
+    setLoading(false);
+    return fieldData.data.response;
+  }
+
+  async function getAnimals() {
+    const animals = await FormService.getAnimalInfo();
+    return animals.data.response;
+  }
+
+  React.useEffect(() => {
+    getAnimals().then((data) => {
+      setAnimalData(data);
+    });
+    getFields().then((data) => {
+      const newFields = createBasicData(data);
+      RescueObservable.setRescue(newFields);
+    });
   }, []);
 
   if (isLoading) {
@@ -106,6 +140,10 @@ function NewAnimal() {
       setCurrentPage((prevCurrentPage) => {
         return prevCurrentPage + 1;
       });
+    } else {
+      // TODO: Validate and send proper formId & reporterId
+      RescueService.addRescue(animalIdToSend, 1, 1, rescue);
+      navigate(-1);
     }
   };
 

@@ -3,6 +3,7 @@
 
 .form-textbox {
   @include layout-column(7px);
+  width: 100%;
   flex-grow: 1;
 }
 

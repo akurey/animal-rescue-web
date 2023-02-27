@@ -1,21 +1,24 @@
 @import "../../../styles/forms.scss";
 @import "../../../styles/layout.scss";
 
-
 textarea {
   @extend %form-field;
-  width: fit-content;
+  width: 100%;
   &:hover {
-    &::-webkit-input-placeholder {  /* Chrome/Opera/Safari */
+    &::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
       color: $primary-color;
     }
-    &::-moz-placeholder {           /* Firefox 19+ */
+    &::-moz-placeholder {
+      /* Firefox 19+ */
       color: $primary-color;
     }
-    &:-ms-input-placeholder {       /* IE 10+ */
+    &:-ms-input-placeholder {
+      /* IE 10+ */
       color: $primary-color;
     }
-    &:-moz-placeholder {            /* Firefox 18- */
+    &:-moz-placeholder {
+      /* Firefox 18- */
       color: $primary-color;
     }
   }
@@ -23,6 +26,9 @@ textarea {
 
 .textarea {
   @include layout-column(7px);
+  // @extend %form-field;
+  flex-grow: 1;
+  width: 100%;
 }
 
 .textarea--primary {

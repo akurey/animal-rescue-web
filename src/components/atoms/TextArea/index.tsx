@@ -31,7 +31,7 @@ function TextArea({
 
   return (
     <div className="textarea">
-      {description && (
+      {description && valueInput !== undefined && valueInput !== "" && (
         <label className="form-field--label" htmlFor="textarea">
           {description}
         </label>
