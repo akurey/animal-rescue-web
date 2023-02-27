@@ -19,8 +19,7 @@ export const LOGIN_PASSWORD_PLACEHOLDER = "login:password.placeholder";
 export const LOGIN_REMEMBER_ME = "login:rememberMe";
 export const LOGIN_LOG_IN = "login:logIn";
 export const LOGIN_FORGOT_PASSWORD = "login:forgotPassword";
-export const LOGIN_WRONG_PASSWORD = "login:wrongPassword";
-export const LOGIN_WRONG_USERNAME = "login:wrongUsername";
+export const LOGIN_FAIL = "login:failLogin";
 
 export const NEW_ANIMAL_PAGE = "newAnimal";
 export const NEW_ANIMAL_TITLE = "newAnimal:title";

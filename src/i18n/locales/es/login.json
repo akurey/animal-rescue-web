@@ -13,6 +13,5 @@
   "rememberMe": "Recordarme",
   "logIn": "Iniciar Sesión",
   "forgotPassword": "Olvidé mi contraseña",
-  "wrongPassword": "Contraseña incorrecta",
-  "wrongUsername": "Usuario incorrecto"
+  "failLogin": "Usuario o contraseña incorrecta"
 }

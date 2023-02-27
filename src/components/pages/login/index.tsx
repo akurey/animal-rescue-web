@@ -17,7 +17,6 @@ import {
   COMMON_LOGO_ALT,
   LOGIN_PAGE,
   LOGIN_MAIL_DESCRIPTION,
-  // LOGIN_MAIL_NOT_VALID,
   LOGIN_MAIL_REQUIRED,
   LOGIN_PASSWORD_REQUIRED,
   LOGIN_PASSWORD_DESCRIPTION,
@@ -25,8 +24,7 @@ import {
   LOGIN_REMEMBER_ME,
   LOGIN_LOG_IN,
   LOGIN_FORGOT_PASSWORD,
-  LOGIN_WRONG_PASSWORD,
-  LOGIN_WRONG_USERNAME,
+  LOGIN_FAIL,
 } from "../../../constants/translations";
 
 function Login() {
@@ -46,8 +44,7 @@ function Login() {
   });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [userError, setUserError] = useState("");
-  const [pswdError, setPswdError] = useState("");
+  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const { setAuth } = useAuth();
 
@@ -68,8 +65,7 @@ function Login() {
   }, [data]);
 
   useEffect(() => {
-    setUserError("");
-    setPswdError("");
+    setLoginError("");
   }, [username, password]);
 
   const onLogin = async () => {
@@ -93,10 +89,8 @@ function Login() {
         onRedirect();
       }
     } catch (err) {
-      if (err.response?.status === 404) {
-        setUserError(t(LOGIN_WRONG_USERNAME));
-      } else if (err.response?.status === 401) {
-        setPswdError(t(LOGIN_WRONG_PASSWORD));
+      if (err.response?.status === 404 || err.response?.status === 401) {
+        setLoginError(t(LOGIN_FAIL));
       }
     }
   };
@@ -118,12 +112,7 @@ function Login() {
               validator: (val: string) => !validator.isEmpty(val),
               message: t(LOGIN_MAIL_REQUIRED),
             },
-            // {
-            //   validator: (value: string) => validator.isEmail(value),
-            //   message: t(LOGIN_MAIL_NOT_VALID),
-            // },
           ]}
-          loginError={userError}
         />
         <TextBox
           description={t(LOGIN_PASSWORD_DESCRIPTION)}
@@ -140,7 +129,7 @@ function Login() {
               message: t(LOGIN_PASSWORD_REQUIRED),
             },
           ]}
-          loginError={pswdError}
+          loginError={loginError}
         />
       </div>
       <label id="remember" htmlFor="checkbox">
