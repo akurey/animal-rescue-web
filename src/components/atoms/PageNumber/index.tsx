@@ -14,7 +14,7 @@ function PageNumber({
     <div className="pages">
       {pages.map((title, page) => {
         return (
-          <>
+          <React.Fragment key={title}>
             <div className="page">
               <div
                 className={`page-circle ${
@@ -32,7 +32,7 @@ function PageNumber({
               </p>
             </div>
             {page + 1 < pages.length && <div className="separator" />}
-          </>
+          </React.Fragment>
         );
       })}
     </div>

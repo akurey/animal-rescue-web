@@ -5,5 +5,9 @@
 }
 
 .form-row {
-  @include layout-row(1.5rem, center);
+  @include layout-row(1.5rem, flex-start);
+}
+
+#AnimalRescueApp .autoComplete {
+  padding-top: 14px;
 }
