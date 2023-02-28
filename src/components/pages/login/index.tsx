@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button, TextBox } from "../../atoms";
+import { Button, TextBox, PasswordTextBox } from "../../atoms";
 import Logo from "../../../assets/images/logo.png";
 import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
 import LocalStorage from "../../../observables/localStorage.observable";
@@ -114,7 +114,7 @@ function Login() {
             },
           ]}
         />
-        <TextBox
+        <PasswordTextBox
           description={t(LOGIN_PASSWORD_DESCRIPTION)}
           placeholder={t(LOGIN_PASSWORD_PLACEHOLDER)}
           onChange={(e) => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
 
-interface TextBoxProps extends React.HTMLAttributes<HTMLInputElement> {
+interface PasswordTextBoxProps extends React.HTMLAttributes<HTMLInputElement> {
   textBoxStyle?: string;
   disabled?: boolean;
   onChange?: (e: any) => void;
@@ -15,7 +15,7 @@ interface TextBoxProps extends React.HTMLAttributes<HTMLInputElement> {
   loginError?: string;
 }
 
-function TextBox({
+function PasswordTextBox({
   onClick,
   textBoxStyle,
   disabled,
@@ -27,9 +27,10 @@ function TextBox({
   description,
   className,
   loginError,
-}: TextBoxProps) {
+}: PasswordTextBoxProps) {
   const [valueInput, setValueInput] = useState(value);
   const [error, setError] = useState({ message: null, validator: () => {} });
+  const [visible, setVisibility] = useState(false);
 
   const validateInput = (valueValidate: string) => {
     const validationError = validators?.find(
@@ -38,6 +39,10 @@ function TextBox({
     if (error !== validationError) {
       setError(validationError);
     }
+  };
+
+  const changeVisibility = () => {
+    setVisibility(!visible);
   };
 
   const onChangeInput = (e: any) => {
@@ -58,7 +63,7 @@ function TextBox({
       <div>
         <input
           id="input"
-          type={type || "text"}
+          type={visible ? "text" : "password"}
           onClick={onClick}
           className={`
           input
@@ -73,8 +78,15 @@ function TextBox({
           value={valueInput}
         />
         {type === "password" && (
-          <i id="togglePassword" className="material-icons">
-            visibility
+          <i
+            role="button"
+            tabIndex={0}
+            id="togglePassword"
+            className="material-icons"
+            onClick={changeVisibility}
+            onKeyPress={changeVisibility}
+          >
+            {visible ? "visibility_off" : "visibility"}
           </i>
         )}
       </div>
@@ -84,4 +96,4 @@ function TextBox({
   );
 }
 
-export default TextBox;
+export default PasswordTextBox;
