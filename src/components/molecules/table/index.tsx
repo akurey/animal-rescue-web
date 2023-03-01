@@ -59,6 +59,19 @@ function TableComponent({ items }: TableProps) {
     setAnchorEl(null);
   };
 
+  const loadRescuePlaceField = (payload: any) => {
+    const fields = JSON.parse(payload.Fields);
+    const direction = fields["Dirección"];
+    let rescuePlaceField = "Desconocido";
+
+    if (direction) {
+      const parseDirection = JSON.parse(direction);
+      rescuePlaceField = `${parseDirection.Provincia}, ${parseDirection.Canton}`;
+    }
+
+    return rescuePlaceField;
+  };
+
   // TODO EJimenez - Delete this constant and show table column //
   const hideElement = false;
 
@@ -100,14 +113,9 @@ function TableComponent({ items }: TableProps) {
                 {row.CreatedAt}
               </TableCell>
               <TableCell className="table--data" align="left">
-                {Object.prototype.hasOwnProperty.call(
-                  JSON.parse(row.Fields),
-                  "PlaceOfRescue"
-                )
-                  ? `${JSON.parse(JSON.parse(row.Fields).Dirección).Canton}, ${
-                      JSON.parse(JSON.parse(row.Fields).Dirección).Provincia
-                    }`
-                  : "Desconocido"}
+                {row.PlaceOfRescue
+                  ? row.PlaceOfRescue
+                  : loadRescuePlaceField(row)}
               </TableCell>
               {hideElement && (
                 <TableCell className="table--data" align="center">

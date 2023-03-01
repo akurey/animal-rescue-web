@@ -1,5 +1,15 @@
 import React from "react";
 import { Dropdown, Numeric, TextArea, TextBox } from "../../../atoms";
+import {
+  DROPDOWN_COMPONENT,
+  DROPDOWN_STYLE,
+  TEXTBOX_COMPONENT,
+  TEXTBOX_STYLE,
+  NUMERIC_COMPONENT,
+  NUMERIC_STYLE,
+  TEXTAREA_COMPONENT,
+  TEXTAREA_STYLE,
+} from "../../../../constants/renderer-components.constant";
 
 const KeysToComponentMap = {
   Dropdown,
@@ -24,48 +34,78 @@ function createObjectArray(array) {
 }
 
 // TODO Implement all types of fields
-function rendererComponent(config, handleFunction) {
+function rendererComponent(config, handleFunction, formData) {
+  let rederElement = null;
+
   if (typeof KeysToComponentMap[config.FieldType] !== "undefined") {
-    if (config.FieldType === "Dropdown") {
-      return React.createElement(KeysToComponentMap[config.FieldType], {
-        key: config.FieldName,
-        onChange: handleFunction,
-        placeholder: config.FieldName,
-        description: config.FieldName,
-        options: createObjectArray(config.FieldOptions.slice(1, -1).split(",")),
-        dropdownstyle: "form-field--dropdown",
-      });
+    switch (config.FieldType) {
+      case DROPDOWN_COMPONENT:
+        rederElement = React.createElement(
+          KeysToComponentMap[config.FieldType],
+          {
+            key: config.FieldName,
+            onChange: handleFunction,
+            placeholder: config.FieldName,
+            description: config.FieldName,
+            options: createObjectArray(
+              config.FieldOptions.slice(1, -1).split(",")
+            ),
+            value:
+              config.FieldName in formData ? formData[config.FieldName] : "",
+            dropdownstyle: DROPDOWN_STYLE,
+          }
+        );
+        break;
+      case TEXTBOX_COMPONENT:
+        rederElement = React.createElement(
+          KeysToComponentMap[config.FieldType],
+          {
+            key: config.FieldName,
+            onChange: handleFunction,
+            placeholder: config.FieldName,
+            description: config.FieldName,
+            value:
+              config.FieldName in formData ? formData[config.FieldName] : "",
+            textBoxStyle: TEXTBOX_STYLE,
+          }
+        );
+        break;
+      case NUMERIC_COMPONENT:
+        rederElement = React.createElement(
+          KeysToComponentMap[config.FieldType],
+          {
+            key: config.FieldName,
+            onChange: handleFunction,
+            placeholder: config.FieldName,
+            description: config.FieldName,
+            numericStyle: NUMERIC_STYLE,
+          }
+        );
+        break;
+      case TEXTAREA_COMPONENT:
+        rederElement = React.createElement(
+          KeysToComponentMap[config.FieldType],
+          {
+            key: config.FieldName,
+            onChange: handleFunction,
+            placeholder: config.FieldName,
+            description: config.FieldName,
+            value:
+              config.FieldName in formData ? formData[config.FieldName] : "",
+            textAreaStyle: TEXTAREA_STYLE,
+          }
+        );
+        break;
+      default:
+        rederElement = null;
     }
-    if (config.FieldType === "Textbox") {
-      React.createElement(KeysToComponentMap[config.FieldType], {
-        key: config.FieldName,
-        onChange: handleFunction,
-        placeholder: config.FieldName,
-        description: config.FieldName,
-        textBoxStyle: "form-field--textbox",
-      });
-    } else if (config.FieldType === "Numeric") {
-      React.createElement(KeysToComponentMap[config.FieldType], {
-        key: config.FieldName,
-        onChange: handleFunction,
-        placeholder: config.FieldName,
-        description: config.FieldName,
-        numericStyle: "form-field--numeric",
-      });
-    }
-    return React.createElement(KeysToComponentMap[config.FieldType], {
-      key: config.FieldName,
-      onChange: handleFunction,
-      placeholder: config.FieldName,
-      description: config.FieldName,
-      textAreaStyle: "form-field--textarea",
-    });
   }
-  return null;
+
+  return rederElement;
 }
 
 // creates a group of elements with the same type to create the components
-function renderType(data, page, type, handleFunction) {
+function renderType(data, page, type, handleFunction, formData) {
   const values = [];
 
   data.forEach((element) => {
@@ -74,7 +114,9 @@ function renderType(data, page, type, handleFunction) {
     }
   });
 
-  return values.map((element) => rendererComponent(element, handleFunction));
+  return values.map((element) =>
+    rendererComponent(element, handleFunction, formData)
+  );
 }
 
 export default renderType;

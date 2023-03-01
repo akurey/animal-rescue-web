@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 export interface IOption {
@@ -15,6 +15,7 @@ interface IDropdown extends React.HTMLProps<HTMLSelectElement> {
   onChange?: (e: any) => void;
   setValue: (v: string) => void;
   dropdownStyle?: string;
+  value?: string;
 }
 
 const Dropdown = (props: IDropdown) => {
@@ -25,6 +26,7 @@ const Dropdown = (props: IDropdown) => {
     onChange,
     setValue = () => {},
     dropdownStyle = "",
+    value = "",
   } = props;
   const [currentOption, setCurrentOption] = useState("");
 
@@ -62,6 +64,13 @@ const Dropdown = (props: IDropdown) => {
       },
     });
   };
+
+  useEffect(() => {
+    if (value) {
+      setValue(` ${value}`);
+      setCurrentOption(` ${value}`);
+    }
+  }, []);
 
   return (
     <select

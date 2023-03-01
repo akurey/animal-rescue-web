@@ -2,36 +2,55 @@ import React from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import RenderType from "./helper/elementRenderer";
 import { RescueObservable } from "../../../observables/rescue.observable";
-import { useObservable } from "../../../hooks/use-observable.hook";
 import "./styles.scss";
 
+interface AnimalDataType {
+  Name: string;
+  ScientificName: string;
+  id: Number;
+}
+
 interface FormProps {
-  setAnimalIdToSend?: React.Dispatch<React.SetStateAction<Number>>;
+  setAnimalToSend?: React.Dispatch<React.SetStateAction<any>>;
   animalData?: any[];
   fields: any[];
   types: any[];
   section: string;
+  setFormData?: any;
+  formData?: any;
+  animalToSend?: AnimalDataType;
 }
 
 export default function FormPage({
-  setAnimalIdToSend,
+  setAnimalToSend,
   animalData,
   fields,
   types,
   section,
+  formData,
+  setFormData,
+  animalToSend,
 }: FormProps) {
-  const [rescue] = useObservable(RescueObservable.rescue$);
-
   const handleChange = (event) => {
     const { placeholder, value } = event.target;
+    const newObj = {};
+    newObj[placeholder] = value;
+    const newFormData = formData.map((element) => {
+      if (element.section === section) {
+        const newFormElement = { ...element, ...newObj };
+        return newFormElement;
+      }
+      return element;
+    });
 
-    let update = rescue;
+    setFormData(newFormData);
+    let jsonFormData = {};
 
-    update = JSON.parse(update);
-    update[placeholder] = value;
-    update = JSON.stringify(update);
+    newFormData.forEach((element) => {
+      jsonFormData = { ...element, ...jsonFormData };
+    });
 
-    RescueObservable.setRescue(update);
+    RescueObservable.setRescue(JSON.stringify(jsonFormData));
   };
 
   const defaultProps = {
@@ -39,12 +58,6 @@ export default function FormPage({
     getOptionLabel: (option: AnimalDataType) =>
       `${option.Name} (${option.ScientificName})`,
   };
-
-  interface AnimalDataType {
-    Name: string;
-    ScientificName: string;
-    id: Number;
-  }
 
   return (
     <div className="form-column">
@@ -55,8 +68,9 @@ export default function FormPage({
           autoHighlight
           freeSolo
           disableClearable
+          value={animalToSend}
           onChange={(event: any, newValue: AnimalDataType | null) => {
-            setAnimalIdToSend(newValue.id);
+            setAnimalToSend(newValue);
           }}
           fullWidth
           includeInputInList
@@ -74,7 +88,13 @@ export default function FormPage({
       {types.map((data, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <div key={index} className="form-row">
-          {RenderType(fields, section, data, handleChange)}
+          {RenderType(
+            fields,
+            section,
+            data,
+            handleChange,
+            formData.find((element) => element.section === section)
+          )}
         </div>
       ))}
     </div>
