@@ -97,7 +97,7 @@ function TableComponent({ items }: TableProps) {
                 {row.AnimalName}
               </TableCell>
               <TableCell className="table--data" align="left">
-                {row.Created_at}
+                {row.CreatedAt}
               </TableCell>
               <TableCell className="table--data" align="left">
                 {Object.prototype.hasOwnProperty.call(

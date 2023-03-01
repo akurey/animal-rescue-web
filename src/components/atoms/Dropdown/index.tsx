@@ -47,7 +47,7 @@ const Dropdown = (props: IDropdown) => {
   ));
 
   const placeholderOption = (
-    <option disabled selected value="" hidden>
+    <option disabled value="" hidden>
       {placeholder}
     </option>
   );
