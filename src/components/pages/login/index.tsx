@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import bcrypt from "bcryptjs";
+import jwt_encode from "jwt-encode";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -28,6 +28,7 @@ import {
 } from "../../../constants/translations";
 
 function Login() {
+  const secret = process.env.REACT_APP_JWT_SECRET;
   const { t } = useTranslation([COMMON, LOGIN_PAGE]);
   const [user] = useObservable(UserObservable.user$);
   const [data, setData] = useState({
@@ -70,8 +71,8 @@ function Login() {
 
   const onLogin = async () => {
     try {
-      const hashPassword = bcrypt.hashSync(password, 10);
-      const response = await UserService.loginUser(username, password);
+      const hashPassword = jwt_encode(password, secret);
+      const response = await UserService.loginUser(username, hashPassword);
       setData({
         login: {
           user: {
