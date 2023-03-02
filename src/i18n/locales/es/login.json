@@ -2,6 +2,7 @@
   "sub-title": "Edit your profile information",
   "username": {
     "description": "Usuario",
+    "placeholder": "usuario",
     "required": "El usuario es requerido",
     "notValid": "Usuario no valido"
   },
@@ -13,5 +14,6 @@
   "rememberMe": "Recordarme",
   "logIn": "Iniciar Sesión",
   "forgotPassword": "Olvidé mi contraseña",
-  "failLogin": "Usuario o contraseña incorrecta"
+  "failLogin": "Usuario o contraseña incorrecta",
+  "serviceUnavailable": "Servicio no disponible"
 }

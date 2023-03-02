@@ -25,6 +25,8 @@ import {
   LOGIN_LOG_IN,
   LOGIN_FORGOT_PASSWORD,
   LOGIN_FAIL,
+  LOGIN_MAIL_PLACEHOLDER,
+  LOGIN_UNAVAILABLE,
 } from "../../../constants/translations";
 
 function Login() {
@@ -92,6 +94,8 @@ function Login() {
     } catch (err) {
       if (err.response?.status === 404 || err.response?.status === 401) {
         setLoginError(t(LOGIN_FAIL));
+      } else {
+        setLoginError(t(LOGIN_UNAVAILABLE));
       }
     }
   };
@@ -102,7 +106,7 @@ function Login() {
       <div className="login--column">
         <TextBox
           description={t(LOGIN_MAIL_DESCRIPTION)}
-          placeholder="usuario123"
+          placeholder={t(LOGIN_MAIL_PLACEHOLDER)}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
