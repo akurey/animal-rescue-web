@@ -12,7 +12,6 @@ import {
   NEW_ANIMAL_NEXT,
   NEW_ANIMAL_PAGE,
   NEW_ANIMAL_TITLE,
-  NEW_ANIMAL_SAVE,
 } from "../../../constants/translations";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
@@ -29,9 +28,20 @@ function NewAnimal() {
   const [fields, setFields] = useState([]);
   const [types, setTypes] = useState([]);
   const [animalData, setAnimalData] = useState([]);
-  const [animalIdToSend, setAnimalIdToSend] = useState(0);
+  const [animalToSend, setAnimalToSend]: any = useState();
   const [rescue] = useObservable(RescueObservable.rescue$);
   const { t } = useTranslation(NEW_ANIMAL_PAGE);
+  const [formData, setFormData]: object[] = useState([
+    {
+      section: t(NEW_ANIMAL_FORM_FIRST),
+    },
+    {
+      section: t(NEW_ANIMAL_FORM_SECOND),
+    },
+    {
+      section: t(NEW_ANIMAL_FORM_THIRD),
+    },
+  ]);
 
   const navigate = useNavigate();
 
@@ -41,7 +51,10 @@ function NewAnimal() {
       title: t(NEW_ANIMAL_FORM_FIRST),
       formPage: (
         <FormPage
-          setAnimalIdToSend={setAnimalIdToSend}
+          formData={formData}
+          setFormData={setFormData}
+          setAnimalToSend={setAnimalToSend}
+          animalToSend={animalToSend}
           animalData={animalData}
           fields={fields}
           types={types}
@@ -55,6 +68,8 @@ function NewAnimal() {
       title: t(NEW_ANIMAL_FORM_SECOND),
       formPage: (
         <FormPage
+          formData={formData}
+          setFormData={setFormData}
           fields={fields}
           types={types}
           section={t(NEW_ANIMAL_FORM_SECOND)}
@@ -67,6 +82,8 @@ function NewAnimal() {
       title: t(NEW_ANIMAL_FORM_THIRD),
       formPage: (
         <FormPage
+          formData={formData}
+          setFormData={setFormData}
           fields={fields}
           types={types}
           section={t(NEW_ANIMAL_FORM_THIRD)}
@@ -142,7 +159,7 @@ function NewAnimal() {
       });
     } else {
       // TODO: Validate and send proper formId & reporterId
-      RescueService.addRescue(animalIdToSend, 1, 1, rescue);
+      RescueService.addRescue(animalToSend.id, 1, 1, rescue);
       navigate(-1);
     }
   };
@@ -171,17 +188,17 @@ function NewAnimal() {
               >
                 {currentPage === 0 ? t(NEW_ANIMAL_QUIT) : t(NEW_ANIMAL_BACK)}
               </Button>
-              <Button buttonSize="btn--medium" onClick={next}>
-                {currentPage !== 2 ? t(NEW_ANIMAL_NEXT) : t(NEW_ANIMAL_SAVE)}
-              </Button>
+              {currentPage !== 2 && (
+                <Button buttonSize="btn--medium" onClick={next}>
+                  {t(NEW_ANIMAL_NEXT)}
+                </Button>
+              )}
             </div>
-            <Button
-              buttonStyle="btn--secondary"
-              buttonSize="btn--medium"
-              onClick={next}
-            >
-              {t(NEW_ANIMAL_NEW)}
-            </Button>
+            {currentPage === 2 && (
+              <Button buttonSize="btn--medium" onClick={next}>
+                {t(NEW_ANIMAL_NEW)}
+              </Button>
+            )}
           </div>
         </div>
       </div>
