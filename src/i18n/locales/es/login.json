@@ -1,9 +1,10 @@
 {
   "sub-title": "Edit your profile information",
-  "mail": {
-    "description": "Correo electrónico",
-    "required": "El correo electrónico es requerido",
-    "notValid": "Correo electrónico no valido"
+  "username": {
+    "description": "Usuario",
+    "placeholder": "usuario",
+    "required": "El usuario es requerido",
+    "notValid": "Usuario no valido"
   },
   "password": {
     "description": "Contraseña",
@@ -12,5 +13,7 @@
   },
   "rememberMe": "Recordarme",
   "logIn": "Iniciar Sesión",
-  "forgotPassword": "Olvidé mi contraseña"
+  "forgotPassword": "Olvidé mi contraseña",
+  "failLogin": "Usuario o contraseña incorrecta",
+  "serviceUnavailable": "Servicio no disponible"
 }

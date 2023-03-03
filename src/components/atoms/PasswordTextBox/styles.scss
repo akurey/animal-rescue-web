@@ -1,0 +1,13 @@
+@import "../../../styles/forms.scss";
+@import "../../../styles/layout.scss";
+
+#togglePassword {
+  position: absolute;
+  margin: 0;
+  padding-top: 15px;
+  margin-left: -40px;
+}
+
+.material-icons {
+  cursor: pointer;
+}

@@ -1,5 +1,4 @@
 import "./styles/global.scss";
-// import '@/assets/images/favicon.ico';
 import React from "react";
 import "./i18n/i18n";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
