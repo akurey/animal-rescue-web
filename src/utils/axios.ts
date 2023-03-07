@@ -1,12 +1,9 @@
 import axios from "axios";
 
-const baseURL = process.env.REACT_APP_BASE_URL;
-
-// TODO add headers //
+const baseURL = `${process.env.REACT_APP_BASE_URL}/api`;
 
 const axiosInstance = axios.create({
   baseURL,
-  // headers,
 });
 
 export default axiosInstance;
