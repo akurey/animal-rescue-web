@@ -32,6 +32,10 @@ export const NEW_ANIMAL_NEXT = "newAnimal:next";
 export const NEW_ANIMAL_QUIT = "newAnimal:quit";
 export const NEW_ANIMAL_SAVE = "newAnimal:save";
 export const NEW_ANIMAL_NEW = "newAnimal:introduceAnimal";
+export const NEW_ANIMAL_PROVINCE = "newAnimal:fields.province";
+export const NEW_ANIMAL_CANTON = "newAnimal:fields.canton";
+export const NEW_ANIMAL_DISTRICT = "newAnimal:fields.district";
+export const NEW_ANIMAL_EXACT_DIRECTION = "newAnimal:fields.exactDirection";
 
 export const RESCUES_PAGE = "rescues";
 export const RESCUES_TITLE = "rescues:title";

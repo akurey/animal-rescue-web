@@ -9,5 +9,11 @@
   "next": "Siguiente",
   "quit": "Cancelar",
   "save": "Guardar",
-  "introduceAnimal": "Ingresar animal"
+  "introduceAnimal": "Ingresar animal",
+  "fields": {
+    "province": "Provincia",
+    "canton": "Cantón",
+    "district": "Distrito",
+    "exactDirection": "Dirección exacta"
+  }
 }
