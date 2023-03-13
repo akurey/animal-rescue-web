@@ -189,7 +189,17 @@ function NewAnimal() {
       });
     } else {
       // TODO: Validate and send proper formId & reporterId
-      RescueService.addRescue(animalToSend.id, 1, 1, rescue);
+      const rescueObj = JSON.parse(rescue);
+      const address = {
+        Canton: rescueObj["Cantón"],
+        Exacta: rescueObj.Observaciones,
+        Distrito: rescueObj["Dirección exacta"],
+        Provincia: rescueObj.Provincia,
+      };
+
+      rescueObj["Dirección"] = JSON.stringify(address);
+      const newRescue = JSON.stringify(rescueObj);
+      RescueService.addRescue(animalToSend.id, 1, 1, newRescue);
       navigate(-1);
     }
   };
