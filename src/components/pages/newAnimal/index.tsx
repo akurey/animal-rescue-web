@@ -24,6 +24,12 @@ import RescueService from "../../../services/rescue.services";
 import "./styles.scss";
 import AddressService from "../../../services/address.service";
 import { addressAction } from "../../../reducers/address/actions";
+import {
+  CANTON_FIELD,
+  DISTRICT_FIELD,
+  EXACT_DIRECTION_FIELD,
+  PROVINCE_FIELD,
+} from "../../../constants/fields.constant";
 
 function NewAnimal() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -191,10 +197,10 @@ function NewAnimal() {
       // TODO: Validate and send proper formId & reporterId
       const rescueObj = JSON.parse(rescue);
       const address = {
-        Canton: rescueObj["Cantón"],
-        Exacta: rescueObj.Observaciones,
-        Distrito: rescueObj["Dirección exacta"],
-        Provincia: rescueObj.Provincia,
+        Canton: rescueObj[CANTON_FIELD],
+        Exacta: rescueObj[EXACT_DIRECTION_FIELD],
+        Distrito: rescueObj[DISTRICT_FIELD],
+        Provincia: rescueObj[PROVINCE_FIELD],
       };
 
       rescueObj["Dirección"] = JSON.stringify(address);
