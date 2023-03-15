@@ -1,0 +1,10 @@
+@import "../../../styles/layout.scss";
+
+.address-container {
+  width: 100%;
+  @include layout-column(4.2rem);
+}
+.address-field {
+  width: 100%;
+  @include layout-row(1.5rem, flex-start);
+}

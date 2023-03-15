@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import FormService from "../../../services/form.services";
 import {
   NEW_ANIMAL_BACK,
@@ -21,16 +22,27 @@ import { RescueObservable } from "../../../observables/rescue.observable";
 import { useObservable } from "../../../hooks/use-observable.hook";
 import RescueService from "../../../services/rescue.services";
 import "./styles.scss";
+import AddressService from "../../../services/address.service";
+import { addressAction } from "../../../reducers/address/actions";
+import {
+  CANTON_FIELD,
+  DISTRICT_FIELD,
+  EXACT_DIRECTION_FIELD,
+  PROVINCE_FIELD,
+} from "../../../constants/fields.constant";
 
 function NewAnimal() {
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [fields, setFields] = useState([]);
-  const [types, setTypes] = useState([]);
+  const [firstSectionTypes, setFirstSectionTypes] = useState([]);
+  const [secondSectionTypes, setSecondSectionTypes] = useState([]);
+  const [thirdSectionTypes, setThirdSectionTypes] = useState([]);
   const [animalData, setAnimalData] = useState([]);
   const [animalToSend, setAnimalToSend]: any = useState();
   const [rescue] = useObservable(RescueObservable.rescue$);
   const { t } = useTranslation(NEW_ANIMAL_PAGE);
+  const dispatch = useDispatch();
   const [formData, setFormData]: object[] = useState([
     {
       section: t(NEW_ANIMAL_FORM_FIRST),
@@ -56,8 +68,10 @@ function NewAnimal() {
           setAnimalToSend={setAnimalToSend}
           animalToSend={animalToSend}
           animalData={animalData}
-          fields={fields}
-          types={types}
+          fields={fields.filter(
+            (x) => x.FormSection === t(NEW_ANIMAL_FORM_FIRST)
+          )}
+          types={firstSectionTypes}
           section={t(NEW_ANIMAL_FORM_FIRST)}
           key={0}
         />
@@ -70,8 +84,10 @@ function NewAnimal() {
         <FormPage
           formData={formData}
           setFormData={setFormData}
-          fields={fields}
-          types={types}
+          fields={fields.filter(
+            (x) => x.FormSection === t(NEW_ANIMAL_FORM_SECOND)
+          )}
+          types={secondSectionTypes}
           section={t(NEW_ANIMAL_FORM_SECOND)}
           key={1}
         />
@@ -84,8 +100,10 @@ function NewAnimal() {
         <FormPage
           formData={formData}
           setFormData={setFormData}
-          fields={fields}
-          types={types}
+          fields={fields.filter(
+            (x) => x.FormSection === t(NEW_ANIMAL_FORM_THIRD)
+          )}
+          types={thirdSectionTypes}
           section={t(NEW_ANIMAL_FORM_THIRD)}
           key={2}
         />
@@ -93,14 +111,18 @@ function NewAnimal() {
     },
   ];
 
-  const getTypes = (data) => {
+  const getTypes = (data, section) => {
     const dataTypes = [];
     data.forEach((element) => {
-      if (!dataTypes.includes(element.FieldType)) {
+      if (
+        !dataTypes.includes(element.FieldType) &&
+        section === element.FormSection
+      ) {
         dataTypes.push(element.FieldType);
       }
     });
-    setTypes(dataTypes);
+
+    return dataTypes;
   };
 
   // create a JSON object with all the fields avaiable as keys
@@ -118,7 +140,15 @@ function NewAnimal() {
   async function getFields() {
     const fieldData = await FormService.getFormFields(1);
     setFields(fieldData.data.response);
-    getTypes(fieldData.data.response);
+    setThirdSectionTypes(
+      getTypes(fieldData.data.response, t(NEW_ANIMAL_FORM_FIRST))
+    );
+    setSecondSectionTypes(
+      getTypes(fieldData.data.response, t(NEW_ANIMAL_FORM_SECOND))
+    );
+    setFirstSectionTypes(
+      getTypes(fieldData.data.response, t(NEW_ANIMAL_FORM_THIRD))
+    );
     setLoading(false);
     return fieldData.data.response;
   }
@@ -128,7 +158,13 @@ function NewAnimal() {
     return animals.data.response;
   }
 
+  async function getAddressOptions() {
+    const addressOptions = await AddressService.getAddressOptions();
+    dispatch(addressAction.getAddress(addressOptions.data.response));
+  }
+
   React.useEffect(() => {
+    getAddressOptions();
     getAnimals().then((data) => {
       setAnimalData(data);
     });
@@ -159,7 +195,17 @@ function NewAnimal() {
       });
     } else {
       // TODO: Validate and send proper formId & reporterId
-      RescueService.addRescue(animalToSend.id, 1, 1, rescue);
+      const rescueObj = JSON.parse(rescue);
+      const address = {
+        Canton: rescueObj[CANTON_FIELD],
+        Exacta: rescueObj[EXACT_DIRECTION_FIELD],
+        Distrito: rescueObj[DISTRICT_FIELD],
+        Provincia: rescueObj[PROVINCE_FIELD],
+      };
+
+      rescueObj["Dirección"] = JSON.stringify(address);
+      const newRescue = JSON.stringify(rescueObj);
+      RescueService.addRescue(animalToSend.id, 1, 1, newRescue);
       navigate(-1);
     }
   };

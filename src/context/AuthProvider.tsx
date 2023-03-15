@@ -13,6 +13,7 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [auth, setAuth] = useState<AuthProps | undefined>({});
+
   const authProviderValue = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
   return (
     <AuthContext.Provider value={authProviderValue}>

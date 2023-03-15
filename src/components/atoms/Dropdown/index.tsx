@@ -8,7 +8,7 @@ export interface IOption {
   displayName: string;
   selected: boolean;
 }
-interface IDropdown extends React.HTMLProps<HTMLSelectElement> {
+export interface IDropdown extends React.HTMLProps<HTMLSelectElement> {
   name: string;
   options: IOption[];
   placeholder?: string;
@@ -43,8 +43,8 @@ const Dropdown = (props: IDropdown) => {
   );
 
   const displayOptions = options.map((option) => (
-    <option key={option.key} value={option.value}>
-      {option.displayName}
+    <option key={option.key} value={option.value.trim()}>
+      {option.displayName.trim()}
     </option>
   ));
 
@@ -67,8 +67,8 @@ const Dropdown = (props: IDropdown) => {
 
   useEffect(() => {
     if (value) {
-      setValue(` ${value}`);
-      setCurrentOption(` ${value}`);
+      setValue(`${value}`);
+      setCurrentOption(`${value}`);
     }
   }, []);
 

@@ -3,6 +3,7 @@ import jwt_encode from "jwt-encode";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { Button, TextBox, PasswordTextBox } from "../../atoms";
 import Logo from "../../../assets/images/logo.png";
 import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant";
@@ -28,11 +29,14 @@ import {
   LOGIN_MAIL_PLACEHOLDER,
   LOGIN_UNAVAILABLE,
 } from "../../../constants/translations";
+import { userAction } from "../../../reducers/user/actions";
+import IUser from "../../../types/user.types";
 
 function Login() {
   const secret = process.env.REACT_APP_JWT_SECRET;
   const { t } = useTranslation([COMMON, LOGIN_PAGE]);
   const [user] = useObservable(UserObservable.user$);
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     login: {
       user: {
@@ -47,10 +51,14 @@ function Login() {
   });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberOption, setRemember] = useState(false);
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const { setAuth } = useAuth();
 
+  const handleRememberChange = (event: any) => {
+    setRemember(event.target.checked);
+  };
   const onRedirect = () => {
     setTimeout(() => {
       navigate("/rescues");
@@ -75,6 +83,16 @@ function Login() {
     try {
       const hashPassword = jwt_encode(password, secret);
       const response = await UserService.loginUser(username, hashPassword);
+      const userData: IUser = {
+        name: response.data.data.name,
+        mail: response.data.email,
+        username,
+        avatar: null,
+        accessToken: response.data.data.token,
+        remember: rememberOption,
+      };
+
+      dispatch(userAction.setUser(userData));
       setData({
         login: {
           user: {
@@ -138,7 +156,7 @@ function Login() {
         />
       </div>
       <label id="remember" htmlFor="checkbox">
-        <input type="checkbox" id="checkbox" />
+        <input onChange={handleRememberChange} type="checkbox" id="checkbox" />
         {t(LOGIN_REMEMBER_ME)}
       </label>
       <Button

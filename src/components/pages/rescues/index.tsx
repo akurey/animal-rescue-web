@@ -28,7 +28,7 @@ function RescuesComponent() {
   React.useEffect(() => {
     async function getFields() {
       const animalData = await RescueService.getRescue();
-      setAnimals(animalData.data.response);
+      setAnimals(animalData.data.response ? animalData.data.response : []);
       setLoading(false);
     }
     getFields();

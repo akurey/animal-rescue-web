@@ -9,13 +9,17 @@ import {
   NUMERIC_STYLE,
   TEXTAREA_COMPONENT,
   TEXTAREA_STYLE,
+  ADDRESS_COMPONENT,
 } from "../../../../constants/renderer-components.constant";
+import { store } from "../../../../reducers/store";
+import AddressField from "../../AddressField/AddressField";
 
 const KeysToComponentMap = {
   Dropdown,
   Textbox: TextBox,
   Numeric,
   Textarea: TextArea,
+  Address: AddressField,
 };
 
 // converts an array into an object with the attributes needed for the options prop
@@ -36,7 +40,6 @@ function createObjectArray(array) {
 // TODO Implement all types of fields
 function rendererComponent(config, handleFunction, formData) {
   let rederElement = null;
-
   if (typeof KeysToComponentMap[config.FieldType] !== "undefined") {
     switch (config.FieldType) {
       case DROPDOWN_COMPONENT:
@@ -96,11 +99,30 @@ function rendererComponent(config, handleFunction, formData) {
           }
         );
         break;
+      case ADDRESS_COMPONENT:
+        // eslint-disable-next-line
+        const state = store.getState();
+        rederElement = React.createElement(
+          KeysToComponentMap[config.FieldType],
+          {
+            id: config.FieldName,
+            onChange: handleFunction,
+            provinceValue: formData.Provincia ? formData.Provincia : "",
+            cantonValue: formData["Cantón"] ? formData["Cantón"] : "",
+            districtValue: formData.Distrito ? formData.Distrito : "",
+            addressOptions: state?.address?.provinces
+              ? state.address.provinces
+              : [],
+            exactDirectionValue: formData["Dirección exacta"]
+              ? formData["Dirección exacta"]
+              : "",
+          }
+        );
+        break;
       default:
         rederElement = null;
     }
   }
-
   return rederElement;
 }
 
