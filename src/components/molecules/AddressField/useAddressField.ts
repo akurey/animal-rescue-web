@@ -27,7 +27,7 @@ interface Hook {
 export default function useAddressField({
   provinceValue,
   cantonValue,
-  addressOptions
+  addressOptions,
 }): Hook {
   const { t } = useTranslation(NEW_ANIMAL_PAGE);
   const provinceLabel = NEW_ANIMAL_PROVINCE;
@@ -39,7 +39,8 @@ export default function useAddressField({
   const [districtOptions, setDistrictOptions]: IOption[] | any = useState([]);
   const [idProvinceSelected, setIdProvinceSelected]: number | any =
     useState(provinceValue);
-  const [idCantonSelected, setIdCantonSelected]: number | any = useState(cantonValue);
+  const [idCantonSelected, setIdCantonSelected]: number | any =
+    useState(cantonValue);
 
   const buildProvinceOptions = (provinces: IProvince[]) => {
     const provinceOptionsList: IOption[] = provinces.map((x, index) => {
@@ -59,14 +60,16 @@ export default function useAddressField({
       const provinceSelected: IProvince = addressOptions.find(
         (x: IProvince) => x.Province === idProvinceSelected.trim()
       );
-      const cantonOptionList: IOption[] = provinceSelected.Cantons.map((canton, index) => {
-        return {
-          key: index,
-          value: canton.Canton,
-          selected: false,
-          displayName: canton.Canton,
+      const cantonOptionList: IOption[] = provinceSelected.Cantons.map(
+        (canton, index) => {
+          return {
+            key: index,
+            value: canton.Canton,
+            selected: false,
+            displayName: canton.Canton,
+          };
         }
-      })
+      );
       setCantonOptions(cantonOptionList);
     }
   };
@@ -79,17 +82,19 @@ export default function useAddressField({
       const cantonSelected: ICanton = provinceSelected.Cantons.find(
         (x: ICanton) => x.Canton === idCantonSelected.trim()
       );
-      const districtOptionList: IOption[] = cantonSelected.Districts.map((district) => {
-        return {
-          key: district.Id,
-          value: district.District,
-          selected: false,
-          displayName: district.District,
+      const districtOptionList: IOption[] = cantonSelected.Districts.map(
+        (district) => {
+          return {
+            key: district.Id,
+            value: district.District,
+            selected: false,
+            displayName: district.District,
+          };
         }
-      })
+      );
       setDistrictOptions(districtOptionList);
     }
-  }
+  };
 
   useEffect(() => {
     if (addressOptions) {

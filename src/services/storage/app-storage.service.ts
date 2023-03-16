@@ -1,9 +1,9 @@
 import IStorage from "../../types/storage.type";
 
 export default class AppStorage {
-    storage: IStorage;
+  storage: IStorage;
 
-    constructor(storage: IStorage) {
-        this.storage = storage;
-    }
+  constructor(storage: IStorage) {
+    this.storage = storage;
+  }
 }
