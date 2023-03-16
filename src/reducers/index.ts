@@ -4,7 +4,7 @@ import { userReducer } from "./user/user.reducer";
 
 const rootReducer = combineReducers({
   address: addressReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 export default rootReducer;
