@@ -1,7 +1,6 @@
 import React from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import RenderType from "./helper/elementRenderer";
-import { RescueObservable } from "../../../observables/rescue.observable";
 import "./styles.scss";
 
 interface AnimalDataType {
@@ -33,24 +32,17 @@ export default function FormPage({
 }: FormProps) {
   const handleChange = (event) => {
     const { placeholder, value } = event.target;
-    const newObj = {};
-    newObj[placeholder] = value;
     const newFormData = formData.map((element) => {
+      // eslint-disable-next-line
       if (element.section === section) {
-        const newFormElement = { ...element, ...newObj };
-        return newFormElement;
+        // eslint-disable-next-line
+        element[placeholder].value = value;
+        // eslint-disable-next-line
+        element[placeholder].valid = value ? true : false;
       }
       return element;
     });
-
     setFormData(newFormData);
-    let jsonFormData = {};
-
-    newFormData.forEach((element) => {
-      jsonFormData = { ...element, ...jsonFormData };
-    });
-
-    RescueObservable.setRescue(JSON.stringify(jsonFormData));
   };
 
   const defaultProps = {
