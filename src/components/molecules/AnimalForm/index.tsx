@@ -38,7 +38,7 @@ export default function FormPage({
         // eslint-disable-next-line
         element[placeholder].value = value;
         // eslint-disable-next-line
-        element[placeholder].valid = value ? true : false;
+        element[placeholder].valid = !!value;
       }
       return element;
     });
