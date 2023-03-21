@@ -10,6 +10,8 @@ import {
   TEXTAREA_COMPONENT,
   TEXTAREA_STYLE,
   ADDRESS_COMPONENT,
+  ID_COMPONENT,
+  PHONE_COMPONENT,
 } from "../../../../constants/renderer-components.constant";
 import { store } from "../../../../reducers/store";
 import AddressField from "../../AddressField/AddressField";
@@ -20,6 +22,8 @@ const KeysToComponentMap = {
   Numeric,
   Textarea: TextArea,
   Address: AddressField,
+  Cedula: TextBox,
+  Phone: TextBox,
 };
 
 // converts an array into an object with the attributes needed for the options prop
@@ -54,7 +58,9 @@ function rendererComponent(config, handleFunction, formData) {
               config.FieldOptions.slice(1, -1).split(",")
             ),
             value:
-              config.FieldName in formData ? formData[config.FieldName] : "",
+              config.FieldName in formData
+                ? formData[config.FieldName].value
+                : "",
             dropdownstyle: DROPDOWN_STYLE,
           }
         );
@@ -68,7 +74,9 @@ function rendererComponent(config, handleFunction, formData) {
             placeholder: config.FieldName,
             description: config.FieldName,
             value:
-              config.FieldName in formData ? formData[config.FieldName] : "",
+              config.FieldName in formData
+                ? formData[config.FieldName].value
+                : "",
             textBoxStyle: TEXTBOX_STYLE,
           }
         );
@@ -85,6 +93,38 @@ function rendererComponent(config, handleFunction, formData) {
           }
         );
         break;
+      case ID_COMPONENT:
+        rederElement = React.createElement(
+          KeysToComponentMap[config.FieldType],
+          {
+            key: config.FieldName,
+            onChange: handleFunction,
+            placeholder: config.FieldName,
+            description: config.FieldName,
+            numericStyle: NUMERIC_STYLE,
+            value:
+              config.FieldName in formData
+                ? formData[config.FieldName].value
+                : "",
+          }
+        );
+        break;
+      case PHONE_COMPONENT:
+        rederElement = React.createElement(
+          KeysToComponentMap[config.FieldType],
+          {
+            key: config.FieldName,
+            onChange: handleFunction,
+            placeholder: config.FieldName,
+            description: config.FieldName,
+            numericStyle: NUMERIC_STYLE,
+            value:
+              config.FieldName in formData
+                ? formData[config.FieldName].value
+                : "",
+          }
+        );
+        break;
       case TEXTAREA_COMPONENT:
         rederElement = React.createElement(
           KeysToComponentMap[config.FieldType],
@@ -94,7 +134,9 @@ function rendererComponent(config, handleFunction, formData) {
             placeholder: config.FieldName,
             description: config.FieldName,
             value:
-              config.FieldName in formData ? formData[config.FieldName] : "",
+              config.FieldName in formData
+                ? formData[config.FieldName].value
+                : "",
             textAreaStyle: TEXTAREA_STYLE,
           }
         );
@@ -107,14 +149,14 @@ function rendererComponent(config, handleFunction, formData) {
           {
             id: config.FieldName,
             onChange: handleFunction,
-            provinceValue: formData.Provincia ? formData.Provincia : "",
-            cantonValue: formData["Cantón"] ? formData["Cantón"] : "",
-            districtValue: formData.Distrito ? formData.Distrito : "",
+            provinceValue: formData.Provincia ? formData.Provincia.value : "",
+            cantonValue: formData["Cantón"] ? formData["Cantón"].value : "",
+            districtValue: formData.Distrito ? formData.Distrito.value : "",
             addressOptions: state?.address?.provinces
               ? state.address.provinces
               : [],
             exactDirectionValue: formData["Dirección exacta"]
-              ? formData["Dirección exacta"]
+              ? formData["Dirección exacta"].value
               : "",
           }
         );
@@ -129,7 +171,6 @@ function rendererComponent(config, handleFunction, formData) {
 // creates a group of elements with the same type to create the components
 function renderType(data, page, type, handleFunction, formData) {
   const values = [];
-
   data.forEach((element) => {
     if (element.FormSection === page && element.FieldType === type) {
       values.push(element);
