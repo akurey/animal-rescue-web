@@ -14,6 +14,7 @@ import {
   RESCUES_PUBLIC,
   RESCUES_TITLE,
 } from "../../../constants/translations";
+import { RESCUE_NEW_ROUTE } from "../../../constants/routes.types";
 
 const REVIEW = "review";
 const PUBLIC = "public";
@@ -35,7 +36,7 @@ function RescuesComponent() {
   }, []);
 
   const goToNewAnimal = () => {
-    navigate("new");
+    navigate(RESCUE_NEW_ROUTE);
   };
   if (isLoading) {
     return <div />;

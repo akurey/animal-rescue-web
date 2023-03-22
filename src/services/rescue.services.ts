@@ -1,29 +1,40 @@
 import axiosInstance from "../utils/axios";
 
 export default class RescueService {
+  static routes = {
+    reports: () => `/reports`,
+    report: (id: string) => `/reports/${id}`,
+  };
+
   static addRescue(
     animalId: number,
     reporterId: number,
     formId: number,
     fieldValues: string
   ) {
-    const route = "/reports";
     const body = {
       animal_id: animalId,
       reporter_id: reporterId,
       form_id: formId,
       field_values: fieldValues,
     };
-    return axiosInstance.post(route, body);
+    return axiosInstance.post(this.routes.reports(), body);
   }
 
   static getRescue() {
-    const route = "/reports";
-    return axiosInstance.get(route);
+    return axiosInstance.get(this.routes.reports());
   }
 
   static deleteRescue() {
-    const route = "/reports";
-    return axiosInstance.delete(route);
+    return axiosInstance.delete(this.routes.reports());
+  }
+
+  static updateRescue(rescueId: string, fieldValues: string, animalId: string) {
+    const body = {
+      animal_id: animalId,
+      field_values: fieldValues,
+    };
+
+    return axiosInstance.patch(this.routes.report(rescueId), body);
   }
 }

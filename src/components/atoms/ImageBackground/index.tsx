@@ -30,8 +30,13 @@ function ImageBackground() {
         setImagePosition("bottom-left");
         break;
       default:
-        setBackgroundImage(OceloteImg);
-        setImagePosition("top-right");
+        if (location.pathname.includes("/rescues/edit")) {
+          setBackgroundImage(IguanaImg);
+          setImagePosition("bottom-left");
+        } else {
+          setBackgroundImage(OceloteImg);
+          setImagePosition("top-right");
+        }
     }
   }, [location]);
 
