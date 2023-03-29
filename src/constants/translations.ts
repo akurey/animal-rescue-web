@@ -1,5 +1,6 @@
 export const COMMON = "common";
 export const COMMON_LOGO_ALT = "common:logoDescription";
+export const COMMON_HOME = "common:home";
 
 export const NOT_FOUND_PAGE = "notFound";
 export const NOT_FOUND_TITLE = "notFound:title";
@@ -24,6 +25,7 @@ export const LOGIN_FAIL = "login:failLogin";
 export const LOGIN_UNAVAILABLE = "login:serviceUnavailable";
 export const NEW_ANIMAL_PAGE = "newAnimal";
 export const NEW_ANIMAL_TITLE = "newAnimal:title";
+export const EDIT_ANIMAL_TITLE = "newAnimal:editTitle";
 export const NEW_ANIMAL_FORM_FIRST = "newAnimal:pageTitle.first";
 export const NEW_ANIMAL_FORM_SECOND = "newAnimal:pageTitle.second";
 export const NEW_ANIMAL_FORM_THIRD = "newAnimal:pageTitle.third";
@@ -32,6 +34,7 @@ export const NEW_ANIMAL_NEXT = "newAnimal:next";
 export const NEW_ANIMAL_QUIT = "newAnimal:quit";
 export const NEW_ANIMAL_SAVE = "newAnimal:save";
 export const NEW_ANIMAL_NEW = "newAnimal:introduceAnimal";
+export const NEW_ANIMAL_EDIT = "newAnimal:editAnimal";
 export const NEW_ANIMAL_PROVINCE = "newAnimal:fields.province";
 export const NEW_ANIMAL_CANTON = "newAnimal:fields.canton";
 export const NEW_ANIMAL_DISTRICT = "newAnimal:fields.district";

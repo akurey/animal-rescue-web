@@ -2,7 +2,7 @@ import { TFunction } from "i18next";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   CANTON_FIELD,
   EXACT_DIRECTION_FIELD,
@@ -11,6 +11,7 @@ import {
   ADDRESS_FIELD_TYPE,
   DIRECTION_FIELD,
 } from "../../../constants/fields.constant";
+import { RESCUE_ROUTE } from "../../../constants/routes.types";
 import {
   NEW_ANIMAL_FORM_FIRST,
   NEW_ANIMAL_FORM_SECOND,
@@ -23,6 +24,7 @@ import AddressService from "../../../services/address.service";
 import FormService from "../../../services/form.services";
 import RescueService from "../../../services/rescue.services";
 import { IField } from "../../../types/fields.types";
+import { IAddress, IRescue } from "../../../types/rescue.types";
 import FormPage from "../../molecules/AnimalForm";
 
 interface Hook {
@@ -34,6 +36,7 @@ interface Hook {
   next: () => void;
   submitForm: () => void;
   isLoading: boolean;
+  animalEditData: IRescue;
 }
 
 export default function useNewAnimal(): Hook {
@@ -46,10 +49,11 @@ export default function useNewAnimal(): Hook {
   const [thirdSectionTypes, setThirdSectionTypes] = useState([]);
   const [animalData, setAnimalData] = useState([]);
   const [animalToSend, setAnimalToSend]: any = useState();
+  const [animalEditData, setAnimalEditData] = useState(null);
   const { t } = useTranslation(NEW_ANIMAL_PAGE);
   const dispatch = useDispatch();
   const [formData, setFormData]: any[] = useState([]);
-
+  const params = useParams();
   const navigate = useNavigate();
 
   const pages = [
@@ -132,22 +136,75 @@ export default function useNewAnimal(): Hook {
     return inputData;
   };
 
-  const buildAddressField = (field: IField) => {
-    const valueObj = {
+  const buildAddressEditField = (field: IField, addressData: IAddress) => {
+    const cantonField = {
       isRequired: field.IsRequired,
       id: field.FieldId,
-      value: "",
-      valid: false,
+      value: addressData.Canton,
+      valid: true,
     };
+
+    const provinceField = {
+      isRequired: field.IsRequired,
+      id: field.FieldId,
+      value: addressData.Provincia,
+      valid: true,
+    };
+
+    const districtField = {
+      isRequired: field.IsRequired,
+      id: field.FieldId,
+      value: addressData.Distrito,
+      valid: true,
+    };
+
+    const exactField = {
+      isRequired: field.IsRequired,
+      id: field.FieldId,
+      value: addressData.Exacta,
+      valid: true,
+    };
+
     const addressObj = {};
-    addressObj[CANTON_FIELD] = { ...valueObj };
-    addressObj[EXACT_DIRECTION_FIELD] = { ...valueObj };
-    addressObj[DISTRICT_FIELD] = { ...valueObj };
-    addressObj[PROVINCE_FIELD] = { ...valueObj };
+    addressObj[CANTON_FIELD] = { ...cantonField };
+    addressObj[PROVINCE_FIELD] = { ...provinceField };
+    addressObj[DISTRICT_FIELD] = { ...districtField };
+    addressObj[EXACT_DIRECTION_FIELD] = { ...exactField };
+
     return addressObj;
   };
 
-  const setForm = (data: IField[]) => {
+  const buildAddressField = (
+    field: IField,
+    rescueEditData: IRescue | undefined = undefined
+  ) => {
+    const addressData: IAddress | undefined = rescueEditData
+      ? JSON.parse(rescueEditData[DIRECTION_FIELD])
+      : undefined;
+    let addressObj = {};
+
+    if (addressData) {
+      addressObj = buildAddressEditField(field, addressData);
+    } else {
+      const valueObj = {
+        isRequired: field.IsRequired,
+        id: field.FieldId,
+        value: "",
+        valid: false,
+      };
+
+      addressObj[CANTON_FIELD] = { ...valueObj };
+      addressObj[EXACT_DIRECTION_FIELD] = { ...valueObj };
+      addressObj[DISTRICT_FIELD] = { ...valueObj };
+      addressObj[PROVINCE_FIELD] = { ...valueObj };
+    }
+    return addressObj;
+  };
+
+  const setForm = (
+    data: IField[],
+    rescueEditData: IRescue | undefined = undefined
+  ) => {
     let firstForm = {
       section: t(NEW_ANIMAL_FORM_FIRST),
     };
@@ -157,33 +214,50 @@ export default function useNewAnimal(): Hook {
     let thirdForm = {
       section: t(NEW_ANIMAL_FORM_THIRD),
     };
+    const animalFieldsData = rescueEditData
+      ? JSON.parse(rescueEditData.Fields)
+      : rescueEditData;
 
     data.forEach((field) => {
       const fieldValues = {
         isRequired: field.IsRequired,
         id: field.FieldId,
-        value: "",
-        valid: false,
+        // eslint-disable-next-line
+        value: animalFieldsData
+          ? field.FieldName in animalFieldsData
+            ? animalFieldsData[field.FieldName]
+            : ""
+          : "",
+        valid: animalFieldsData ? field.FieldName in animalFieldsData : false,
       };
 
       switch (field.FormSection) {
         case t(NEW_ANIMAL_FORM_FIRST):
           if (field.FieldType === ADDRESS_FIELD_TYPE) {
-            firstForm = { ...firstForm, ...buildAddressField(field) };
+            firstForm = {
+              ...firstForm,
+              ...buildAddressField(field, animalFieldsData),
+            };
           } else {
             firstForm[field.FieldName] = fieldValues;
           }
           break;
         case t(NEW_ANIMAL_FORM_SECOND):
           if (field.FieldType === ADDRESS_FIELD_TYPE) {
-            secondForm = { ...secondForm, ...buildAddressField(field) };
+            secondForm = {
+              ...secondForm,
+              ...buildAddressField(field, animalFieldsData),
+            };
           } else {
             secondForm[field.FieldName] = fieldValues;
           }
           break;
         case t(NEW_ANIMAL_FORM_THIRD):
           if (field.FieldType === ADDRESS_FIELD_TYPE) {
-            thirdForm = { ...thirdForm, ...buildAddressField(field) };
+            thirdForm = {
+              ...thirdForm,
+              ...buildAddressField(field, animalFieldsData),
+            };
           } else {
             thirdForm[field.FieldName] = fieldValues;
           }
@@ -195,9 +269,35 @@ export default function useNewAnimal(): Hook {
     setFormData([firstForm, secondForm, thirdForm]);
   };
 
+  async function getAnimals() {
+    const animals = await FormService.getAnimalInfo();
+    return animals.data.response;
+  }
+
   async function getFields() {
     const fieldData = await FormService.getFormFields(1);
-    setForm(fieldData.data.response);
+    const animals = await getAnimals();
+    setAnimalData(animals);
+
+    let animalRescueData;
+
+    if (params.animalId) {
+      const rescueAnimal = await RescueService.getRescue();
+      animalRescueData = rescueAnimal.data.response.find(
+        (x) => x.id.toString() === params.animalId
+      );
+      setAnimalEditData(animalRescueData);
+
+      const animalSelected = animals.find(
+        (animal) => animal.id === animalRescueData.AnimalId
+      );
+
+      if (animalSelected) {
+        setAnimalToSend(animalSelected);
+      }
+    }
+
+    setForm(fieldData.data.response, animalRescueData);
     setFields(fieldData.data.response);
     setThirdSectionTypes(
       getTypes(fieldData.data.response, t(NEW_ANIMAL_FORM_THIRD))
@@ -210,11 +310,6 @@ export default function useNewAnimal(): Hook {
     );
     setLoading(false);
     return fieldData.data.response;
-  }
-
-  async function getAnimals() {
-    const animals = await FormService.getAnimalInfo();
-    return animals.data.response;
   }
 
   async function getAddressOptions() {
@@ -237,9 +332,7 @@ export default function useNewAnimal(): Hook {
 
   React.useEffect(() => {
     getAddressOptions();
-    getAnimals().then((data) => {
-      setAnimalData(data);
-    });
+
     getFields().then((data) => {
       const newFields = createBasicData(data);
       RescueObservable.setRescue(newFields);
@@ -286,8 +379,16 @@ export default function useNewAnimal(): Hook {
 
   const submitForm = () => {
     const payload = buildPaydload();
-    RescueService.addRescue(animalToSend.id, 1, 1, JSON.stringify(payload));
-    navigate(-1);
+    if (!animalEditData) {
+      RescueService.addRescue(animalToSend.id, 1, 1, JSON.stringify(payload));
+    } else {
+      RescueService.updateRescue(
+        animalEditData.id,
+        JSON.stringify(payload),
+        animalEditData.AnimalId
+      );
+    }
+    navigate(RESCUE_ROUTE);
   };
 
   const next = () => {
@@ -310,5 +411,6 @@ export default function useNewAnimal(): Hook {
     next,
     submitForm,
     isLoading,
+    animalEditData,
   };
 }

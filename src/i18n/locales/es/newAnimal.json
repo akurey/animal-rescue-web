@@ -1,5 +1,6 @@
 {
   "title": "Nuevo rescate",
+  "editTitle": "Editar rescate",
   "pageTitle": {
     "first": "Datos del animal",
     "second": "Datos del rescate",
@@ -10,6 +11,7 @@
   "quit": "Cancelar",
   "save": "Guardar",
   "introduceAnimal": "Ingresar animal",
+  "editAnimal": "Editar animal",
   "fields": {
     "province": "Provincia",
     "canton": "Cantón",

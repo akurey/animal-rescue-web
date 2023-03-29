@@ -9,6 +9,8 @@ import FilterListSharpIcon from "@mui/icons-material/FilterListSharp";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Checkbox } from "@mui/material";
 import { IconButton, Menu, MenuItem, TablePagination } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
+import { RESCUE_EDIT_ROUTE } from "../../../constants/routes.types";
 
 interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
   items?: any[];
@@ -21,6 +23,7 @@ function TableComponent({ items }: TableProps) {
   const [rows, setRows] = useState(items.slice(0, rowsPerPage));
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
 
   const handleChangeRows = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(Number(e.target.value));
@@ -59,6 +62,10 @@ function TableComponent({ items }: TableProps) {
     setAnchorEl(null);
   };
 
+  const handleEdit = (id: number) => {
+    navigate(RESCUE_EDIT_ROUTE.replace(":animalId", id.toString()));
+  };
+
   const loadRescuePlaceField = (payload: any) => {
     const fields = JSON.parse(payload.Fields);
     const direction = fields["Dirección"];
@@ -71,9 +78,6 @@ function TableComponent({ items }: TableProps) {
 
     return rescuePlaceField;
   };
-
-  // TODO EJimenez - Delete this constant and show table column //
-  const hideElement = false;
 
   return (
     <div className="table--container">
@@ -92,11 +96,10 @@ function TableComponent({ items }: TableProps) {
             <TableCell className="table--header" align="left">
               Lugar de Rescate
             </TableCell>
-            {hideElement && (
-              <TableCell className="table--header" align="center">
-                <FilterListSharpIcon className="icon" fontSize="medium" />
-              </TableCell>
-            )}
+
+            <TableCell className="table--header" align="center">
+              <FilterListSharpIcon className="icon" fontSize="medium" />
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -117,51 +120,47 @@ function TableComponent({ items }: TableProps) {
                   ? row.PlaceOfRescue
                   : loadRescuePlaceField(row)}
               </TableCell>
-              {hideElement && (
-                <TableCell className="table--data" align="center">
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
+
+              <TableCell className="table--data" align="center">
+                <IconButton
+                  aria-label="more"
+                  id="long-button"
+                  aria-controls={open ? "long-menu" : undefined}
+                  aria-expanded={open ? "true" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+                <Menu
+                  id="long-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  PaperProps={{
+                    style: {
+                      maxHeight: "8rem",
+                      width: "7rem",
+                      background: "#FFEF0A",
+                    },
+                  }}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                >
+                  <MenuItem
+                    key={`see_option${row.id}`}
+                    onClick={() => handleEdit(row.id)}
                   >
-                    <MoreVertIcon />
-                  </IconButton>
-                  <Menu
-                    id="long-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    PaperProps={{
-                      style: {
-                        maxHeight: "8rem",
-                        width: "7rem",
-                        background: "#FFEF0A",
-                      },
-                    }}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "right",
-                    }}
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                  >
-                    <MenuItem key={`see_option${row.id}`} onClick={handleClose}>
-                      Ver
-                    </MenuItem>
-                    <MenuItem
-                      key={`edit_option${row.id}`}
-                      onClick={handleClose}
-                    >
-                      Editar
-                    </MenuItem>
-                  </Menu>
-                </TableCell>
-              )}
+                    Ver
+                  </MenuItem>
+                </Menu>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

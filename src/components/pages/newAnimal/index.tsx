@@ -5,6 +5,8 @@ import {
   NEW_ANIMAL_NEW,
   NEW_ANIMAL_NEXT,
   NEW_ANIMAL_TITLE,
+  EDIT_ANIMAL_TITLE,
+  NEW_ANIMAL_EDIT,
 } from "../../../constants/translations";
 import Button from "../../atoms/Button";
 import PageNumber from "../../atoms/PageNumber";
@@ -22,6 +24,7 @@ function NewAnimal() {
     next,
     submitForm,
     isLoading,
+    animalEditData,
   } = useNewAnimal();
 
   if (isLoading) {
@@ -33,7 +36,7 @@ function NewAnimal() {
       <Breadcrumbs />
       <div className="row">
         <div>
-          <h2>{t(NEW_ANIMAL_TITLE)}</h2>
+          <h2>{animalEditData ? t(EDIT_ANIMAL_TITLE) : t(NEW_ANIMAL_TITLE)}</h2>
         </div>
         <div className="form">
           <PageNumber
@@ -68,7 +71,7 @@ function NewAnimal() {
                 buttonSize="btn--medium"
                 onClick={submitForm}
               >
-                {t(NEW_ANIMAL_NEW)}
+                {animalEditData ? t(NEW_ANIMAL_EDIT) : t(NEW_ANIMAL_NEW)}
               </Button>
             )}
           </div>
