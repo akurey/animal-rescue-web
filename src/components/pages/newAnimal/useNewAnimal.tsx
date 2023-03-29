@@ -179,7 +179,11 @@ export default function useNewAnimal(): Hook {
     rescueEditData: IRescue | undefined = undefined
   ) => {
     const addressData: IAddress | undefined = rescueEditData
-      ? JSON.parse(rescueEditData[DIRECTION_FIELD])
+      ? JSON.parse(
+          rescueEditData[DIRECTION_FIELD]
+            ? rescueEditData[DIRECTION_FIELD]
+            : "{}"
+        )
       : undefined;
     let addressObj = {};
 
