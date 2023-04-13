@@ -392,7 +392,7 @@ export default function useNewAnimal(): Hook {
         animalEditData.AnimalId
       );
     }
-    navigate(RESCUE_ROUTE);
+    navigate(RESCUE_ROUTE, { replace: false });
   };
 
   const next = () => {
