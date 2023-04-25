@@ -21,6 +21,7 @@ function TableComponent({ items }: TableProps) {
   const [firstRow, setFirstRow] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState(items.slice(0, rowsPerPage));
+  const [menuElementSelectedId, setMenuElementSelectedId] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
@@ -55,6 +56,8 @@ function TableComponent({ items }: TableProps) {
   }, [rowsPerPage]);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const idElement = event.currentTarget.id.split("-");
+    setMenuElementSelectedId(idElement.slice(-1)[0]);
     setAnchorEl(event.currentTarget);
   };
 
@@ -62,8 +65,10 @@ function TableComponent({ items }: TableProps) {
     setAnchorEl(null);
   };
 
-  const handleEdit = (id: number) => {
-    navigate(RESCUE_EDIT_ROUTE.replace(":animalId", id.toString()));
+  const handleEdit = () => {
+    if (menuElementSelectedId) {
+      navigate(RESCUE_EDIT_ROUTE.replace(":animalId", menuElementSelectedId));
+    }
   };
 
   const loadRescuePlaceField = (payload: any) => {
@@ -124,7 +129,7 @@ function TableComponent({ items }: TableProps) {
               <TableCell className="table--data" align="center">
                 <IconButton
                   aria-label="more"
-                  id="long-button"
+                  id={`long-button-${row.id}`}
                   aria-controls={open ? "long-menu" : undefined}
                   aria-expanded={open ? "true" : undefined}
                   aria-haspopup="true"
@@ -155,7 +160,7 @@ function TableComponent({ items }: TableProps) {
                 >
                   <MenuItem
                     key={`see_option${row.id}`}
-                    onClick={() => handleEdit(row.id)}
+                    onClick={() => handleEdit()}
                   >
                     Ver
                   </MenuItem>
