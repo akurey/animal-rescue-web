@@ -31,6 +31,7 @@ import {
 } from "../../../constants/translations";
 import { userAction } from "../../../reducers/user/actions";
 import IUser from "../../../types/user.types";
+import { RESCUE_ROUTE } from "../../../constants/routes.types";
 
 function Login() {
   const secret = process.env.REACT_APP_JWT_SECRET;
@@ -61,7 +62,7 @@ function Login() {
   };
   const onRedirect = () => {
     setTimeout(() => {
-      navigate("/rescues");
+      navigate(RESCUE_ROUTE);
     }, 500);
   };
 

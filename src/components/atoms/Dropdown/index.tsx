@@ -73,16 +73,23 @@ const Dropdown = (props: IDropdown) => {
   }, []);
 
   return (
-    <select
-      {...selectProps}
-      className={dropdownStyle}
-      id={name}
-      onChange={handleOnChange}
-      value={currentOption}
-    >
-      {placeholder && placeholderOption}
-      {displayOptions}
-    </select>
+    <div className="dropdown">
+      {currentOption && (
+        <label className="form-field--label" htmlFor={name}>
+          {placeholder}
+        </label>
+      )}
+      <select
+        {...selectProps}
+        className={dropdownStyle}
+        id={name}
+        onChange={handleOnChange}
+        value={currentOption}
+      >
+        {placeholder && placeholderOption}
+        {displayOptions}
+      </select>
+    </div>
   );
 };
 

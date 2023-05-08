@@ -5,6 +5,13 @@ import OceloteImg from "../../../assets/backgrounds/Ocelote.png";
 import TucanImg from "../../../assets/backgrounds/Tucan.png";
 import RanaImg from "../../../assets/backgrounds/Rana.png";
 import IguanaImg from "../../../assets/backgrounds/Iguana.png";
+import {
+  LOGIN_ROUTE,
+  RESCUE_NEW_ROUTE,
+  RESCUE_PUBLIC_ROUTE,
+  RESCUE_ROUTE,
+  RESCUE_VIEW_ROUTE,
+} from "../../../constants/routes.types";
 
 function ImageBackground() {
   const [backgroundImage, setBackgroundImage] = useState(OceloteImg);
@@ -13,24 +20,28 @@ function ImageBackground() {
 
   useEffect(() => {
     switch (location.pathname) {
-      case "/login":
+      case LOGIN_ROUTE:
         setBackgroundImage(RanaImg);
         setImagePosition("top-right");
         break;
-      case "/rescues":
+      case RESCUE_ROUTE:
         setBackgroundImage(OceloteImg);
         setImagePosition("top-right");
         break;
-      case "/rescues/public":
+      case RESCUE_PUBLIC_ROUTE:
         setBackgroundImage(TucanImg);
         setImagePosition("top-right");
         break;
-      case "/rescues/new":
+      case RESCUE_NEW_ROUTE:
         setBackgroundImage(IguanaImg);
         setImagePosition("bottom-left");
         break;
       default:
-        if (location.pathname.includes("/rescues/edit")) {
+        if (
+          location.pathname.includes(
+            RESCUE_VIEW_ROUTE.replace("/:animalId", "")
+          )
+        ) {
           setBackgroundImage(IguanaImg);
           setImagePosition("bottom-left");
         } else {
@@ -48,7 +59,7 @@ function ImageBackground() {
         alt=""
         role="presentation"
       />
-      {location.pathname !== "/rescues/new" && (
+      {location.pathname !== RESCUE_NEW_ROUTE && (
         <div className="background-blur" />
       )}
     </div>

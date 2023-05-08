@@ -11,6 +11,7 @@ import {
   NOT_FOUND_PAGE,
   NOT_FOUND_TITLE,
 } from "../../../constants/translations";
+import { RESCUE_ROUTE } from "../../../constants/routes.types";
 
 function NotFound() {
   const { t } = useTranslation([NOT_FOUND_PAGE, COMMON]);
@@ -27,7 +28,7 @@ function NotFound() {
       <h1>{t(NOT_FOUND_TITLE)}</h1>
       <div className="e404--container__CTA">
         <span>{t(NOT_FOUND_DESCRIPTION_TEXT)}</span>
-        <Link className="e404--container__CTA-link" to="/rescues">
+        <Link className="e404--container__CTA-link" to={RESCUE_ROUTE}>
           {t(NOT_FOUND_DESCRIPTION_LINK)}
         </Link>
       </div>
