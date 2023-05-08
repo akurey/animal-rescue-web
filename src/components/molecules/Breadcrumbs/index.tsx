@@ -9,7 +9,7 @@ function Breadcrumbs() {
   const getDisplayName = (name: string) => {
     const names = name.split("/");
     return name === "/"
-      ? "Home"
+      ? "Inicio"
       : names[names.length - 1].charAt(0).toUpperCase() +
           names[names.length - 1].substring(1);
   };

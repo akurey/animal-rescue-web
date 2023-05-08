@@ -1,4 +1,5 @@
 @import "../../../styles/forms.scss";
+@import "../../../styles/layout.scss";
 
 select {
   @extend %form-field;
@@ -7,4 +8,11 @@ select {
 
 option {
   color: $dark-text-color;
+}
+
+.dropdown {
+  @include layout-column(7px);
+  // @extend %form-field;
+  flex-grow: 1;
+  width: 100%;
 }
