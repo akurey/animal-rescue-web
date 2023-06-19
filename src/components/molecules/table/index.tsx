@@ -10,13 +10,22 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Checkbox } from "@mui/material";
 import { IconButton, Menu, MenuItem, TablePagination } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { RESCUE_EDIT_ROUTE } from "../../../constants/routes.types";
+import {
+  RESCUES_PAGE,
+  RESCUES_TABLE_CASE_NUMBER,
+  RESCUES_TABLE_COMMON_NAME,
+  RESCUES_TABLE_ADMISSION_NAME,
+  RESCUES_TABLE_RESCUE_PLACE,
+} from "../../../constants/translations";
 
 interface TableProps extends React.HTMLAttributes<HTMLInputElement> {
   items?: any[];
 }
 
 function TableComponent({ items }: TableProps) {
+  const { t } = useTranslation(RESCUES_PAGE);
   const [page, setPage] = useState(0);
   const [firstRow, setFirstRow] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -93,13 +102,16 @@ function TableComponent({ items }: TableProps) {
               <Checkbox className="checkbox" />
             </TableCell>
             <TableCell className="table--header" align="left">
-              Nombre Común
+              {t(RESCUES_TABLE_CASE_NUMBER)}
             </TableCell>
             <TableCell className="table--header" align="left">
-              Fecha de Ingreso
+              {t(RESCUES_TABLE_COMMON_NAME)}
             </TableCell>
             <TableCell className="table--header" align="left">
-              Lugar de Rescate
+              {t(RESCUES_TABLE_ADMISSION_NAME)}
+            </TableCell>
+            <TableCell className="table--header" align="left">
+              {t(RESCUES_TABLE_RESCUE_PLACE)}
             </TableCell>
 
             <TableCell className="table--header" align="center">
@@ -113,6 +125,9 @@ function TableComponent({ items }: TableProps) {
             <TableRow className="table--row" key={`${row.AnimalId}${index}`}>
               <TableCell>
                 <Checkbox className="checkbox" />
+              </TableCell>
+              <TableCell className="table--data" align="left">
+                {row.id}
               </TableCell>
               <TableCell className="table--data" align="left">
                 {row.AnimalName}

@@ -1,8 +1,16 @@
 import axiosInstance from "../utils/axios";
 
 export default class UserService {
+  static routes = {
+    login: () => `/users/login`,
+    logout: () => `/users/logout`,
+  };
+
   static loginUser(username: string, password: string) {
-    const route = "/users/login";
-    return axiosInstance.post(route, JSON.stringify({ username, password }));
+    return axiosInstance.post(this.routes.login(), JSON.stringify({ username, password }));
+  }
+
+  static logoutUser() {
+    return axiosInstance.post(this.routes.logout());
   }
 }

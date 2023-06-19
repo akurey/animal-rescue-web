@@ -5,6 +5,9 @@ import { LocalStorageKeys } from "../../../constants/local-storage-keys.constant
 import LocalStorage from "../../../observables/localStorage.observable";
 import AuthContext from "../../../context/AuthProvider";
 import "./styles.scss";
+import UserService from "../../../services/user.services";
+import AppSessionService from "../../../services/storage/session.service";
+import AppStorageService from "../../../services/storage/storage.service";
 
 function UserLogged() {
   const [name, setName] = useState("Name");
@@ -14,7 +17,8 @@ function UserLogged() {
   const open = Boolean(anchorEl);
   const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const storageService = new AppStorageService();
+  const sessionService = new AppSessionService();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -23,7 +27,10 @@ function UserLogged() {
     setAnchorEl(null);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await UserService.logoutUser();
+    storageService.removeItem(LocalStorageKeys.USER);
+    sessionService.removeItem(LocalStorageKeys.USER);
     setAuth(undefined);
   };
 
