@@ -45,3 +45,7 @@ export const RESCUES_TITLE = "rescues:title";
 export const RESCUES_NEW = "rescues:newAnimal";
 export const RESCUES_IN_REVIEW = "rescues:inReview";
 export const RESCUES_PUBLIC = "rescues:public";
+export const RESCUES_TABLE_CASE_NUMBER = "rescues:table.caseNumber";
+export const RESCUES_TABLE_COMMON_NAME = "rescues:table.commonName";
+export const RESCUES_TABLE_ADMISSION_NAME = "rescues:table.admissionDate";
+export const RESCUES_TABLE_RESCUE_PLACE = "rescues:table.rescuePlace";

@@ -2,5 +2,11 @@
   "title": "Animales Rescatados",
   "newAnimal": "Nuevo animal",
   "inReview": "En revisión",
-  "public": "Públicos"
+  "public": "Públicos",
+  "table": {
+    "caseNumber": "Número de Caso",
+    "commonName": "Nombre Común",
+    "admissionDate": "Fecha de Ingreso",
+    "rescuePlace": "Lugar de Rescate"
+  }
 }
